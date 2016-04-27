@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_quotation_job_select" model="ir.ui.view">
+            <field name="name">view.quotation.job.select.form</field>
+            <field name="model">quotation.job.select</field>
+            <field name="priority" eval="5"/>
+			<field name="arch" type="xml">>
+                <form string="job" version="7.0">
+                	<group string="q Infomation" colspan="4" col="4">
+                			<field name="order_id"  string="order_id"/>
+						
+					</group>
+	                
+								<button string='job' name="action_open_window" type="object" class="oe_highlight"/>			
+
+                </form>
+            </field>
+        </record>
+        <record id="action_quotation_job_select" model="ir.actions.act_window">
+            <field name="name">quotation job select</field>
+            <field name="res_model">quotation.job.select</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_quotation_job_select"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

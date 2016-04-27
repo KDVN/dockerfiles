@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="view_kderp_create_allocation" model="ir.ui.view">
+            <field name="name">Create Allocation Sheet</field>
+            <field name="model">kderp.create.allocation.sheet</field>
+            <field name="arch" type="xml">
+                <form string="Create Allocation Asset" version="7.0">
+                	<group string='Create Allocation Asset' col='4'>
+	                	<field name="allocating_begin_date" colspan='4' attrs="{'readonly':[('startdate_default','=',True)]}"/>
+	                	<field name="startdate_default" colspan='4'/>
+	                	<field name="number_of_month" colspan='4' attrs="{'readonly':[('startdate_default','=',True)]}"/>
+	                	<field name="section_id" colspan='4'/>
+	                	<field name="budget_id" colspan='4'/>
+	                	<field name="allocated_selection"/>
+	                	<field name="allocated_to_month" attrs="{'invisible':[('allocated_selection','!=',-1)],'required':[('allocated_selection','=',-1)]}" nolabel="1"/>	                	
+                	</group>
+                    <footer>
+                        <button name="create_allocation_sheet" string="Create Allocation Sheet" type="object" class="oe_highlight"/>
+                         or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_kderp_create_allocation" model="ir.actions.act_window">
+            <field name="name">Create Allocation Asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.create.allocation.sheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_kderp_create_allocation"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

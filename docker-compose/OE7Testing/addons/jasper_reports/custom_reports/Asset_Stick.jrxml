@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Asset_Stick" language="groovy" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ParentID" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SR_DATA_SOURCE" class="java.lang.Object"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\dtthuy\\Desktop\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+	</field>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/code]]></fieldDescription>
+	</field>
+	<field name="usedtime" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Asset_Usage-asset_usage_ids/Used_Date-usedtime]]></fieldDescription>
+	</field>
+	<field name="user_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/asset_usage_ids/user_id/name]]></fieldDescription>
+	</field>
+	<field name="user_staffno" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/asset_usage_ids/user_id/staffno]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="153" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="278" height="153"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="9" y="8" width="259" height="138"/>
+			</rectangle>
+			<textField>
+				<reportElement x="120" y="8" width="148" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="120" y="28" width="148" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{usedtime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="48" width="148" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{user_staffno}+"-"+$F{user_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="9" y="68" width="259" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="62" y="8" width="46" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Item No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="28" width="46" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="49" width="46" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[User]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="9" y="68" width="259" height="78"/>
+				<subreportParameter name="ParentID">
+					<subreportParameterExpression><![CDATA[$F{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DATA_Source">
+					<subreportParameterExpression><![CDATA[$P{SR_DATA_SOURCE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REWIND">
+					<subreportParameterExpression><![CDATA[$P{REWIND}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{SR_DATA_SOURCE}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "Asset_Stick_sub.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="108" y="49" width="12" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="28" width="12" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="8" width="12" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="9" y="23" width="53" height="40"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<imageExpression class="java.lang.String"><![CDATA["OpenerpLogo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

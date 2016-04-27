@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+<!-- Activity -->
+		<record id="wkf_kderp_supplier_payment" model="workflow">
+            <field name="name">Supplier Payment Work-flow</field>
+            <field name="osv">kderp.supplier.payment</field>
+            <field name="on_create">True</field>
+        </record>
+        
+        <record id="act_ksp_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="flow_start">True</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'draft'})</field>
+            <field name="name">draft</field>
+        </record>
+        
+        <record id="act_ksp_pr_checking" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">pr_dept_checking</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'pr_dept_checking'})</field>            
+        </record>
+        
+        <record id="act_ksp_bc_checking" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">bc_checking</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'submitting'})</field>            
+        </record>
+        
+        <record id="act_ksp_bc_passed" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">bc_passed</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'bc_passed'})</field>            
+        </record>
+        
+		<record id="act_ksp_pc_checking" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">pm_checking</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'bc_checked'})</field>            
+        </record>
+        
+        <record id="act_ksp_waiting_bod" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">waiting_bod</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_action_pmchecking_bodchecking()</field>
+        </record>
+        
+        <record id="act_ksp_completed" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">completed</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_action_payment_done()
+            					 action_move_create()
+            					 check_and_reconcile()
+            </field>
+            <field name="flow_stop">True</field>      
+        </record>
+		
+		<record id="act_ksp_paid" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">paid</field>
+            <field name="kind">dummy</field>
+            <field name="flow_stop">True</field>      
+        </record>
+        
+        <record id="act_ksp_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_supplier_payment"/>
+            <field name="name">cancel</field>
+            <field name="kind">function</field>
+            <field name="action">action_cancel()</field>
+            <field name="flow_stop">True</field>      
+        </record>
+		
+		<!-- Draft -> Pro Checking -->
+      	<record id="trans_draft_pr_checking" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_draft"/>
+            <field name="act_to" ref="act_ksp_pr_checking"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_user"/>
+            <field name="signal">btn_draft_to_pr_checking</field>
+        </record>
+        		
+		<!-- Pro Checking -> BC Checking -->
+      	<record id="trans_pr_checking_submitting" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_pr_checking"/>
+            <field name="act_to" ref="act_ksp_bc_checking"/>
+            <field name="group_id" ref="group_kderp_budget_control_user_payment"/>
+            <field name="signal">btn_pr_checking_to_bc_checking</field>
+        </record>
+        
+        <!-- Pro Checking -> Draft -->
+      	<record id="trans_pr_checking_draft" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_pr_checking"/>
+            <field name="act_to" ref="act_ksp_draft"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_user"/>
+            <field name="signal">btn_pr_checking_to_draft</field>
+        </record>
+                
+        <!--BC->BC Passed, Cancel -->
+        <record id="trans_bc_checking_bc_passed" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_bc_checking"/>
+            <field name="act_to" ref="act_ksp_bc_passed"/>
+            <field name="group_id" ref="group_kderp_budget_control_user_payment"/>
+            <field name="signal">btn_bc_confirm</field>
+            <field name="condition">True</field>
+        </record>        
+        <record id="trans_bc_reject" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_bc_checking"/>
+            <field name="act_to" ref="act_ksp_cancel"/>
+            <field name="group_id" ref="group_kderp_budget_control_user_payment"/>
+            <field name="signal">btn_bc_reject</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <!--BC Passed ->PM Checking, Cancel -->
+        <record id="trans_bc_passed_pm_checking" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_bc_passed"/>
+            <field name="act_to" ref="act_ksp_pc_checking"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_user"/>
+            <field name="signal">btn_pro_to_site</field>
+            <field name="condition">True</field>
+        </record>        
+
+        <!-- PM->BOD Checking, Cancel -->        
+        <record id="trans_pm_checking_waiting_bod" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_pc_checking"/>
+            <field name="act_to" ref="act_ksp_waiting_bod"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_project_manager"/>
+            <field name="signal">btn_pm_confirm</field>
+            <field name="condition">True</field>
+        </record>
+        <record id="trans_pm_reject" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_pc_checking"/>
+            <field name="act_to" ref="act_ksp_cancel"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_project_manager"/>
+            <field name="signal">btn_pm_reject</field>
+            <field name="condition">True</field>
+        </record>        
+        
+        <!-- BOD Checking->PM Checking, Approved, Cancel -->
+        <record id="trans_waiting_bod_pc_checking" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_waiting_bod"/>
+            <field name="act_to" ref="act_ksp_pc_checking"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_project_manager"/>
+            <field name="signal">btn_bod_checking_to_pc_checking</field>
+            <field name="condition">True</field>
+        </record>        
+        <record id="trans_waiting_bod_completed" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_waiting_bod"/>
+            <field name="act_to" ref="act_ksp_completed"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_bod"/>
+            <field name="signal">btn_bod_confirm</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_bod_reject" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_waiting_bod"/>            
+            <field name="act_to" ref="act_ksp_cancel"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_bod"/>
+            <field name="signal">btn_bod_reject</field>
+            <field name="condition">True</field>
+        </record>
+		
+ 		 <!-- BOD Approved -> Paid -->        
+        <record id="trans_completed_paid" model="workflow.transition">
+            <field name="act_from" ref="act_ksp_completed"/>
+            <field name="act_to" ref="act_ksp_paid"/>
+            <field name="group_id" ref="group_kderp_supplier_payment_accounting"/>
+            <field name="condition">False</field>
+        </record>
+        
+    </data>
+</openerp>

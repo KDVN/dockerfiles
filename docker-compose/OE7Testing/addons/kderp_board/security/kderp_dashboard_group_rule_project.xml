@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<!-- Rule for KDERP Project Hai Phong-->
+		<record id="kderp_rule_project_haiphong_local" model="ir.rule">
+			<field name="name">KDERP Project - Hai Phong see Project in Hai Phong only</field>
+			<field name="model_id" ref="kderp_project.model_account_analytic_account"/>
+			<field name="global" eval="False"/>
+			<field name="domain_force">[('id','in',"(Select distinct aaa.id from account_analytic_account aaa where aaa.code ilike 'PE%' or aaa.code ilike 'PP%' or aaa.code ilike 'PM%').sql.query")]</field>
+			<field eval="[(6,0,[ref('kderp_project.group_kderp_project_haiphong_menu')])]" name="groups"/>
+		</record>        
+     
+     	 <!-- PM, GPM, PMRef - Rule for Project -->
+		<record id="kderp_rule_dashboard_pm_project" model="ir.rule">
+			<field name="name">KDERP Dashboard - Project Manager see all Project related</field>
+			<field name="model_id" ref="kderp_project.model_account_analytic_account"/>
+			<field model="res.groups" name="groups" search="[('name', 'like', '%Project Manager Dashboard%')]"/>
+			<field eval="False" name="global"/>
+			<field name="domain_force">[('id','in',"(Select distinct aaa.id from account_analytic_account aaa where %s in (aaa.user_id,aaa.project_manager_ref,general_project_manager_id) and state not in ('cancel','closed'))")]</field>
+         </record> 
+        
+     <!-- SM, ASM - Rule for Project -->
+		<record id="kderp_rule_dashboard_sm_project" model="ir.rule">
+            <field name="name">KDERP Dashboard - Area Site Manager see all Project related</field>
+            <field name="model_id" ref="kderp_project.model_account_analytic_account"/>
+           	<field model="res.groups" name="groups" search="[('name', 'like', '%Site Manager Dashboard%')]"/>
+            <field eval="False" name="global"/>
+			<field name="domain_force">[('id','in',"(Select distinct aaa.id from account_analytic_account aaa where %s in (manager_id,area_site_manager_id) and state not in ('cancel','closed'))")]</field>
+        </record>        
+        
+        <!-- UVP - Rule for Project -->
+		<record id="kderp_user_view_project" model="ir.rule">
+            <field name="name">KDERP User View Project</field>
+            <field name="model_id" ref="kderp_project.model_account_analytic_account"/>
+            <field eval="[(6,0,[ref('group_kderp_dashboard_user_project')])]" name="groups"/>
+            <field eval="False" name="global"/>
+            <field name="domain_force">[('id','in',"(Select distinct id from account_analytic_account left join users_projects_rel upr on id=pid where %s=uid and state not in ('cancel','closed'))")]</field>
+        </record> 	
+        
+	</data>
+</openerp>

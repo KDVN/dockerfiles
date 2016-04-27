@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		    
+    	<record id="view_kderp_other_expense_ge_tree" model="ir.ui.view">
+            <field name="name">view.kderp.other.expense.ge.tree</field>
+            <field name="model">kderp.other.expense</field>
+            <field name="priority" eval="30"/>
+            <field name="arch" type="xml">
+            	<tree string="G.E. &amp; Expense" colors="blue:state == 'draft';gray:state == 'cancel';green:state == 'waiting_for_payment'">
+            		<field name="name"/>
+            		<field name="date"/>
+            		<field name="description" string='Desc.'/>
+            		<field name="account_analytic_id" context="{'job_id': account_analytic_id}" string='G.E'/>
+            		<field name="expense_type"/>
+            		<field name="payment_type"/>
+            		<field name="partner_id" string="Supplier" invisible="'partner_id' in context.get('group_by',[])"/>
+            		<field name="budgets"/>
+            		<field name="sections" string="Locations"/>
+            		<field name="currency_id"/>
+            		<field name="amount_untaxed"/>
+            		<field name="amount_tax"/>
+            		<field name="amount_total"/>
+            		<field name="state"/>
+            	</tree>
+            </field>
+		</record>
+ 		<record id="view_kderp_other_expense_ge_form" model="ir.ui.view">
+            <field name="name">view.kderp.other.expense.ge.form</field>
+            <field name="model">kderp.other.expense</field>
+            <field name="priority" eval="30"/>
+            <field name="arch" type="xml">
+            	<form string="G.E. &amp; Expense" version="7.0">            	
+	            	<header>						
+						<button icon="gtk-apply" name="action_draft_to_waiting_for_payment" type='object' states="draft" string="Submit" groups="kderp_other_expense.group_kderp_other_expense_admin"/>
+						<button icon='gtk-convert' name='action_cancel_draft' states='cancel' type="object" string='Revise' groups="kderp_other_expense.group_kderp_other_expense_admin"/>
+						<button confirm="Are you sure you want to cancel this expense?" icon="gtk-cancel" name="action_cancel" states="draft,waiting_for_payment,revising" type='object' string="Reject" groups="kderp_other_expense.group_kderp_other_expense_admin"/>
+						<button icon='gtk-convert' name='action_done_revising' states='done,paid' type="object" string='Open' groups='kderp_other_expense.group_kderp_other_expense_open'/>
+	               		<button icon='gtk-apply' name='action_revising_done' type="object" string='Close' states='revising' groups='kderp_other_expense.group_kderp_other_expense_open'/>
+	               		<!-- <button icon='gtk-new' name='action_create_asset' type="object" string='Create Asset' attrs="{'invisible':['|',('link_asset_id','!=',False),('expense_type','not in',('expense','fixed_asset'))]}"/> -->
+	               		<button attrs="{'invisible':['|','|',('supplier_payment_expense_ids','!=',[]),('state','not in',('revising','waiting_for_payment')),('expense_type','=','monthly_expense')]}" icon='gtk-new' type='object' string='Create Payment' name='action_expense_create_supplier_payment_expense'/>
+	               		<field name="state_depend" statusbar_visible="draft,waiting_for_payment,done,paid" widget="statusbar" attrs="{'invisible':[('expense_type','not in',('prepaid','fixed_asset'))]}"/>
+	               		<field name="state_recognize" statusbar_visible="draft,done" widget="statusbar" attrs="{'invisible':[('expense_type','!=','monthly_expense')]}"/>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_for_payment,done" statusbar_colors='{"waiting_for_payment":"green","cancel":"red","done":"blue"}' attrs="{'invisible':[('expense_type','!=','expense')]}"/>
+	            	</header>
+	            	<sheet>
+	                    <div class="oe_title" style='width:auto !important'>
+		                	<h1 style='display:inline !important'>
+		                        <label for="name" string="Expense No. :" class="oe_inline oe_edit_only"/>
+		                        <field name="name" style='width:auto !important'/>
+								<label for="expense_type" string="-" class="oe_inline"/>
+			                    <label for="expense_type" string="Type :" class="oe_inline oe_edit_only"/>
+			                 	<field name="expense_type" on_change="onchange_expensetype(expense_type, partner_id, taxes_id)" style='width:auto !important'/>			                 	
+	                 		</h1>		                    
+		                </div>
+	                    <group colspan="4" col="4">	    
+							<field name="account_analytic_id" string="G.E./Job" on_change="new_code(account_analytic_id,'E',name)" domain="[('general_expense','=',True)]" context="{'job_id':account_analytic_id}" attrs="{'invisible':[('expense_type','in',('fixed_asset','prepaid'))]}"/>
+	                       	<label string=""/>
+	                       	<label string=""/>
+	                       	<field name='allocated_to' on_change="onchange_allocate_ge(allocated_to,section_incharge_id,True)" context="{'general_expense':True}" colspan="1" default_focus="1"/>
+							<!-- <field name='allocated_to'  on_change="onchange_allocate_ge(allocated_to)" context="{'general_expense': True}" colspan="1" default_focus="1"/> -->
+							<field name="date" colspan="1" string='Ad./Allocated Date'/>
+	                        <field name='section_incharge_id' colspan="1"/>
+	                        <field name="accounting_allocated_date" colspan="1" string='Acc./Allocated Date'/>
+	                        <field name ='ref_number' help="Input Reference No. when General Expense is Telephone"/>    
+	                        <field name="payment_type"/>            
+	                    </group>
+	                    <notebook>
+	                        <page string="Expense Details">
+	                        	<group colspan="4" col="4">
+	                        		<field name="partner_id" attrs="{'invisible':[('expense_type','=','monthly_expense')]}" on_change="onchange_partner_id(partner_id)" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>
+	                        		<field name="address_id" attrs="{'invisible':[('expense_type','=','monthly_expense')]}" domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" context="{'default_type':'default','show_address': 1,'hide_name': 1,'inline':1}" options='{"always_reload": True}'/>
+	                        		<field name='description' colspan="4"/>
+	                        		<field name='currency_id'/>
+	                        		<field name='exrate'/>
+	                        		<field name='manual_exrate' string ="Manual Ex.Rate"/>
+	                        	</group>	
+	                        	                    	
+	                            <field name="expense_line" context="{'id':active_id,'account_analytic_id':account_analytic_id}" attrs="{'readonly':['|',('state','in',('paid','done','cancel')),('expense_type','not in',('expense'))] ,'invisible':[('expense_type','!=','expense')]}">
+	                                <tree string="Expense Details" editable="bottom">
+	                                    <field name='account_analytic_id' string='Job/G.E'  options='{"always_reload": True}' context="{'kderp_search_pge': parent.allocated_to,'job_id':account_analytic_id}"/>
+	            						<field name='budget_id' string='Budget Code' context="{'job_id':account_analytic_id, 'general_expense': True}" options='{"always_reload": True}' on_change="onchange_budget_id(budget_id)"/>
+	                                    <field name="name" string="Desc."/>
+	                                    <field name="section_id" string="Allocated Section"/>	                     
+	                                    <field name="amount" sum='Sub-total'/>
+<!-- 	                                    <field name="general_type" invisible="1" /> -->
+	                                </tree>
+	                            </field>
+	                            <field name="expense_line_ge" context="{'id':active_id,'account_analytic_id':account_analytic_id, 'budget_code':'A99'}" attrs="{'readonly':[('expense_type','not in',('fixed_asset','prepaid'))], 'invisible':[('expense_type','not in',('fixed_asset','prepaid'))]}">
+	                                <tree string="Expense Details" editable="bottom">
+	                                    <field name='account_analytic_id' string='Job/G.E'  invisible="1" options='{"always_reload": True}' context="{'kderp_search_pge':parent.allocated_to,'job_id': account_analytic_id}"/>
+	            						<field name='budget_id' string='Budget Code' context="{'job_id':account_analytic_id, 'general_expense': True}" options='{"always_reload": True}' invisible="1"/>
+	                                    <field name="name" string="Desc."/>	                                    
+	                                    <field name="amount" sum='Sub-total'/>
+	                                </tree>
+	                            </field>
+	                            <field name="expense_line_pending" attrs="{'readonly':['|',('state','in',('paid','done','cancel')),('expense_type','not in',('monthly_expense'))],'invisible':[('expense_type','!=','monthly_expense')]}" context="{'id':active_id,'account_analytic_id':account_analytic_id}">
+	                                <tree string="Expense Details" editable="bottom">
+	                                    <field name='account_analytic_id' string='Job/G.E'  options='{"always_reload": True}' context="{'kderp_search_pge':parent.allocated_to,'job_id': account_analytic_id}"/>
+	            						<field name='budget_id' string='Budget Code' context="{'job_id':account_analytic_id, }" options='{"always_reload": True}' on_change="onchange_budget_id(budget_id)"/>
+	                                    <field name="name" string="Desc."/>
+	                                    <field name="section_id" string="Allocated Section"/>
+	                                    <field name="belong_expense_id" domain="[('id','!=',parent.id),('expense_type','in',('prepaid','fixed_asset')),('state','not in',('draft','cancel','done'))]" context="{'general_expense': True}"/>
+	                                    <field name="amount" sum='Sub-total'/>
+	                                </tree>
+	                            </field>	                            
+	                            <group class="oe_subtotal_footer oe_right"> 
+	                            	<group colspan="2" col="2">
+	                            		<label for="amount_untaxed" string="Sub-total"/>
+		                            	<field nolabel="1" name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+		                            	<field style="text-align:left" col="1" name="taxes_id"  context="{'res_models':['kderp.other.expense'],'res_ids':[active_id],'type':'received','res_name':name}" widget="many2many_tags" on_change="on_changevalue(amount_untaxed,taxes_id,currency_id)" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]">
+											<tree>
+												<field name='name'/>
+											</tree>
+	                        			</field>
+	                        			<field col="1" name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                        		</group>	                                
+	                                <div class="oe_subtotal_footer_separator oe_inline"/>
+	                                <group colspan="2" col="2">
+	                                	<div class="oe_inline">
+	                                    	<label for="amount_total" string="TOTAL" class="oe_clear" style="font-size:15px"/>
+	                                	</div>
+		                                <field style="background-color:rgb(232, 240, 209); font-weight:bold; font-size:15px" name="amount_total" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                                </group>
+                            	</group>
+	                            <div class="oe_clear"/>
+	                        </page>
+	                        <page string='Allocation Sheet' attrs="{'invisible':[('expense_type','not in',('prepaid','fixed_asset'))]}">	                        	
+	                        	<button name='action_open_allocated_expense' type="object" string='Open Allocated Expense' icon='gtk-open'/>
+	                        	<field name='related_expense_ids' nolabel='1' colspan="4">
+	                        		<tree string='Allocation Sheet' editable='top' colors="blue:state == 'draft'">
+		                        		<field name='expense_id' string='Expense No.'/>
+										<field name='account_analytic_id' string='Job/GE' domain="[('general_expense','=',True)]" options='{"always_reload": True}' context="{'general_expense': True}"/>
+										<field name='date'/>
+	            						<field name='budget_id' string='Budget Code' context="{'job_id':account_analytic_id, 'general_expense': True}" options='{"always_reload": True}' on_change="onchange_budget_id(budget_id)"/>
+	                                    <field name="section_id" string="Allocated Section"/>
+	                                    <field name="amount" sum='Sub-total' string="Amount"/>
+	                                    <field name='state'/> 
+	                                    <button name='action_open_related_exp' type="object" string='Open' icon='gtk-open'/>
+	                                    <button icon="gtk-apply" name="action_submit" type="object" states="draft" class="oe_highlight"/>
+	                        		</tree>
+	                        	</field>
+	                        	<group col="4">
+	                        		<!-- <field name="allocating_begin_date"/>
+	                        		<field name='current_allocated_date'/> -->
+	                        		<field name='number_of_month'/>
+	                        		<field name='recognized_amount'/>	                        		
+	                        		<field name='remaining_amount'/>
+	                        		<button attrs="{'invisible':[('remaining_amount','&lt;=',0),('recognized_amount','>',0)]}" name="%(act_kderp_create_allocation)d" type='action' context="{'ge_id':active_id}" string='Create Allocation Sheet' icon='gtk-new'/>
+	                        	</group>
+	                        </page>
+	                        <page string='Payment &amp; VAT Invoices' attrs="{'invisible':[('expense_type','=','monthly_expense')]}">
+		            			<field name="supplier_payment_expense_ids" readonly="0" colspan="4">
+			            			<tree colors="blue:state == 'draft';gray:state == 'cancel'" string="Supplier Payment">
+			            				<button name="open_expense_supplier_payment" icon="gtk-zoom-fit" type="object"/>
+					                    <field name="name"/>
+					                    <field name="date"/>                    
+					                    <field name="currency_id"/>
+					                    <field name="amount"/>
+					                    <field name="amount_tax"/>                    
+					                    <field name="total" sum="Total"/>
+					                    <field name="state"/>
+					                </tree>
+								</field>
+		            			<field name="supplier_vat_ids" readonly="1" colspan="4">
+		            				<tree string='VAT Invoices'>
+										<field name="name" select="1" string="VAT Inv. No."/>
+										<field name="date" select="1"/>
+										<field name="currency_id" string="Cur."/>
+										<field name="subtotal" on_change="on_changevalue_per(subtotal,tax_per)"/>
+										<field name="tax_per" on_change="on_changevalue_per(subtotal,tax_per)"/>
+										<field name="amount_tax" string="VAT" on_change="on_changevalue(subtotal,amount_tax)"/>
+										<field name="total_amount" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'total_amount')" sum='Total'/>
+										<field name="equivalent_vnd" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'ev')"/>
+										<field name="rate" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'rate')"/>
+										<field name="state" invisible="1"/>
+									</tree>
+		            			</field>
+		            		</page>
+	                    </notebook>
+	            	</sheet>
+	            </form>
+            </field>
+        </record>
+                
+        <!-- Other Expense Search View -->
+        <record id="view_kderp_other_expense_ge_search" model="ir.ui.view">
+            <field name="name">kderp.other.expense.ge.search</field>
+            <field name="model">kderp.other.expense</field>
+            <field name="priority" eval="30"/>
+            <field name="arch" type="xml">
+                <search string="Search G.E. &amp; Expense">
+                	<field name="name" string="Expense No." filter_domain="[('name','ilike',self)]"/>
+                    <field name="description" string="Description" filter_domain="[('description','ilike',self)]"/>
+                    <field name="partner_id" string="Supplier" filter_domain="[('partner_id','ilike',self)]"/>
+                    <field name="date" string="Expense Date" filter_domain="[('date','=',self)]"/>
+					<field name="amount_untaxed" string="Sub Total" filter_domain="[('amount_untaxed','=',self)]"/>
+                    <field name="budgets" string="Budgets" filter_domain="[('budgets','ilike',self)]"/>
+                    <field name="expense_line" string="Details/Job/Amount" filter_domain="[('expense_line','ilike',self)]"/>
+                    <field name="date" string="Exp./Allocated Date" filter_domain="[('date','ilike',self)]"/> 
+                    <filter help="Working Expense" name="working" domain="[('state','in',('draft','waiting_for_payment')),('expense_type','!=','monthly_expense')]"/>
+                    <filter help="Working Allocated Expense" name="working_allocation_sheet" domain="[('state','=','draft'),('expense_type','=','monthly_expense')]"/>
+                    <separator/>
+                    <filter help="Draft Expense" name='draft' domain="[('state','=','draft')]"/>
+                    <filter help="Waiting for Payment" name='waiting_for_payment' domain="[('state','=','waiting_for_payment')]"/>
+                    <filter help="Paid Expense" name='paid' domain="[('state','=','paid')]"/>
+                    <filter help="Completed Expense" name='done' domain="[('state','=','done')]"/>
+                    <filter help="Cancelled Expense" name='cancel' domain="[('state','=','cancel')]"/>
+                    <separator/>
+                    <filter help="Expense" name='expense' domain="[('expense_type','=','expense')]"/>
+                    <filter help="Allocated Expense" name='monthly_expense' domain="[('expense_type','=','monthly_expense')]"/>
+                    <filter help="Prepaid" name="prepaid_asset" domain="[('expense_type','=','prepaid')]"/>
+                    <filter help="FA &amp; TE" name="fixed_asset" domain="[('expense_type','=','fixed_asset')]"/>
+                    <separator/>
+                    <filter help="Outstanding Expense" name="outstanding_expense" domain="[('state','=','paid'),('expense_type','in',('fixed_asset','prepaid'))]"/>
+                    <separator/>
+                    <filter help="General Expense" name='GE' domain="[('allocated_to','=','GE')]"/>
+                    <filter help="Job &amp; General Expense" name='PGE' domain="[('allocated_to','=','PGE')]"/>
+					
+					<separator/>
+					<filter groups="kderp_general_expense.group_kderp_other_expense_ge_tel_fee" string="Special Case - Around 01 Week"
+                         domain="[('ref_number','!=',False),('date','&gt;=',(context_today()-datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]" name="special_case"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Expense Date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string='Job/G.E' domain="[]" context="{'group_by':'account_analytic_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<!-- Menu Area -->		
+		
+		<!-- All Other Expense -->
+		<record id="kderp_action_working_other_expense_ge" model="ir.actions.act_window">
+            <field name="name">G.E. &amp; Expense</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.other.expense</field>
+            <field name="view_mode">tree,form</field>
+            <field name="filter" eval="True"/>
+			<field name="domain">[('allocated_to','!=','PE')]</field>
+			<field name="view_id" ref="view_kderp_other_expense_ge_tree"/>
+            <field name="context">{'show_full_name':True,'show_field':['code'],'search_default_working':1,'general_expense':True}</field>
+            <field name="search_view_id" ref="view_kderp_other_expense_ge_search"/>
+        </record>
+        
+        <!-- Link view to action -->
+		<record id="action_window_view_other_general_expense_form" model="ir.actions.act_window.view">
+            <field eval="10" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_kderp_other_expense_ge_form"/>
+            <field name="act_window_id" ref="kderp_action_working_other_expense_ge"/>
+        </record>
+        <record id="action_window_view_other_general_expense_tree" model="ir.actions.act_window.view">
+            <field eval="5" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_kderp_other_expense_ge_tree"/>
+            <field name="act_window_id" ref="kderp_action_working_other_expense_ge"/>
+        </record>
+        
+        <menuitem 
+        			action="kderp_action_working_other_expense_ge" 
+        			id="kderp_working_other_expense_ge_action" 
+        			parent="kderp_general_expense.menu_kderp_general_exepense_menu" sequence="5"/>
+        
+        <!-- Action and Menu Item for Import data -->
+        <record id="action_kderp_for_import_genereal_expense_line_data_view" model="ir.actions.act_window">
+            <field name="name">Import General Expense</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.other.expense.line</field>
+            <field name="domain">[('create_uid','=',uid),('create_date','>=', ((context_today()).strftime('%Y-%m-%d')))]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="action_kderp_for_import_genereal_expense_line_data_view" 
+          			id="menu_for_import_general_expense_line" 
+          			parent="kderp_working_other_expense_ge_action" sequence="10"/>
+        		
+	</data>	
+</openerp>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_job_budget_project_inherit_form" model="ir.ui.view">
+			<field name="name">view.job.budget.project.inherit.form</field>
+			<field name="model">account.analytic.account</field>
+			<field name='inherit_id' ref='kderp_job_summary.view_account_job_add_summary_amount_info_inherit_form'/>
+			<field name="arch" type="xml">
+				<field name='balance_per' position='before'>
+					<field name='balance_amt' sum='Sub-Total'/>
+				</field>
+				<field name='balance_per' sum='Sub-Total' position='replace'>
+					<field name='balance_per'/>
+				</field>
+			</field>
+		</record>
+    </data>
+</openerp>

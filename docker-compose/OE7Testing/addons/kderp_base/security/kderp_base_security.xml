@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    
+    <record id="group_kderp_global_view" model="res.groups">
+        <field name="name">Group KDERP - Global View</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+	<record id="group_kderp_budget_control_menu" model="res.groups">
+        <field name="name">Group KDERP - Budget Control / Menu </field>
+		<field name="category_id" ref="kderp_base.module_category_kderp_menu"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id="group_kderp_expense_menu" model="res.groups">
+        <field name="name">Group KDERP - Expense / Menu </field>
+		<field name="category_id" ref="kderp_base.module_category_kderp_menu"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+	<record id="group_kderp_purchase_admin_menu" model="res.groups">
+        <field name="name">Group KDERP - Purchase / Admin Menu </field>
+		<field name="category_id" ref="kderp_base.module_category_kderp_menu"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id="group_kderp_budget_control_admin" model="res.groups">
+        <field name="name">Group KDERP - Budget Control / Admin </field>
+		<field name="category_id" ref="kderp_base.module_category_kderp_menu"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id="group_kderp_config" model="res.groups">
+        <field name="name">KDERP Config / Admin </field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    </data>
+</openerp>

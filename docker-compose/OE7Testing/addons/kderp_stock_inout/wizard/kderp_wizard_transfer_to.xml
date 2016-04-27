@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="action_wizard_transfer_to_using" model="ir.actions.act_window">
+            <field name="name">Transfer to Using</field>
+            <field name="res_model">kderp.wizard.transfer.to</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_kderp_wizard_transfer_to_using" model="ir.ui.view">
+            <field name="name">kderp.wizard.transfer.to.form</field>
+            <field name="model">kderp.wizard.transfer.to</field>
+            <field name="arch" type="xml">
+                <form string="Transfer to Using" version="7.0">
+                    <group col="4" colspan="4" string='Transfer Info.'>
+                        <field name="location_id"/>
+                        <field name="location_dest_id"/>
+                    </group>
+                    <group>
+                        <field name="move_line" colspan="4" nolabel="1">
+                                <tree editable="top" create="false">
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="product_uom" readonly="1"/>
+                                    <!--<field name="location_id" readonly="1"/>-->
+                                    <field name="location_dest_id"/>
+                                    <field name="remarks"/>
+                                    <field name="qty"/>
+                                </tree>
+                        </field>
+                    </group>
+                	<footer>
+                		<button name='do_transfer' type='object' string='Transfer to' class="oe_highlight"/>or
+                        <button special="cancel" string='Cancel'/>
+                	</footer>
+                </form>                
+             </field>
+         </record>
+
+    </data>
+</openerp>

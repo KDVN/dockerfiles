@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_kdrep_job_ongoinging_report_wizard_form" model="ir.ui.view">
+			<field name="name">wizard.kderp.job.list.ongoing.form</field>
+			<field name="model">wizard.kderp.job.list.ongoing</field>
+			<field name="arch" type="xml">
+				<form string="Input a range Date" version="7.0" readonly="1" create="false" >
+					<group colspan="2" col="2">
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+					</group>						
+					<footer>
+						<button string='Print' name="print_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel"  special="cancel" class="oe_highlight"/>
+					</footer>					
+				</form>
+			</field>
+		</record>
+		
+        <record id="action_print_job_onging_report_form" model="ir.actions.act_window">
+            <field name="name">10.1 List of Job On-Going (xls)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.kderp.job.list.ongoing</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_kdrep_job_ongoinging_report_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+        
+ 		<record model="ir.values" id="action_print_job_ongoing_list_form_values">
+            <field name="model_id" ref="kderp_project.model_account_analytic_account" />
+            <field name="name">10.1 List of Job On-Going (xls)</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_print_job_onging_report_form'))" />
+            <field name="key">action</field>
+            <field name="model">account.analytic.account</field>
+        </record>
+
+    </data>
+</openerp>

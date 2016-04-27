@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+        <menuitem 
+        	id="kderp_general_exepense_root" name="General Expense" sequence="40" groups="group_kderp_general_expense_menu"/>
+        <menuitem 
+        	id="kderp_general_exepense_config_menu" name="Configuration" sequence="5" parent="kderp_general_exepense_root" groups="group_kderp_general_expense_configuration_menu"/>
+         <menuitem 
+        	id="kderp_general_exepense_menu" name="General Expense" sequence="1" parent="kderp_general_exepense_root" groups="group_kderp_general_expense_menu"/>
+        	
+		<record id="kderp_kderp_general_exepense_budget_code_view_form" model="ir.ui.view">
+	      <field name="name">kderp.general.expense.budget.code.view.form</field>
+	      <field name="model">kderp.general.expense.budget.code</field>
+	      <field name="type">form</field>
+	      <field name="arch" type="xml">
+				<form string="G.E Budget Code" version="7.0">
+				<sheet>
+					<group colspan="4" col="4">
+						<field name="code" string="Code"/>
+						<field name="name" />
+						<field name="parent_id" domain="[('id','!=',active_id),('parent_id','=',False)]"/>
+						<field name="no_filter"/>						
+					</group>
+					<group colspan="4" col="4">
+						<notebook>
+							<page string='Sub Budget'>
+		 						<field name="sub_budget_ids" widget="many2many" domain="[('id','!=',active_id),('parent_id','=',False)]" nolabel="1"/> 
+							</page>
+							<page string='Budget Lines'>
+								<field name='budget_line_ids' nolabel="1" mode="tree" view_type='tree'>
+									 <tree string='Budget Detail' editable="top">
+		                           		 <field name="general_expense_code_id" string="G.E. Budget Code"/>
+		                           		 <field name="budget_amount" string ="Planned Amount"/>
+		                           		 <field name="expense_amount" string ="Total Expense"/>
+		                           		 <field name="balance" string="Balance"/>
+									</tree> 
+								</field>
+							</page>
+						</notebook>
+					</group>
+				</sheet>
+				</form>
+			</field>
+		</record>	
+		
+		<record id="kderp_kderp_general_exepense_budget_code_view_tree" model="ir.ui.view">
+			<field name="name">view.kderp.general.exepense.budget.code.tree</field>
+			<field name="model">kderp.general.expense.budget.code</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string ="G.E Budget Code"> 
+					<field name="code" string="Code"/>
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_general_exepense_budget_code_view" model="ir.actions.act_window">
+			<field name="name">G.E Budget Code</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">kderp.general.expense.budget.code</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<menuitem 
+        			action="action_general_exepense_budget_code_view" 
+        			id="kderp_menu_kderp_general_exepense_budget_code_action" 
+        			parent="kderp_general_exepense_config_menu" sequence="20"/> 
+	</data>
+</openerp>

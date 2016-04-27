@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+ 		<record id="purchase_order_form_kderp_purchase_add_payment_vat" model="ir.ui.view">
+            <field name="name">purchase.order.form.kderp.purchase.add.payment.vat</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref='kderp_purchase.purchase_order_form_kderp_purchase'/>
+            <field name="arch" type="xml">
+            	<field name='state' position='before'>
+            		<button attrs="{'invisible':['|',('supplier_payment_ids','!=',[]),('state','not in',('waiting_for_delivery','waiting_for_payment'))]}" icon='gtk-new' name='action_expense_create_supplier_payment' type='object' string='Create Payment'/>
+            	</field>            
+            	<page string='PO Info.' position='after'>
+            		<page string='Payment &amp; VAT Invoices'>
+            			<field name="supplier_payment_ids" readonly="0" colspan="4">
+	            			<tree colors="blue:state == 'draft';gray:state == 'cancel'" string="Supplier Payment">
+	            				<button name="open_supplier_payment" icon="gtk-zoom-fit" type="object"/>
+			                    <field name="name"/>
+			                    <field name="description"/>
+			                    <field name="supplier_id" string="Supplier" invisible="'supplier_id' in context.get('group_by',[])"/>
+			                    <field name="currency_id" string="Cur."/>
+			                    <field name="sub_total" string="Amount"/>
+			                    <field name="amount_tax" string="VAT"/>
+			                    <field name="total" string="Total" sum="Total"/>
+			                    <field name="date" string="Date"/>
+			                    <field name="state" string="Status" invisible="'state' in context.get('group_by',[])"/>
+			                    <field name="payment_type" invisible="1"/>
+			                </tree>
+            			</field>
+            			<field name="supplier_vat_ids" readonly="1" colspan="4">
+            				<tree string='VAT Invoices'>
+								<field name="name" select="1" string="VAT Inv. No."/>
+								<field name="date" select="1"/>
+								<field name="currency_id" string="Cur."/>
+								<field name="subtotal" on_change="on_changevalue_per(subtotal,tax_per)"/>
+								<field name="tax_per" on_change="on_changevalue_per(subtotal,tax_per)"/>
+								<field name="amount_tax" string="VAT" on_change="on_changevalue(subtotal,amount_tax)"/>
+								<field name="total_amount" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'total_amount')" sum='Total'/>
+								<field name="equivalent_vnd" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'ev')"/>
+								<field name="rate" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'rate')"/>
+								<field name="state" invisible="1"/>
+							</tree>
+            			</field>
+            		</page>
+            	</page>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

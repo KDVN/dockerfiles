@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+ <data noupdate="0">
+    
+	<record model="ir.module.category" id="module_category_kderp_asset">
+        <field name="name">KDERP Asset</field>
+        <field name="sequence">250</field>
+	</record>
+
+	<record id='group_kderp_asset_management_menu' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Menu</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+	<record id='group_kderp_asset_management_admin' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Admin</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+           
+	<record id='group_kderp_asset_management_create' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Create</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id='group_kderp_asset_management_delete' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Delete</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id='group_kderp_asset_management_read' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Read</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id='group_kderp_asset_management_write' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Write</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    
+    <record id='group_kderp_asset_management_full' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Full</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="implied_ids" eval="[(4, ref('group_kderp_asset_management_create')),
+          								(4, ref('group_kderp_asset_management_write')),
+        								(4, ref('group_kderp_asset_management_read')),
+        								(4, ref('group_kderp_asset_management_delete'))]"/>
+    </record>
+    
+    <record id='group_kderp_asset_management_revise' model='res.groups'>
+        <field name='name'>KDERP - Asset Management / Revise</field>
+        <field name="category_id" ref="module_category_kderp_asset"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+             
+  </data>
+</openerp>

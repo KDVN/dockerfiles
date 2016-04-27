@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+   		<menuitem name="Purchases Detail" parent="kderp_base.menu_kderp_budget_control_root"
+            id="menu_purchase_detail"
+            sequence="62"/>
+            
+		<record id="kderp_purchase_budget_line_tree" model="ir.ui.view">
+            <field name="name">kderp.purchase.budget.line.tree</field>
+            <field name="model">kderp.purchase.budget.line</field>
+            <field name="arch" type="xml">
+            	<tree string='Purchase Budget Line' create="false" delete="false" edit="false">
+            		<field name='account_analytic_id'/>
+            		<field name='purchase_order_id'/>                     
+					<field name='currency_id'/>
+                    <field name='amount_currency'/>
+		            <field name='amount'/>
+					<field name='tax_amount'/>
+					<field name='budget_id'/>              
+					<field name='exrate' />
+					<field name='period_id'/>
+					<field name='date'/>
+            	</tree>
+            </field>
+        </record>
+        
+       <record id="kderp_purchase_budget_line_form" model="ir.ui.view">
+            <field name="name">kderp.purchase.budget.line.form</field>
+            <field name="model">kderp.purchase.budget.line</field>
+            <field name="arch" type="xml">
+            	<form string='Purchase Budget Line' create="false" delete="false" edit="false">
+            		<field name='account_analytic_id'/>
+            		<field name='purchase_order_id'/>
+            		<field name='currency_id'/>
+                    <field name='amount_currency' options="{'currency_field': 'currency_id'}" widget="monetary"/>
+		            <field name='amount' options="{'currency_field': 'company_currency'}" widget="monetary"/>
+					<field name='tax_amount'/>
+					<field name='budget_id'/>              
+					<field name='exrate'/>
+					<field name='period_id'/>
+					<field name='date'/>
+            	</form>
+            </field>
+        </record>
+        
+       <record id="view_purchase_budget_detail_filter" model="ir.ui.view">
+            <field name="name">kderp.purchase.budget.line.filter</field>
+            <field name="model">kderp.purchase.budget.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Purchase Budget Line">
+                    <field name="account_analytic_id"/>
+                    <field name="budget_id"/>
+                    <field name='purchase_order_id'/>
+                    <field name="currency_id"/>
+                    <field name='amount_currency' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount"/>
+                    <field name="date"/>
+                    <field name="period_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Job" icon="terp-partner" domain="[]" context="{'group_by':'account_analytic_id'}"/>
+                      	<filter string="Budget" icon="terp-partner" domain="[]" context="{'group_by':'budget_id'}"/>
+                      	<filter string="Purchase" icon="terp-partner" domain="[]" context="{'group_by':'purchase_order_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record id="act_purchase_budget_detail" model="ir.actions.act_window">
+            <field name="name">Purchase Budget Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.purchase.budget.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_purchase_budget_detail_filter"/>
+        </record>
+        
+        <menuitem action="act_purchase_budget_detail" id="menu_purchase_budget_detail"
+            parent="menu_purchase_detail"
+            sequence="0"/>
+            
+ 		
+	</data>
+</openerp>

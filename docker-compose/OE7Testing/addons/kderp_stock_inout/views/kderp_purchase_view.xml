@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>		 
+
+ 		<!--<record id="purchase_order_form_kderp_purchase_stock_inout_inherit" model="ir.ui.view">-->
+            <!--<field name="name">purchase.order.form.kderp.purchase.inout.inherit</field>-->
+            <!--<field name="model">purchase.order</field>-->
+            <!--<field name='inherit_id' ref='kderp_purchase.purchase_order_form_kderp_purchase'/>            -->
+            <!--<field name="arch" type="xml">-->
+				<!--<field name="partner_id" position='replace'>-->
+					<!--<field name="partner_id" on_change="onchange_partner_id(partner_id, date_order)" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>-->
+				<!--</field>-->
+            <!--</field>-->
+        <!--</record>-->
+
+	</data>
+</openerp>

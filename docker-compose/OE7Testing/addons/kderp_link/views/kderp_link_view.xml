@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<record id="view_kderp_link_server_tree" model="ir.ui.view">
+            <field name="name">kderp.link.server.tree</field>
+            <field name="model">kderp.link.server</field>
+            <field name="arch" type="xml">
+            	<tree string='Link Server'>
+            		<field name='server'/>
+           			<field name='port'/>
+           			<field name='user'/>
+           			<field name='database'/>
+           			<field name='name'/>
+           			<field name='need_to_check'/>
+           		</tree>
+           	</field>
+        </record>
+        
+        <record id="view_kderp_link_server_form" model="ir.ui.view">
+            <field name="name">kderp.link.server.form</field>
+            <field name="model">kderp.link.server</field>
+            <field name="arch" type="xml">
+            	<form version='7.0' string='Link Server'>
+            		<header>            			
+            		</header>
+            		<sheet>
+	            		<group string='Link server information' col="4">
+	            			<field name='server'/>
+	            			<field name='port'/>
+	            			<field name='user'/>
+	            			<field name='password' password="1"/>
+	            			<field name='database'/>
+	            			<field name='name'/>
+	            			<field name='need_to_check'/>
+	            		</group>            		
+	            	</sheet>
+            	</form>				
+			</field>
+		</record>
+		
+        <!-- Draft Other Expense -->
+        <record id="kderp_action_link_server" model="ir.actions.act_window">
+            <field name="name">Link Server (Config)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.link.server</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+                
+		<menuitem 
+        			action="kderp_action_link_server" 
+        			id="kderp_menu_link_server" 
+        			parent="base.next_id_9" sequence="25"/>
+        
+        <!-- Link Server Line -->		
+        <record id="view_kderp_link_server_line_tree" model="ir.ui.view">
+            <field name="name">kderp.link.server.line.tree</field>
+            <field name="model">kderp.link.server.line</field>
+            <field name="arch" type="xml">
+            	<tree string='Link Server Line'>
+            		<field name='link_server_id'/>
+           			<field name='table_link_name'/>
+           			<field name='table_definition'/>
+           			<field name='remote_query'/>
+           			<field name='state'/>
+           		</tree>
+           	</field>
+        </record>
+        
+        <record id="view_kderp_link_server_line_form" model="ir.ui.view">
+            <field name="name">kderp.link.server.line.form</field>
+            <field name="model">kderp.link.server.line</field>
+            <field name="arch" type="xml">
+            	<form version='7.0' string='Link Server'>
+            		<header>
+            			<button name='action_create_table_link' type='object' icon='gtk-execute' string='Create' states='draft'/>
+            			<button name='action_open' type='object' icon='gtk-convert' string='Open' states='done' groups='base.group_system'/>
+            			
+            			<field name='state' widget='statusbar' statusbar_visible="draft,done"/>
+            		</header>
+            		<sheet>
+	            		<group string='Link server information' col="4">
+	            			<field name='link_server_id'/>
+		           			<field name='table_link_name'/>
+		           			<field name='table_definition'/>
+		           			<field name='remote_query'/>		           			
+	            		</group>            		
+	            	</sheet>
+            	</form>				
+			</field>
+		</record>
+		
+        <!-- Draft Other Expense -->
+        <record id="kderp_action_link_server_line" model="ir.actions.act_window">
+            <field name="name">Link Server Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.link.server.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+                
+		<menuitem 
+        			action="kderp_action_link_server_line" 
+        			id="kderp_menu_link_server_line" 
+        			parent="kderp_menu_link_server" sequence="5"/>
+	</data>
+</openerp>

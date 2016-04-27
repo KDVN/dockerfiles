@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- KDERP Reporting Group -->
+		<record model="ir.module.category" id="module_category_kderp_reporting">
+	       <field name="name">KDERP Reporting</field>
+	       <field name="sequence">260</field>
+		</record>
+		
+		<!-- Group Client Historical Data -->
+		<record id="group_kderp_historical_data" model="res.groups">
+	        <field name="name">KDERP - Historical Data</field>
+	      	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+           	<field name="category_id" ref="module_category_kderp_reporting" />
+		</record>
+		
+	</data>	
+</openerp>
+
+

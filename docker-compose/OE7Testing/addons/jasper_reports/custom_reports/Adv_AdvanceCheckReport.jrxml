@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AdvCheckReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parameter1" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+	</field>
+	<field name="staff" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/user_id/staffno]]></fieldDescription>
+	</field>
+	<field name="User-user" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/user_id/name]]></fieldDescription>
+	</field>
+	<field name="Date-date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/date]]></fieldDescription>
+	</field>
+	<field name="date_received_money" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/date_received_money]]></fieldDescription>
+	</field>
+	<field name="date_of_received_reimbursement" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/date_of_received_reimbursement]]></fieldDescription>
+	</field>
+	<sortField name="staff"/>
+	<sortField name="COLUMN_COUNT" type="Variable"/>
+	<variable name="date" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("MMM").format($F{Date-date})]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[$F{state}!="cash"]]></filterExpression>
+	<group name="grpMonth" isStartNewPage="true">
+		<groupExpression><![CDATA[new SimpleDateFormat("MMMMM").format($F{Date-date})]]></groupExpression>
+		<groupHeader>
+			<band height="222">
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="190" width="53" height="30" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Staff Code]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="53" y="190" width="142" height="30" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="195" y="190" width="90" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Openning]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="285" y="190" width="180" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Happenning]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="465" y="190" width="90" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Closing]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="375" y="205" width="90" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Return Advance]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="285" y="205" width="90" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Request Advance]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="195" y="205" width="90" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Advance Receivable]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="465" y="205" width="90" height="15" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Advance Receivable]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="20" width="555" height="18"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["ADVANCE CHECK REPORT"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="429" height="20"/>
+					<textElement verticalAlignment="Top">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[KINDEN VIETNAM CO., LTD]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="grpMonth">
+					<reportElement x="0" y="37" width="555" height="18"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MMMMM yyyy").format($F{Date-date}).toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="grpMonth">
+					<reportElement x="64" y="55" width="491" height="15"/>
+					<textElement verticalAlignment="Top" markup="none"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("31-MMM-yyyy").format($F{Date-date})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="70" width="555" height="15"/>
+					<textElement/>
+					<text><![CDATA[At Kinden Vietnam Co., Ltd in Hanoi Office]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="85" width="555" height="15"/>
+					<textElement/>
+					<text><![CDATA[We are included:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="53" y="100" width="232" height="15"/>
+					<textElement/>
+					<text><![CDATA[Ms. LE THU TRANG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="53" y="115" width="232" height="15"/>
+					<textElement/>
+					<text><![CDATA[Ms. TRINH THANH HANG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="285" y="115" width="180" height="15"/>
+					<textElement/>
+					<text><![CDATA[Cashier]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="285" y="100" width="180" height="15"/>
+					<textElement/>
+					<text><![CDATA[Chief Accoutant]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="130" width="555" height="15"/>
+					<textElement/>
+					<text><![CDATA[We have confirmed together the Balance of Advance Payment in Hanoi Office are as following:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="145" width="53" height="15"/>
+					<textElement/>
+					<text><![CDATA[The VND]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="160" width="53" height="30"/>
+					<textElement/>
+					<text><![CDATA[In words]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="55" width="64" height="15"/>
+					<textElement/>
+					<text><![CDATA[Today, date]]></text>
+				</staticText>
+				<textField pattern="dd-MMM-yyyy">
+					<reportElement x="493" y="0" width="62" height="10"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="429" y="0" width="64" height="10"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Printed date :]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="103">
+				<staticText>
+					<reportElement x="0" y="2" width="195" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="411" y="22" width="142" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Cashier]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="22" width="142" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Chief Accoutant]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="88" width="142" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[LE THU TRANG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="411" y="88" width="142" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[TRINH THANH HANG]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="grpStaff">
+		<groupExpression><![CDATA[$F{staff}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="53" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{staff}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="53" y="0" width="142" height="20"/>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{User-user}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

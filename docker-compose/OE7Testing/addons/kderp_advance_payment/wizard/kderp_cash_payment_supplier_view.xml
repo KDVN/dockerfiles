@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+		<record id="action_server_manual_update_cash_supplier_payment" model="ir.actions.server">
+            <field name="name">Update Cash (to Supplier Payment)</field>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_kderp_cash_payment_supplier"/>
+            <field name="state">code</field>
+            <field name="code">self.update_cash_payment_supplier(cr, uid, context.get('active_ids', []), context=context)</field>
+        </record>
+		
+		<!-- Manual Batch Attachment -->
+		<menuitem 
+        			action="action_server_manual_update_cash_supplier_payment"
+        			id="kderp_menu_action_manual_update_cash_supplier" 
+        			groups="group_manual_update_cash"
+        			parent="kderp_other_expense.kderp_exepense_other_expense" sequence="100"/>        
+    </data>
+</openerp>

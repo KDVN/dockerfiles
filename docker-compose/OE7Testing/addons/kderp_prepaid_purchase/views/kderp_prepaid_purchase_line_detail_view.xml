@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>        
+
+    	<record id="view_kderp_prepaid_purchase_order_line_detail_tree" model="ir.ui.view">
+            <field name="name">view.kderp.prepaid.purchase.order.line.detail.tree</field>
+            <field name="model">kderp.prepaid.purchase.order.line.detail</field>
+            <field name="arch" type="xml">
+            	<tree string="Prepaid Purchase Order Line Detail">
+            	    <field name="prepaid_order_id"/>
+            		<field name="po_number"/>
+            		<field name="product_id"/>
+            		<field name="move_description"/>
+            		<field name='requesting_qty'/>
+            		<field name="allocated_qty"/>
+            		<field name="product_uom"/>
+            		<field name="date"/>
+            	</tree>
+            </field>
+		</record>
+		 
+                
+        <!-- Prepaid Purchase Search View -->
+        <record id="view_kderp_prepaid_purchase_order_line_detail_filter" model="ir.ui.view">
+            <field name="name">kderp.prepaid.purchase.order.line.detail.select</field>
+            <field name="model">kderp.prepaid.purchase.order.line.detail</field>
+            <field name="arch" type="xml">
+                <search string="Search Prepaid Purchase Order">                	
+            		<field name="move_description"/>
+            		<field name="po_number"/>
+            		<field name="product_id"/>
+            		
+            		<group expand="0" string="Group by ...">
+            			<filter string="Prepaid Order Line" name='group_order_line' domain="[]" context="{'group_by':'prepaid_order_line_id'}"/> 
+            			<filter string="Date" name='group_po_date' domain="[]" context="{'group_by':'date'}"/>
+            		</group>                
+               </search>
+            </field>
+        </record>
+        
+        <record id="prepaid_po_line_detail_action_tree" model="ir.actions.act_window">
+            <field name="name">Allocated Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.prepaid.purchase.order.line.detail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('prepaid_order_id','in', active_ids)]</field>
+            <field name="context">{'prepaid_order_id':active_id, 'search_default_group_order_line': 1}</field>
+        </record>
+
+        <record id="ir_prepaid_order_line_detail_open" model="ir.values">
+            <field eval="'client_action_relate'" name="key2"/>
+            <field eval="'kderp.prepaid.purchase.order'" name="model"/>
+            <field name="name">Allocated Detail</field>
+            <field eval="'ir.actions.act_window,%d'%prepaid_po_line_detail_action_tree" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+		
+	</data>
+</openerp>

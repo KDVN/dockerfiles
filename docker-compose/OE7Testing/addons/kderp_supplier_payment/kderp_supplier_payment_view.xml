@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+<!-- 		<menuitem  -->
+<!--         	id="kderp_menu_supplier_payment" name="Supplier Payment" sequence="5"  -->
+<!--         	parent="kderp_base.menu_kderp_expense_root"/> -->
+<!--        <menuitem 
+        	id="kderp_menu_supplier_payment" name="Payment" sequence="5" 
+        	parent="kderp_purchase.kderp_exepense_purchase"/> -->
+        	
+        <!-- Attachment Supplier Payment -->
+        <record id="action_open_attachment_from_supplier_payment" model="ir.actions.act_window">
+            <field name="name">Attachment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.attachment</field>
+            <field name="src_model">kderp.supplier.payment</field>
+            <field name="view_type">form</field>
+            <field name="context">{'res_model':'kderp.supplier.payment','res_id':active_id}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('res_id','=',active_id),('res_model','=','kderp.supplier.payment')]</field>
+        </record>
+
+		<record id="view_kderp_supplier_payment_filter" model="ir.ui.view">
+            <field name="name">kderp.supplier.payment.list.select</field>
+            <field name="model">kderp.supplier.payment</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Search Supplier Payment">
+                    <field name="name" string="R.O.P No" filter_domain="[('name','ilike',self)]"/>
+                    <field name="number" string="Number" filter_domain="[('number','=',self)]"/>
+					<field name="supplier_id" filter_domain="[('supplier_id', 'child_of', self)]" string="Supplier" widget="char"/>
+                    <field name="kderp_vat_invoice_ids" string="VAT Info" filter_domain="[('kderp_vat_invoice_ids', 'ilike', self)]"/>
+					<field name="user_applicant_id" string="User in charge" filter_domain="[('user_applicant_id','ilike',self)]"/>
+
+                    <field name="sub_total" string="Sub Total" filter_domain="[('sub_total','=',self)]"/>
+                    <field name="payment_line" string="Detail/Job" filter_domain="[('payment_line', 'ilike', self)]"/>
+                    <field name="order_id" string="Detail/Job/Budget" widget='char' filter_domain="[('order_id.order_line', 'ilike', self)]"/>
+<!--                     <field name="description" string="Description"/> -->
+                    <field name="date" string="R.O.P Date" filter_domain="[('date','=',self)]"/>
+                    <field name="due_date" string="Due Date" filter_domain="[('due_date','=',self)]"/>
+                    <field name="to_bc_date_first" string="1st time to BC"/>
+                    <field name="to_bc_date_second" string="2nd time to BC"/>
+
+                    <filter icon="terp-document-new" name="state_working" string="Working ROP" domain="[('state','not in',('cancel','paid','completed','done'))]" help="Working ROP"/>
+                    <filter string="My ROPs" domain="[('create_uid','=',uid)]" help="My Supplier Payment"/>
+                    <separator/>
+                    <filter icon="terp-document-new" name="draft" string="Draft R.O.P" domain="[('state','=','draft')]" help="Draft R.O.P"/>
+                    <filter name="pr_dept_checking" string="Pro. Checking" domain="[('state','=','pr_dept_checking')]" help="Pro. Checking"/>
+                    <filter name="submitting" string="BC Checking" domain="[('state','=','submitting')]" help="BC Checking"/>
+                    <filter name="bc_passed" string="BC Checked" domain="[('state','=','bc_passed')]" help="BC Checked"/>
+                    <filter name="bc_checked" string="PM Checking" domain="[('state','=','bc_checked')]" help="PM Checking"/>
+                    <filter name="waiting_bod" string="BOD Checking" domain="[('state','=','waiting_bod')]" help="BOD Checking"/>
+                    <filter icon="terp-check" name="approved" string="BOD Approved" domain="[('state','=','completed')]" help="BOD Approved"/>
+                    <filter icon="terp-check" name="payment" string="Paid" domain="[('state','=','paid')]" help="Paid"/>
+                    <filter name="cancel" string="Rejected" domain="[('state','=','cancel')]" help="Rejected"/>
+                    <separator/>
+                    <filter icon="terp-check" name="payment" string="Not Paid" domain="[('state','!=','paid')]" help="Not Paid"/>
+					
+                    <group expand="0" string="Group By...">
+                        <filter string="Supplier" icon="terp-partner" domain="[]" context="{'group_by':'supplier_id'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="R.O.P Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Payment Type" domain="[]" context="{'group_by':'payment_type'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>        
+
+        <record id="view_kderp_supplier_payment_tree" model="ir.ui.view">
+            <field name="name">kderp.supplier.payment.tree</field>
+            <field name="model">kderp.supplier.payment</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';gray:state == 'cancel'" string="Supplier Payment">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="supplier_id" string="Supplier" invisible="'supplier_id' in context.get('group_by',[])"/>
+                    <field name="currency_id" string="Cur."/>
+                    <field name="sub_total" string="Amount"/>
+                    <field name="amount_tax" string="VAT"/>
+                    <field name="total" string="Total"/>
+                    <field name="date" string="Date"/>
+                    <field name="state" string="Status" invisible="'state' in context.get('group_by',[])"/>
+                    <field name="payment_type" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_kderp_suppplier_payment_form" model="ir.ui.view">
+            <field name="name">kderp.supplier.payment.form</field>
+            <field name="model">kderp.supplier.payment</field>
+            <field name='priority' eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Supplier Payment" version="7.0">
+	                <header>
+	                	<button icon="gtk-apply" name="btn_draft_to_pr_checking" states='draft' string="Proceed" class="oe_highlight" type="workflow"/> 
+						
+						<button icon="gtk-apply" name="btn_pr_checking_to_bc_checking" states="pr_dept_checking" string="BC Received" class="oe_highlight" type="workflow"/>
+						<button icon="gtk-go-back" name="btn_pr_checking_to_draft" states="pr_dept_checking" string="Back"/>
+						
+						<button icon="gtk-apply" name="btn_bc_confirm" states="submitting" string="BC Checked" class="oe_highlight" type="workflow"/>
+						<button icon="gtk-cancel" name="btn_bc_reject" states="submitting" string="Reject"/>
+						
+						<button icon="gtk-apply" name="btn_pro_to_site" states="bc_passed" string="Send to PM" class="oe_highlight" type="workflow"/>							
+						
+						<button icon="gtk-apply" name="btn_pm_confirm" states="bc_checked" string="Submit to BOD" class="oe_highlight" type="workflow"/>
+						<button icon="gtk-cancel" name="btn_pm_reject" states="bc_checked" string="Reject"/>
+						
+						<button icon="gtk-go-back" name="btn_bod_checking_to_pc_checking" states="waiting_bod" string="Back"/>
+						<button icon="gtk-apply" name="btn_bod_confirm" states="waiting_bod" string="BOD Approved" class="oe_highlight" type="workflow"/>
+						<button icon="gtk-cancel" name="btn_bod_reject" states="waiting_bod" string="Reject"/>
+						
+						<button icon="gtk-convert" name="wkf_action_cancel_draft" states="cancel" string="Revise" type="object"/>
+						  					
+	                    <button icon='gtk-convert' name='action_back_revising' states='completed,paid' type="object" string='Open' groups='kderp_supplier_payment.group_kderp_supplier_payment_open'/>
+	               		<button icon='gtk-apply' name='btn_action_revising_completed' type="object" string='Close' states='revising' groups='kderp_supplier_payment.group_kderp_supplier_payment_open'/>
+	                    
+	                    <button icon='gtk-cancel' name='action_cancel' type="object" string='Reject' states='revising' groups='kderp_supplier_payment.group_kderp_supplier_payment_open'/>
+	                    
+	                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,pr_dept_checking,submitting,bc_passed,bc_checked,waiting_bod,completed" statusbar_colors='{"draft":"blue","cancel":"red"}'/>	
+	                </header>
+	                <sheet string="Supplier Payment">
+	                    <h1>
+<!-- 	                        <label string="Draft Supplier Payment " attrs="{'invisible': ['|',('state','not in',('draft',))]}"/> -->
+<!-- 	                        <label string="Waiting for Payment " attrs="{'invisible': ['|',('state','in',('draft','paid'))]}"/> -->
+<!-- 	                        <label string="Paid " attrs="{'invisible': [('state','!=','paid')]}"/> -->
+	                        <label for="name" string="Payment No.:" class="oe_inline oe_edit_only"/>
+	                        <field name="name" class="oe_inline" required="1"/>
+	                    </h1>
+	                    <group>
+	  						<group colspan="4" col="4">
+								<field name="date" on_change="onchange_date(date,name)" default_focus="1"/>
+								<field name="due_date"/>
+								<field name="order_id"/>
+								<field name="supplier_id"/>
+								<field name="payment_type"/>
+								<field name="user_applicant_id"/>
+								<field name="payee"/>
+								<field name="period_id"/>
+								<field name="base_on_line"/>
+							</group>                        	
+							<field name="description"/>
+	                    </group>
+	                    <notebook>
+	                    	<page string='Payment Details'>
+	                    		<field name='payment_line' context="{'base_on_line':base_on_line}">
+	                    			<tree string='Payment Detail' editable="top">
+	                    				<field name='account_analytic_id'  
+	                    						context="{'kderp_search':{'model':'purchase.order','id':parent.order_id,'field':'order_line',
+	                    												'sub_model':'purchase.order.line','sub_field':'account_analytic_id'}}"/>
+	                    				<field name='base_on_line' invisible="1"/>								
+										<field name='budget_id' attrs="{'required':[('base_on_line','=',True)]}"/>	                    												
+	                    				<field name='amount'/>
+	                    			</tree>
+	                    		</field>
+	                    	</page>	                    	
+		                    <page string='VAT Invoice &amp; Payment'>
+		                    	<group colspan="4" col="4">
+			                    	<field name="journal_id" widget="selection" domain="[('type', '=', 'purchase')]"/>
+			                    	<field name='account_id' widget="selection"/>
+			                    	<field name='expense_account_id' widget="selection"/>
+			                    	<field name="move_id"/>
+			                    </group>
+		                    </page>
+	                    </notebook>
+	                    <group colspan="8" col="8">
+	                    	<group colspan="4" col="4" string='Doc. Circling Date'>		
+								<field name="pro_to_acc" select="2"/>
+								<field name="to_bc_date_first" string="1st time to B.C." select="2"/>
+								<field name="bc_checked_date" select="2"/>
+								<field name="to_site_date" string="To Site" select="2"/>
+								<field name="from_site_date" string="From Site" select="2"/>
+								<field name="to_procurement_manager" select="2"/>
+					            <field name="to_bc_date_second" string="2nd time to B.C." select="2"/>
+					            <field name="bc_to_accounting_date" string="B.C. to Acc." select="2"/>
+	                    	</group>
+	                    	<group colspan="4" col="4" string="Summary" class="kdvn_align_right">
+		                   		<field name="currency_id"/>
+		                       	<field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="on_changevalue(amount, advanced_amount, retention_amount,taxes_id,currency_id)"/>
+								<field name="taxes_id" string='VAT' widget="many2many_tags" context="{'res_models':['kderp.supplier.payment','purchase.order'],'res_ids':[active_id,order_id],'type':'received','res_name':name}" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]" on_change="on_changevalue(amount, advanced_amount, retention_amount,taxes_id,currency_id)"> <!-- on_change="on_changevalue(subtotal,taxes_id,currency_id)"  -->
+									<tree>
+										<field name='name'/>
+									</tree>
+								</field>
+								<field name='amount_tax' widget="monetary" options="{'currency_field': 'currency_id'}"/>
+								<field name="tax_base"/>
+		                       	<field name="advanced_amount" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="on_changevalue(amount, advanced_amount, retention_amount,taxes_id,currency_id)"/>
+								<label string="" colspan="2"/>
+		                       	<field name="retention_amount" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="on_changevalue(amount, advanced_amount, retention_amount,taxes_id,currency_id)"/>
+		                       	<label string="" colspan="2"/>
+								<field name="sub_total" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="on_changevalue(amount, advanced_amount, retention_amount,taxes_id,currency_id)"/>
+								<label string="" colspan="2"/>
+		                        <field style="border-top-style:solid;border-width:1px;background-color:rgb(232, 240, 209); font-weight:bold; font-size:15px" name="total" string="TOTAL" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                        </group>
+	                    </group>
+	               	</sheet>
+               </form>
+           </field>
+       </record>
+
+		<!--Supplier Payment Graph View  -->
+		
+		<record id="view_kderp_supplier_payment_graph" model="ir.ui.view">
+            <field name="name">kderp.supplier.payment.graph</field>
+            <field name="model">kderp.supplier.payment</field>
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+            	<graph string="Supplier Payment" type="bar">
+            		<field name="supplier_id" string="Supplier"/>
+            		<field name="total" operator="+" digits="16,2"/>
+            	
+            	</graph>
+            </field>
+        </record>
+
+		<!--Supplier Payment Calendar View--> 
+		<record id="view_kderp_supplier_payment_calendar" model="ir.ui.view">
+            <field name="name">kderp.supplier.payment.calendar</field>
+            <field name="model">kderp.supplier.payment</field>
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+            	<calendar string="Supplier Payment Calendar" date_start="due_date" color="supplier_id">
+            		<field name="name"/>
+            		<field name="total"/>
+            		<field name="supplier_id"/>
+            	</calendar>
+            </field>
+        </record>
+
+	
+	<!-- Working Supplier Payment -->
+	 <record id="action_working_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Supplier Payment</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<!-- <field name="domain">[('state','not in',('paid','cancel'))]</field> -->
+		<field name="domain">[]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase','search_default_state_working':1}</field>
+	 </record>
+
+	 <menuitem action="action_working_kderp_supplier_tree" id="menu_supplier_payment_tree" parent="kderp_purchase.kderp_exepense_purchase" sequence="10"/><!-- menu_supplier_payment_tree -->
+	 
+	 <!-- Draft Supplier Payment -->
+	 <record id="action_draft_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Supplier Payment - Draft</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<!-- <field name="domain">[('state','=','draft')]</field> -->
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase','search_default_draft':1}</field>
+	 </record>
+
+	 <menuitem action="action_draft_kderp_supplier_tree" id="menu_draft_supplier_payment_tree" 
+	 parent="menu_supplier_payment_tree"/>
+	 
+	 <!-- Processing Supplier Payment -->
+	 <record id="action_processing_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Supplier Payment - Processing</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','in',('pr_dept_checking','submitting','bc_passed','bc_checked','waiting_bod'))]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase','search_default_pr_dept_checking':1}</field>
+	 </record>
+
+	 <menuitem action="action_processing_kderp_supplier_tree" id="menu_processing_supplier_payment_tree" 
+	 parent="menu_supplier_payment_tree"/>
+	 
+	 <!-- Waiting for Payment -->
+	 <record id="action_wfp_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Supplier Payment - W.F. Payment</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','completed')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_wfp_kderp_supplier_tree" id="menu_wfp_supplier_payment_tree" 
+	 parent="menu_supplier_payment_tree"/>
+	 
+	 <!-- Revising for Payment -->
+	 <record id="action_revising_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Supplier Payment - Revising</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','revising')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_revising_kderp_supplier_tree" id="menu_revising_supplier_payment_tree" 
+	 parent="menu_supplier_payment_tree"/>
+	 
+	 <!-- All Supplier Payment -->
+	 <record id="action_all_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Supplier Payment - All</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_all_kderp_supplier_tree" id="menu_all_supplier_payment_tree" 
+	 parent="menu_supplier_payment_tree"/>
+	 
+	
+    </data>
+</openerp>

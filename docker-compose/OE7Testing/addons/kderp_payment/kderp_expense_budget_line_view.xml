@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="kderp_expense_budget_line_tree_inherit" model="ir.ui.view">
+            <field name="name">kderp.expense.budget.line.tree.inherit</field>
+            <field name="model">kderp.expense.budget.line</field>
+            <field name='inherit_id' ref='kderp_purchase.kderp_expense_budget_line_tree'/>
+            <field name="arch" type="xml">
+				<field name="amount" position='replace'>
+					<field name='amount' sum='Total'/>
+					<field name="payment_amount" sum='Total'/>					
+				</field>
+            </field>
+        </record>
+        
+        <record id="kderp_expense_budget_line_form_inherit" model="ir.ui.view">
+            <field name="name">kderp.expense.budget.line.form.inherit</field>
+            <field name="model">kderp.expense.budget.line</field>
+            <field name='inherit_id' ref='kderp_purchase.kderp_expense_budget_line_form'/>
+            <field name="arch" type="xml">
+				<field name="amount" position='replace'>
+					<field name='amount' sum='Total'/>
+					<field name="payment_amount" sum='Total'/>					
+				</field>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

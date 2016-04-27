@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<!-- Contract Form View -->
+		<record id="kderp_view_contract_extend_form_view_inherit02" model="ir.ui.view">
+            <field name="name">kderp.view.contract.extend.form.inherit.form02</field>
+            <field name="model">kderp.contract.client</field>
+            <field name='inherit_id' ref='kderp_contract.kderp_view_contract_client_form'/>
+            <field name="arch" type="xml">            	
+                <page string="Contract Summary" position="after">
+                    <page string="Control Area" groups="kderp_job_contract_extend.group_kderp_control_area_contract_show_view">
+                        <field name="contract_job_area_ids" nolabel="1" context="{'contract_id': active_id}">
+                            <tree string="Control Area" editable="bottom">
+                                <field name="job_id" context="{'filter_by_contract_id': parent.id}" options="{'create': false, 'create_edit': false}"/>
+                                <field name="control_support"/>
+                                <field name="area_id"/>
+                                <field name="currency_id" context="{'filter_by_contract_id': parent.id}" options="{'create': false, 'create_edit': false}"/>
+                                <field name="amount"/>
+                                <field name="area_per"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+		</record>
+
+	</data>
+</openerp>

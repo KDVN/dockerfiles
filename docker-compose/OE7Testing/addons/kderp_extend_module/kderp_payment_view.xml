@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="kderp_payment_inherit_change_vat_to_one2many" model="ir.ui.view">
+			<field name="name">kderp.payment.inherit.change.vat.to.one2many</field>
+			<field name="model">kderp.supplier.payment</field>
+			<field name="inherit_id" ref='kderp_payment.view_kderp_suppplier_payment_form_add_payment_inherit'/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_extend_module.group_kderp_change_widget_vat_payment_one2many')])]"/>			
+			<field name="arch" type="xml">
+				<field name="kderp_vat_invoice_ids" position="replace">
+	            	<field name="kderp_vat_invoice_ids" nolabel="1" widget='one2many' mode="tree" context="{'received_date':date,'order_id':order_id}">
+							<tree string='VAT Invoices' editable='top'>
+								<field name="name" select="1" string="VAT Inv. No."/>
+								<field name="date" select="1"/>
+								<field name="currency_id" string="Cur."/>
+								<field name="subtotal" on_change="on_changevalue_per(subtotal,tax_per)"/>
+								<field name="tax_per" on_change="on_changevalue_per(subtotal,tax_per)"/>
+								<field name="amount_tax" string="VAT" on_change="on_changevalue(subtotal,amount_tax)"/>
+								<field name="total_amount" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'total_amount')" sum='Total'/>
+								<field name="equivalent_vnd" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'ev')"/>
+								<field name="rate" on_change="onchange_totalamount(total_amount,equivalent_vnd,rate,'rate')"/>
+								<field name='received_date'/>
+								<field name="to_accounting_date"/>
+								<field name="returned_date"/>
+								<field name='state' invisible="1"/>
+							</tree>
+					</field>
+	            </field>
+			</field>
+		</record>
+    
+    </data>
+</openerp>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Request Of Approval 1.3_subreport1" language="groovy" pageWidth="228" pageHeight="57" columnWidth="228" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;purchase_payment_term_ids&apos;]"/>
+	<parameter name="DATA_Source" class="java.lang.Object"/>
+	<parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ParentID" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+	</field>
+	<field name="payment_term_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/purchase_payment_term_ids/name]]></fieldDescription>
+	</field>
+	<variable name="payment_name" class="java.lang.String">
+		<variableExpression><![CDATA[$F{payment_term_name}]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[$F{ID}==$P{ParentID}]]></filterExpression>
+	<group name="grpPaymentTermName">
+		<groupExpression><![CDATA[$F{payment_term_name}]]></groupExpression>
+	</group>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="0" width="193" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{payment_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="0" width="26" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{grpPaymentTermName_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

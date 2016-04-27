@@ -1,0 +1,57 @@
+<openerp>
+    <data>
+
+		<record id="view_kderp_picking_in_tree" model="ir.ui.view">
+            <field name="name">kderp.stock.picking.in.tree</field>
+            <field name="model">stock.picking</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Packing list">
+                    <field name="name" string="Packing No."/>
+                    <field name="origin" string="Original No."/>
+                    <field name="state"/>
+					<field name="date_done"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_kderp_picking_in_form" model="ir.ui.view">
+            <field name="name">kderp.stock.picking.in.form</field>
+            <field name="model">stock.picking</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">             
+                <form string="Input Packing List" version="7.0">
+                	<group strig='Packing Info.'>
+						<field name="purchase_id" string="PO No." required="1" select="1"/> 
+						<field name="origin" select="2" string="Original Ref."/>
+						<field name="name" select="1" string="Packing No."/>
+						<field name="date_done" select="1"/>
+						<field colspan="4" name="note" string="Description"/>
+					</group>
+                   	<field colspan="4" context="{'order_id':purchase_id}" name="move_lines" nolabel="1" widget="one2many_list">
+                       <tree editable="top" string="Packing Detail" limit="10" min_rows="10">
+                           	<field colspan="4" name="product_id"  readonly="1" select="1"/>
+							<field name="purchase_line_id" string="Desc." domain="[('order_id','=',parent.purchase_id)]" on_change="purchase_order_line_change(purchase_line_id)" required="1" select="1"/>
+                           	<field name="product_qty" select="1" string="Qty."/>
+                           	<field name="product_uom" select="1" string="Unit"/>
+                           	<field name="state" invisible="1" string="State"/>
+                       </tree>
+                   </field>                   
+                   <group col="10" colspan="4">
+                       <field name="state" readonly="1" string="Status"/>
+                       	<button name="update_stock_received" states="draft" string="Received" type="object"/>
+                   </group>
+                </form>   
+            </field>
+        </record>
+        
+        <act_window
+            domain="[('purchase_id', '=', active_id)]" 
+            id="act_purchase_order_kderp_stock_picking"
+            context="{'order_id':active_id}"
+            name="Packing" 
+            res_model="stock.picking" 
+            src_model="purchase.order"/>		
+               
+    </data>
+</openerp>

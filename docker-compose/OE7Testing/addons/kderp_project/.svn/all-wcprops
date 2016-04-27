@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/58/trunk/src/kderp_project
+END
+kderp_project.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/58/trunk/src/kderp_project/kderp_project.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/6/trunk/src/kderp_project/__init__.py
+END
+kderp_project_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/58/trunk/src/kderp_project/kderp_project_view.xml
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/58/trunk/src/kderp_project/__openerp__.py
+END

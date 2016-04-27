@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>		
+				
+        <!-- Import Asset -->
+		<record id="kderp_tree_view_import_asset" model="ir.ui.view">
+            <field name="name">kderp.asset.import.tree</field>
+            <field name="model">kderp.asset.import</field>
+            <field name="arch" type="xml">
+                <tree string="Import Asset" colors="blue:state=='draft'">
+                    <field name="name"/>
+                    <field name="remarks"/>
+                    <field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Import Asset -->
+		<record id="kderp_form_view_import_asset" model="ir.ui.view">
+            <field name="name">kderp.asset.import.form</field>
+            <field name="model">kderp.asset.import</field>
+            <field name="arch" type="xml">
+                <form string="Import Asset" version="7.0">
+                	<header>
+                		<field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                	</header>
+                	<sheet>
+                		<group colspan="4">
+		                    <field name="name"/>
+		                    <field name="remarks"/>                    
+		                    <field name='details_ids' nolable="1" colspan="4">
+		                    	<tree>
+		                    		<field name="asset_id"/>
+		                    		<field name="date"/>
+		                    		<field name="remarks"/>
+		                    	</tree>
+		                    </field>
+	                    </group>
+                    </sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_kderp_import_asset" model="ir.actions.act_window">
+            <field name="name">Import Asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.asset.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="action_kderp_import_asset" id="menu_kderp_action_import_asset_view" parent="kderp_asset_management.kderp_menu_asset_configuration_root"/>
+		      
+    </data>
+</openerp>

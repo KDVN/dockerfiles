@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+ 	<data>
+		 	<!-- Rule for Purchase Order Hai Phong view All Order Related-->
+			 <record model="ir.rule" id="kderp_rule_purchase_order_see_all_po_in_haiphong_locall">
+			 	<field name="name">KDERP Purchase Order - Hai Phong see All Related Purchase Order in Hai Phong only</field>
+			 	<field name="model_id" ref="purchase.model_purchase_order"/>
+			 	<field name="global" eval="False"/>
+				<field name="domain_force">[('account_analytic_id','in',"(Select distinct id from account_analytic_account where code ilike 'PE%' or code ilike 'PP%' or code ilike 'PM%'.sql.query)")]</field>
+				<field eval="[(6,0,[ref('kderp_purchase.group_kderp_purchase_order_haiphong_local_group')])]" name="groups"/>
+			 </record>
+		 
+			 <!-- Rule for Purchase Order Hai Phong view All Order Related follow in Line-->
+			 <record model="ir.rule" id="kderp_rule_purchase_order_see_all_po_in_line_haiphong_locall">
+			 	<field name="name">KDERP Purchase Order - Hai Phong see All Related PO follow line in Hai Phong only</field>
+			 	<field name="model_id" ref="purchase.model_purchase_order"/>
+			 	<field name="global" eval="False"/>
+				<field name="domain_force">[('id','in',"(Select distinct order_id from purchase_order_line where account_analytic_id in (Select distinct id from account_analytic_account where code ilike 'PE%' or code ilike 'PP%' or code ilike 'PM%').sql.query)")]</field>
+				<field eval="[(6,0,[ref('kderp_purchase.group_kderp_purchase_order_haiphong_local_group')])]" name="groups"/>
+			 </record>
+			 
+			<!-- PM and PMRef. and GPM - Rule for Purchase Order -->
+			<record model="ir.rule" id="kderp_rule_dashboard_pm_po">
+		 		<field name="name">KDERP Dashboard - General and Project Manager see all PO</field>
+		 		<field name="model_id" ref="purchase.model_purchase_order"/>
+		 		<field name="global" eval="False"/>
+		 		<field name="domain_force">[('id','in',"(Select distinct id from purchase_order where account_analytic_id in (Select distinct id from account_analytic_account where %s in (user_id,project_manager_ref,general_project_manager_id) and state not in ('cancel','closed')))")]</field>
+		 		<field model="res.groups" name="groups" search="[('name', 'like', '%Project Manager Dashboard%')]"/>
+			</record>
+			
+			<!-- PM and PMRef. and GPM - Rule for Purchase Order Line -->
+			<record model="ir.rule" id="kderp_rule_dashboard_pm_pop_line">
+		 		<field name="name">KDERP Dashboard - General and Project Manager see all PO</field>
+			 	<field name="model_id" ref="purchase.model_purchase_order"/>
+			 	<field name="global" eval="False"/>
+		 		<field name="domain_force">[('id','in',"(Select distinct order_id from purchase_order_line where account_analytic_id in (Select distinct id from account_analytic_account where %s in (user_id,project_manager_ref,general_project_manager_id) and state not in ('cancel','closed')))")]</field>
+		 		<field model="res.groups" name="groups" search="[('name', 'like', '%Project Manager Dashboard%')]"/>
+			</record>
+			
+			<!-- SM, ASM - Rule for PO -->
+			<record model="ir.rule" id="kderp_rule_dashboard_asm_po">
+		 		<field name="name">KDERP Dashboard - Area and Site Manager see all PO</field>
+		 		<field name="model_id" ref="purchase.model_purchase_order"/>
+		 		<field name="global" eval="False"/>
+		 		<field name="domain_force">[('id','in',"(Select distinct id from purchase_order where account_analytic_id in (Select distinct id from account_analytic_account where %s in (area_site_manager_id,manager_id) and state not in ('cancel','closed')))")]</field>
+		 		<field model="res.groups" name="groups" search="[('name', 'like', '%Site Manager Dashboard%')]"/>
+			</record>
+			
+			<!-- SM, ASM - Rule for PO Line -->
+			<record model="ir.rule" id="kderp_rule_dashboard_asm_po_line">
+		 		<field name="name">KDERP Dashboard - Area and Site Manager see all PO Line</field>
+		 		<field name="model_id" ref="purchase.model_purchase_order"/>
+		 		<field name="global" eval="False"/>
+		 		<field name="domain_force">[('id','in',"(Select distinct order_id from purchase_order_line where account_analytic_id in (Select distinct id from account_analytic_account where %s in (area_site_manager_id,manager_id) and state not in ('cancel','closed')))")]</field>
+		 		<field model="res.groups" name="groups" search="[('name', 'like', '%Site Manager Dashboard%')]"/>
+			</record>
+			
+			<!-- UVP - Rule for PO-->
+		 	<record model="ir.rule" id="kderp_rule_dashboard_upv_po">
+		 		<field name="name">KDERP Dashboard - User Related Project see all PO</field>
+		 		<field name="model_id" ref="purchase.model_purchase_order"/>
+				<field name="global" eval="False"/>
+		 		<field name="domain_force">[('id','in',"(Select distinct id from purchase_order where account_analytic_id in (Select distinct id from account_analytic_account left join users_projects_rel upr on id=pid where %s=uid and state not in ('cancel','closed')))")]</field>
+		 		<field eval="[(6,0,[ref('group_kderp_dashboard_user_project')])]" name="groups"/>
+			</record>
+			
+		 	<!-- UVP - Rule for PO Line-->
+		 	<record model="ir.rule" id="kderp_rule_dashboard_upv_po_line">
+			 	<field name="name">KDERP Dashboard - User Related Project see all PO Line</field>
+			 	<field name="model_id" ref="purchase.model_purchase_order"/>
+			 	<field name="global" eval="False"/>
+			 	<field name="domain_force">[('id','in',"(Select distinct order_id from purchase_order_line where account_analytic_id in (Select distinct id from account_analytic_account left join users_projects_rel upr on id=pid where %s=uid and state not in ('cancel','closed')))")]</field>
+			 	<field eval="[(6,0,[ref('group_kderp_dashboard_user_project')])]" name="groups"/>
+			</record>
+		
+	</data>	
+</openerp>

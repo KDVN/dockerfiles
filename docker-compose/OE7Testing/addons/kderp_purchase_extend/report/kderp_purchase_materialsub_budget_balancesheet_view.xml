@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+     	
+     	<record model="ir.actions.report.xml" id="report_job_material_sub_contract">
+     		<field name="model">account.analytic.account</field>
+     		<field name="jasper_model_id" ref="analytic.model_account_analytic_account"/>
+     	    <field name="name">Material/Sub-Contract BS</field>
+        	<field name="report_name">kderp.material.sub.con.sheet</field>
+        	<field name="report_type">pdf</field>
+        	<field name="jasper_output">pdf</field>
+        	<field name="jasper_report">True</field>
+            <field name="auto">False</field>
+            <field name="menu">True</field>
+		</record>
+
+        <record model="ir.values" id="purchase_print_balance_sheet_materialsubcon">
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="name">Material</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_job_material_sub_contract'))" />
+            <field name="key">action</field>
+            <field name="model">purchase.order</field>
+        </record>
+    
+     	<record model="ir.actions.report.xml" id="report_job_material_sub_contract_ex">
+     		<field name="model">account.analytic.account</field>
+     		<field name="jasper_model_id" ref="analytic.model_account_analytic_account"/>
+     	    <field name="name">Direct Cost BS</field>
+        	<field name="report_name">kderp.material.sub.con.ex.sheet</field>
+        	<field name="report_type">pdf</field>
+        	<field name="jasper_output">pdf</field>
+        	<field name="jasper_report">True</field>
+            <field name="auto">False</field>
+            <field name="menu">True</field>
+		</record>
+
+        <record model="ir.values" id="purchase_print_balance_sheet_materialsubcon_ex">
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="name">Direct Code</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_job_material_sub_contract_ex'))" />
+            <field name="key">action</field>
+            <field name="model">purchase.order</field>
+        </record>     
+    </data>
+</openerp>

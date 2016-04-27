@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ForecastAdministrativeExpenses" language="groovy" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1190" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.1269722013523664"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;general_expense_code_ids/detail_general_expense_code&apos;]"/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.size.fix.enabled" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="512"/>
+	<style name="style1"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="GECode" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="BudgetCode" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/budget_id/code]]></fieldDescription>
+	</field>
+	<field name="BudgetName" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/budget_id/name]]></fieldDescription>
+	</field>
+	<field name="BudgetDescription" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/detail_general_expense_code/description]]></fieldDescription>
+	</field>
+	<field name="BudgetAmountDes" class="java.lang.Double">
+		<fieldDescription><![CDATA[general_expense_code_ids/detail_general_expense_code/amount]]></fieldDescription>
+	</field>
+	<field name="BudgetAmount" class="java.lang.Double">
+		<fieldDescription><![CDATA[general_expense_code_ids/budget_amount]]></fieldDescription>
+	</field>
+	<field name="Expense" class="java.lang.Double">
+		<fieldDescription><![CDATA[general_expense_code_ids/expense_amount]]></fieldDescription>
+	</field>
+	<field name="Balance" class="java.lang.Double">
+		<fieldDescription><![CDATA[general_expense_code_ids/balance]]></fieldDescription>
+	</field>
+	<field name="GeneralExpense" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/detail_general_expense_code/general_expense_id/code]]></fieldDescription>
+	</field>
+	<field name="GeneralExpenseBudgetCode" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/detail_general_expense_code/budget_id/code]]></fieldDescription>
+	</field>
+	<field name="GeneralExpenseBudgetName" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/detail_general_expense_code/budget_id/name]]></fieldDescription>
+	</field>
+	<field name="GeneralExpenseAsset" class="java.lang.String">
+		<fieldDescription><![CDATA[general_expense_code_ids/detail_general_expense_code/asset_id/code]]></fieldDescription>
+	</field>
+	<sortField name="BudgetCode"/>
+	<sortField name="GeneralExpense"/>
+	<sortField name="GeneralExpenseBudgetCode"/>
+	<variable name="Description" class="java.lang.String">
+		<variableExpression><![CDATA[$F{BudgetCode}+" - "+$F{BudgetName}]]></variableExpression>
+	</variable>
+	<variable name="TotalBudgetAmt" class="java.lang.Double" resetType="Group" resetGroup="BudgetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{BudgetAmount}==null?0:$F{BudgetAmount}]]></variableExpression>
+	</variable>
+	<variable name="Actual" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Expense}==null?0:$F{Expense}]]></variableExpression>
+	</variable>
+	<variable name="Balance" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{BudgetAmount}==null?0:$F{BudgetAmount}]]></variableExpression>
+	</variable>
+	<variable name="Increase" class="java.lang.Double">
+		<variableExpression><![CDATA[($F{Balance}==null?0:$F{Balance})]]></variableExpression>
+	</variable>
+	<variable name="Forecast" class="java.lang.Double">
+		<variableExpression><![CDATA[($V{Balance}%1000000)==0?$V{Balance}:
+(($V{Balance}/1000000).intValue()+1)*1000000]]></variableExpression>
+	</variable>
+	<variable name="Actual_Total" class="java.lang.Double" resetType="Group" resetGroup="GECode" incrementType="Group" incrementGroup="BudgetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{Expense}==null?0:$F{Expense}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Balance_Total" class="java.lang.Double" resetType="Group" resetGroup="GECode" incrementType="Group" incrementGroup="BudgetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{BudgetAmount}==null?0:$F{BudgetAmount}]]></variableExpression>
+	</variable>
+	<variable name="Increase_Total" class="java.lang.Double" resetType="Group" resetGroup="GECode" incrementType="Group" incrementGroup="BudgetCode" calculation="Sum">
+		<variableExpression><![CDATA[($F{Balance}==null?0:$F{Balance})]]></variableExpression>
+	</variable>
+	<variable name="Forecast_Total" class="java.lang.Double" resetType="Group" resetGroup="GECode" incrementType="Group" incrementGroup="BudgetCode" calculation="Sum">
+		<variableExpression><![CDATA[($V{Balance}%1000000)==0?$V{Balance}:
+(($V{Balance}/1000000).intValue()+1)*1000000]]></variableExpression>
+	</variable>
+	<group name="GECode">
+		<groupExpression><![CDATA[$F{GECode}]]></groupExpression>
+		<groupHeader>
+			<band height="120">
+				<staticText>
+					<reportElement x="0" y="0" width="1190" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[KINDEN VIETNAM CO., LTD. - HANOI H.O]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="20" width="250" height="20"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["INCOME STATEMENT "+$F{GECode}.substring( 3,7)]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="40" width="250" height="30"/>
+					<box bottomPadding="5"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Times New Roman" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Forecast Administrative Expenses]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="70" width="190" height="35" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="190" y="70" width="30" height="35" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[CODE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="220" y="70" width="30" height="35" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[NOTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="250" y="70" width="280" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[DETAILS AMOUNT]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="250" y="90" width="70" height="15" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Actual "+(Integer.valueOf($F{GECode}.substring( 3,7))-1).toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="320" y="90" width="70" height="15" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Increase]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="390" y="90" width="70" height="15" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Balance]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="460" y="90" width="70" height="15" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Forecast "+$F{GECode}.substring( 3,7)]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="105" width="250" height="15" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="530" y="90" width="90" height="30" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[General Expense]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="GECode" pattern="#,##0;(#,##0)">
+					<reportElement mode="Opaque" x="320" y="105" width="70" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Increase_Total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GECode" pattern="#,##0">
+					<reportElement mode="Opaque" x="390" y="105" width="70" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Balance_Total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GECode" pattern="#,##0">
+					<reportElement mode="Opaque" x="460" y="105" width="70" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Forecast_Total}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GECode" pattern="#,##0">
+					<reportElement mode="Opaque" x="250" y="105" width="70" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Actual_Total}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1030" y="40" width="70" height="30"/>
+					<box bottomPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Exc. Rate : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1100" y="40" width="90" height="30"/>
+					<box bottomPadding="5"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[20,900]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="530" y="70" width="660" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[DETAILS BUDGET]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="810" y="90" width="220" height="30" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[General Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="620" y="90" width="190" height="30" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Budget]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="1030" y="90" width="70" height="30" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Amount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="1100" y="90" width="90" height="30" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Asset]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="BudgetCode">
+		<groupExpression><![CDATA[$F{BudgetCode}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="190" y="0" width="30" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{BudgetCode}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="220" y="0" width="30" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="530" y="0" width="660" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="BudgetCode">
+					<reportElement x="0" y="0" width="190" height="20"/>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$V{Description}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="BudgetCode" pattern="#,##0" isBlankWhenNull="false">
+					<reportElement x="460" y="0" width="70" height="20"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{Forecast}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="BudgetCode" pattern="#,##0" isBlankWhenNull="false">
+					<reportElement x="390" y="0" width="70" height="20"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Balance}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="BudgetCode" pattern="#,##0" isBlankWhenNull="false">
+					<reportElement x="250" y="0" width="70" height="20"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Actual}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="BudgetCode" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+					<reportElement x="320" y="0" width="70" height="20"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Increase}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="620" y="0" width="190" height="20"/>
+				<box leftPadding="1" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{GeneralExpenseBudgetCode}+" - "+$F{GeneralExpenseBudgetName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="0" width="30" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="30" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="190" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="1030" y="0" width="70" height="20"/>
+				<box rightPadding="1">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{BudgetAmountDes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="460" y="0" width="70" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="810" y="0" width="220" height="20"/>
+				<box leftPadding="1" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BudgetDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="530" y="0" width="90" height="20"/>
+				<box leftPadding="0" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{GeneralExpense}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1100" y="0" width="90" height="20"/>
+				<box leftPadding="0" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{GeneralExpenseAsset}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

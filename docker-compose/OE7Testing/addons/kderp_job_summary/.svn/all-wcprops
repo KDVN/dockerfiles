@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/3043/trunk/src/kderp_job_summary
+END
+kderp_workinprogresslist.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2842/trunk/src/kderp_job_summary/kderp_workinprogresslist.py
+END
+kderp_project.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2781/trunk/src/kderp_job_summary/kderp_project.py
+END
+kderp_budget_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/1192/trunk/src/kderp_job_summary/kderp_budget_view.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/767/trunk/src/kderp_job_summary/__init__.py
+END
+kderp_project_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3043/trunk/src/kderp_job_summary/kderp_project_view.xml
+END
+kderp_budget.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/1773/trunk/src/kderp_job_summary/kderp_budget.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/1442/trunk/src/kderp_job_summary/__openerp__.py
+END

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+        <menuitem id="menu_kderp_general_exepense_root" name="G.E. &amp; Expense" sequence="40"/>
+        <menuitem id="menu_kderp_general_exepense_menu" name="G.E. &amp; Expense" sequence="5" parent="menu_kderp_general_exepense_root" groups="group_kderp_menu_general_expense" />
+        <menuitem id="menu_kderp_general_exepense_config_menu" name="Configuration" sequence="15" parent="menu_kderp_general_exepense_root" groups="group_kderp_menu_configuration_general_expense"/>
+
+	</data>
+</openerp>

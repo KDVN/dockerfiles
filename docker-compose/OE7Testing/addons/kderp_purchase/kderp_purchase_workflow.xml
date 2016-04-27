@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<!-- Disable Default Purchase Workflow -->
+	
+		<record id="purchase.trans_draft_cancel" model="workflow.transition">
+			<field name="condition">False</field>
+			<field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="purchase.act_cancel"/>
+		</record>
+	 
+		<record id="purchase.trans_draft_confirmed" model="workflow.transition">
+			<field name="condition">False</field>
+			<field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="purchase.act_confirmed"/>
+		</record>
+		
+		<record id="purchase.trans_draft_sent" model="workflow.transition">
+			<field name="condition">False</field>
+			<field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="purchase.act_sent"/>
+		</record>
+
+	 		
+		<record id="act_final_quotation" model="workflow.activity">
+	        <field name="wkf_id" ref="purchase.purchase_order"/>
+	        <field name="name">final_quotation</field>
+	        <field name="kind">function</field>
+	        <field name="action">action_draft_to_final_quotation()</field>
+		</record>
+			
+		<record id="act_roa_completed" model="workflow.activity">
+	        <field name="wkf_id" ref="purchase.purchase_order"/>
+	        <field name="name">roa_completed</field>
+	        <field name="kind">function</field>
+	        <field name="action">write({'state':'waiting_for_delivery'})</field>
+		</record>
+	        		
+		<record id="act_delivered" model="workflow.activity">
+			<field name="wkf_id" ref="purchase.purchase_order"/>
+			<field name="name">delivered</field>
+			<field name="kind">function</field>
+			<field name="action">write({'state':'waiting_for_payment'})</field>
+		</record>
+				
+		<record id="act_done" model="workflow.activity">
+			<field name="wkf_id" ref="purchase.purchase_order"/>
+			<field name="name">done</field>
+			<field name="kind">function</field>
+			<field name="flow_stop">True</field>
+			<field name="action">write({'state':'done'})</field>
+		</record>
+			
+		<record id="act_cancel" model="workflow.activity">
+			<field name="wkf_id" ref="purchase.purchase_order"/>
+			<field name="name">cancel</field>
+			<field name="kind">function</field>
+			<field name="flow_stop">True</field>
+			<field name="action">action_cancel()
+				write({'state':'cancel'})</field>
+		</record>
+		
+	<!-- Transcation -->
+        <record id="trans_draft_final_quotation" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="act_final_quotation"/>
+            <field name="signal">btn_draft_final_quotation</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_final_quotation_roa_completed" model="workflow.transition">
+            <field name="act_from" ref="act_final_quotation"/>
+            <field name="act_to" ref="act_roa_completed"/>
+            <field name="signal">btn_final_quotation_roa_completed</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_roa_completed_delivered_one_delivery" model="workflow.transition">
+            <field name="act_from" ref="act_roa_completed"/>
+            <field name="act_to" ref="act_delivered"/>
+            <field name="signal">btn_roa_completed_delivered</field>
+            <field name="condition">special_case==False</field>
+        </record>
+        
+        <record id="trans_roa_completed_delivered_multi_delivery" model="workflow.transition">
+            <field name="act_from" ref="act_roa_completed"/>
+            <field name="act_to" ref="act_delivered"/>
+            <field name="condition">special_case==True</field>
+		</record>
+        
+        <record id="trans_delivered_done" model="workflow.transition">
+            <field name="act_from" ref="act_delivered"/>
+            <field name="act_to" ref="act_done"/>
+            <field name="signal">btn_delivered_done</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_roa_completed_draft" model="workflow.transition">
+            <field name="act_from" ref="act_final_quotation"/>
+            <field name="act_to" ref="purchase.act_draft"/>
+            <field name="signal">btn_final_quotation_draft</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_delivered_final_quotation" model="workflow.transition">
+            <field name="act_from" ref="act_roa_completed"/>
+            <field name="act_to" ref="act_final_quotation"/>
+            <field name="signal">btn_roa_completed_final_quotation</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans__roa_completed" model="workflow.transition">
+            <field name="act_from" ref="act_delivered"/>
+            <field name="act_to" ref="act_roa_completed"/>
+            <field name="signal">btn_delivered_roa_completed</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_draft_cancel" model="workflow.transition">
+            <field name="act_from" ref="purchase.act_draft"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">btn_draft_cancel</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_final_quotation_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_final_quotation"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">btn_final_quotation_cancel</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_roa_completed_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_roa_completed"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">btn_roa_completed_cancel</field>
+            <field name="condition">True</field>
+        </record>
+        
+        <record id="trans_delivered_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_delivered"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">btn_delivered_cancel</field>
+            <field name="condition">True</field>
+        </record>
+
+    </data>
+</openerp>

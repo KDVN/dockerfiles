@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record id="view_packing_to_create_payment" model="ir.ui.view">
+            <field name="name">Create Payment</field>
+            <field name="model">kderp.wizard.packing.payment</field>
+            <field name="arch" type="xml">
+                <form string="Create Payment" version="7.0">
+                    <h3>You want create supplier payment?</h3>
+                    <footer>
+                    	<button name="create_packing_payment" string="Create" type="object" class="oe_highlight"/>
+                    	or
+                    	<button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <act_window name="Create Payment"
+            res_model="kderp.wizard.packing.payment"
+            src_model="stock.picking"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_view_packing_to_create_payment"/>
+    </data>
+</openerp>

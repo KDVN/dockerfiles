@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kderp_control_area_read,kderp.control.area.read,model_kderp_control_area,,1,0,0,0
+access_kderp_control_area_full,kderp.control.area.full,model_kderp_control_area,group_kderp_control_area_full,1,1,1,1
+access_kderp_kderp_job_control_area_read_all,kderp.job.control.area.read.all,model_kderp_job_control_area,,1,0,0,0
+access_kderp_kderp_job_control_area_read,kderp.job.control.area.read,model_kderp_job_control_area,kderp_project.group_kderp_project_em_read,1,0,0,0
+access_kderp_kderp_job_control_area_write,kderp.job.control.area.write,model_kderp_job_control_area,kderp_project.group_kderp_project_em_write,0,1,0,0
+access_kderp_kderp_job_control_area_create,kderp.job.control.area.create,model_kderp_job_control_area,kderp_project.group_kderp_project_em_create,0,0,1,0
+access_kderp_kderp_job_control_area_delete,kderp.job.control.area.delete,model_kderp_job_control_area,kderp_project.group_kderp_project_em_delete,0,0,0,1
+access_kderp_kderp_job_area_allotment_read_all,kderp.job.area.allotment.read.all,model_kderp_job_area_allotment,,1,0,0,0
+access_kderp_kderp_job_area_allotment_read,kderp.job.area.allotment.read,model_kderp_job_area_allotment,kderp_project.group_kderp_project_em_read,1,0,0,0
+access_kderp_kderp_job_contract_control_area_read_all,kderp.job.contract.control.area.read.all,model_kderp_contract_job_area,,1,0,0,0
+access_kderp_kderp_job_contract_area_read,kderp.job.control.area.read,model_kderp_contract_job_area,kderp_contract.group_kderp_contract_client_read,1,0,0,0
+access_kderp_kderp_job_contract_area_write,kderp.job.control.area.write,model_kderp_contract_job_area,kderp_contract.group_kderp_contract_client_write,0,1,0,0
+access_kderp_kderp_job_contract_area_create,kderp.job.control.area.create,model_kderp_contract_job_area,kderp_contract.group_kderp_contract_client_create,0,0,1,0
+access_kderp_kderp_job_contract_area_delete,kderp.job.control.area.delete,model_kderp_contract_job_area,kderp_contract.group_kderp_contract_client_delete,0,0,0,1

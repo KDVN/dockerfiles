@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1"> 
+		<!-- Group Supplier Payment read only bankstransfer -->
+		<record id="group_kderp_supplier_payment_read_only_bankstransfer" model="res.groups">
+			 <field name="name">KDERP - Supplier Payment Read Only Bankstransfer</field>
+			 <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	         <field name="category_id" ref="kderp_supplier_payment.module_category_kderp_supplier_payment"/>
+		</record>
+
+	    <record model="ir.rule" id="kderp_rule_payment_haiphong_cash">
+			<field name="name">KDERP Payment - Hai Phong Cash</field>
+			<field name="model_id" ref="kderp_supplier_payment.model_kderp_supplier_payment"/>
+			<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="global" eval="False"/>
+	    	<field name="domain_force">[('order_id','in',"((select order_id from purchase_order_line where account_analytic_id in (Select distinct id from account_analytic_account where code ilike 'PE%' or code ilike 'PP%' or code ilike 'PM%')).sql.query)"),('payment_type','=','cash')]</field>
+	   		<field eval="[(6,0,[ref('group_kderp_supplier_payment_read_only_bankstransfer')])]" name="groups"/>
+	    </record>
+
+	</data>
+</openerp>

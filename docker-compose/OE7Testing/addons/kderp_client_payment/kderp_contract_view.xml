@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>	
+         <!-- Contract to Client Payment -->
+        <record id="action_open_client_payment_from_contract" model="ir.actions.act_window">
+            <field name="name">Client Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="src_model">kderp.contract.client</field>
+            <field name="view_type">form</field>
+            <field name="context">{'contract_id':active_id}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('contract_id','=',active_id)]</field>
+        </record>
+
+		<!-- Contract Form View -->
+		<record id="kderp_view_contract_client_form_inherit" model="ir.ui.view">
+            <field name="name">kderp.view.contract.client.inherit.form</field>
+            <field name="model">kderp.contract.client</field>
+            <field name='inherit_id' ref='kderp_contract.kderp_view_contract_client_form'/>
+            <field name="arch" type="xml">
+            	<button name="%(kderp_contract.action_contract_client_payment)d" position='before' type='action'>
+            		<field name="client_payment_ids" nolabel="1" mode="tree"/>
+				</button>
+				<button name="%(kderp_contract.action_contract_client_payment)d" position='after' type='action'>
+					<button name="%(action_open_client_payment_from_contract)d" string='Client Payment' help='Open Related Client Payment' icon="gtk-open" type='action'/>
+				</button>
+				<page string="Contract Summary" position="inside">
+						<group colspan="4" col="4" class="kdvn_cell_border kdvn_float_readonly">
+							<label string="(in VND)" style="text-align:center"/>
+							<label string="Amount" colspan="1" class="oe_bold" style="text-align:center"/>
+							<label string="VAT" colspan="1" class="oe_bold" style="text-align:center"/>
+							<label string="Total" colspan="1" class="oe_bold" style="text-align:center"/>
+							
+							<label string="Contracted (1)" colspan="1" class="oe_bold"/>
+							<field name="contracted_amount" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name="contracted_tax" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name="contracted_total" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							
+							<label string="Claimed (2)" colspan="1" class="oe_bold"/>
+							<field name="contract_claim_amount" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name="contract_claim_tax" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name="contract_claim_total" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							
+							<label string="Received (3)" colspan="1" class="oe_bold"/>
+							<field name="contract_collect_amount" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name="contract_collect_tax" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name="contract_collect_total" nolabel="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							
+							<label string="Receivable (4)=(2)-(3)" colspan="1" class="oe_bold"/>
+							<field name='contract_receivable_amount' nolabel='1' widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name='contract_receivable_tax' nolabel='1' widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name='contract_receivable_total' nolabel='1' widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							
+							<label string="Balance (5)=(1)-(3)" colspan="1" class="oe_bold"/>
+							<field name='balance_amount' nolabel='1' widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name='balance_tax' nolabel='1' widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+							<field name='balance_total' nolabel='1' widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+					</group>
+
+					<field name="contract_summary_currency_info_ids" nolabel="1" mode='tree'>
+						<tree min_rows="3" string="Contract Summary Info.">
+		                    <field name="name" readonly="1"/>
+		                    <field name="amount" string='Contracted'/>
+							<field name="claimed_amount"/>
+					        <field name="collect_amount"/>
+		                </tree>
+					</field>					
+				</page>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

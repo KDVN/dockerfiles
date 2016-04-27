@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Thay doi status cua Job theo tung group -->
+        <record id="kderp_job_form_set_readonly_status" model="ir.ui.view">
+			<field name="name">kderp.job.form.set.readonly.status</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="kderp_project.view_account_analytic_kderp_job_form"/>
+			<field name="arch" type="xml">
+				<field name='process_status' position="replace"/>
+				<field name="state" position="replace"/>
+                <field name='owner_id' position='replace'/>
+                <field name='partner_id' position="replace"/>
+
+                <field name="job_type" position="replace">
+                    <group col="4" colspan="2">
+                        <field name="job_type" required = "True" on_change="onchange_job_type(code, job_type)"/>
+                        <field name="job_scale"/>
+                    </group>
+                    <field name="owner_id" context="{'search_default_customer':1, 'show_address': 0,'default_customer':1,'hide_name':0}" options='{"always_reload": True}'/>
+                    <field name='partner_id' context="{'search_default_customer':1, 'show_address': 0,'default_customer':1,'hide_name':0}" options='{"always_reload": True}'/>
+                    <field name='project_location_id' string="IP Location" on_change="onchange_location_city(project_location_id)"/>
+	        	</field>
+
+                <field name='address_id' position='replace'>
+                    <field name="process_status" readonly="1"/>
+                    <field name="state" readonly="1" />
+                    <field name="project_address_id" domain="['|',('parent_id','=',owner_id),('id','=',owner_id)]" context="{'default_type':'default','show_address': 1,'hide_name': 1,'inline':1}" options='{"always_reload": True}'/>
+                </field>
+	        	<field name='invoice_address_id' position='after'>
+                    <field name='city_province_id'/>
+	        	</field>
+			</field>
+		</record>
+
+		<!-- Them truong user view o Job vao phan search -->
+		<record id="view_account_analytic_account_kderp_extend_search" model="ir.ui.view">
+            <field name="name">account.analytic.account.search.extend</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="kderp_project.view_account_analytic_account_kderp_search"/>
+            <field name="arch" type="xml">
+            	<field name='manager_id' position='after'>
+                    <field name="control_area_ids" filter_domain="[('control_area_ids','ilike',self)]" string="Area" widget="many2one"/>
+            		<field name="user_related_ids" filter_domain="[('user_related_ids','ilike',self)]" string="Viewer"/>
+            	</field>
+            </field>
+         </record>
+
+        <!-- Thay doi job_type theo code-->
+        <record id="kderp_job_form_inherit_code" model="ir.ui.view">
+			<field name="name">kderp.job.form.inherit</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="kderp_project.view_account_analytic_kderp_job_form"/>
+			<field name="arch" type="xml">
+	        	<field name="code" class="oe_inline oe_edit_only" placeholder="Job Number" position='replace'>
+	        		<field name="code" on_change="onchange_job_code(code)" class="oe_inline oe_edit_only" placeholder="Job Number"/>
+	        	</field>
+<!--	        	<field name="job_type" position="replace">
+	        		<field name="job_type" required = "True" on_change="onchange_job_type(code, job_type)"/>
+	        	</field>-->
+				<!-- Them truong remark vao trong form Project -->
+				<field name='area_site_manager_id' position='after'>
+	        		<field name='remark'/>
+	        	</field>
+			</field>
+		</record>
+
+		<!--Them job code va job name vao tree -->
+		<record id="view_account_analytic_kderp_job_inherit_tree" model="ir.ui.view">
+			<field name="name">view.account.analytic.kderp.job.inherit.tree</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="kderp_project.view_account_analytic_kderp_job_tree"/>
+			<field name="priority" eval="5"/>
+			<field name="arch" type="xml">
+				<field name="full_name" position="replace">
+					<field name="code"/>
+					<field name="name"/>
+				</field>
+			</field>
+		</record>
+
+        <!-- Doi ten Job Type thanh E/M va them Job Type-->
+        <record id="kderp_job_search_extend_inherit" model="ir.ui.view">
+			<field name="name">kderp.job.search.extend.inherit</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="kderp_project.view_account_analytic_account_kderp_search"/>
+			<field name="arch" type="xml">
+                <filter string="Job Type" domain="[]" context="{'group_by':'job_type'}" position='replace'>
+                    <filter string="E/M" domain="[]" context="{'group_by':'job_type'}"/>
+                    <filter string="Job Type" domain="[]" context="{'group_by':'job_scale'}"/>
+                </filter>
+			</field>
+		</record>
+
+        <!-- Thay doi status cua Job theo tung group -->
+		<record id="kderp_job_form_set_edit_status" model="ir.ui.view">
+			<field name="name">kderp.job.form.set.edit.status</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="kderp_job_form_set_readonly_status"/>
+	    	<field name="groups_id" eval="[(6, 0, [ref('kderp_extend_module.group_kderp_project_change_status') ])]"/>
+	    	<field name="arch" type="xml">
+	        	<field name='process_status' readonly="1" position="attributes">
+	            	<attribute name="readonly">0</attribute>
+	        	</field>
+				<field name='state' readonly="1" position="attributes">
+	            	<attribute name="readonly">0</attribute>
+	        	</field>
+	    	</field>
+		</record>
+
+		
+	</data>
+</openerp>

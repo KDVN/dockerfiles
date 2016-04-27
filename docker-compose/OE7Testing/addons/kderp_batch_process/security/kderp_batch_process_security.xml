@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        
+        <record id="group_kderp_batch_process" model="res.groups">
+            <field name="name">KDERP Batch Process</field>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="category_id" ref="kderp_supplier_payment.module_category_kderp_supplier_payment" />
+        </record>
+        
+		<record id="group_kderp_auto_attach_po" model="res.groups">
+        	<field name="name">Group KDERP  Automatically attach PO </field>
+        	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+     	    
+	</data>
+</openerp>

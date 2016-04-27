@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_kderp_contract_client_payment_form" model="ir.ui.view">
+			<field name="name">kderp.create.progress.and.client.payment.form</field>
+			<field name="model">kderp.create.progress.and.client.payment</field>
+			<field name="arch" type="xml">
+				<form string="Create New Client Payment" version="7.0">
+						<group string="Chose a payment term">
+							<field name="payment_term_id"/>
+						</group>
+						<footer>
+							<button string='Create Client Payment' name="create_client_payment" attrs="{'readonly':['|',('payment_term_id','=',''),('payment_term_id','=','none')]}" type="object" class="oe_highlight"/>
+		                    or
+		                    <button string="Cancel" special="cancel" class="oe_highlight"/>
+	                    </footer>
+				</form>
+			</field>
+		</record>
+
+        <record id="action_contract_client_payment" model="ir.actions.act_window">
+            <field name="name">Create Client Payment</field>
+            <field name="res_model">kderp.create.progress.and.client.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_kderp_contract_client_payment_form"/>
+           <field name="target">new</field>
+        </record>
+        
+		<!-- Progress Evalutation Sheet -->
+		<record id="view_kderp_progress_form" model="ir.ui.view">
+			<field name="name">kderp.create.progress.form</field>
+			<field name="model">kderp.create.progress.and.client.payment</field>
+			<field name="arch" type="xml">
+				<form string="Create New Progress" version="7.0">
+						<group string="Chose a payment term">
+							<field name="payment_term_id"/>
+							<field name="progress_no"/>
+						</group>
+						<footer>
+							<button string='Create Progress' name="create_progress_evaluation" type="object" class="oe_highlight"/>
+		                    or
+		                    <button string="Cancel" special="cancel" class="oe_highlight"/>
+	                    </footer>
+				</form>
+			</field>
+		</record>
+
+        <record id="action_contract_progress" model="ir.actions.act_window">
+            <field name="name">Create Progress</field>
+            <field name="res_model">kderp.create.progress.and.client.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_kderp_progress_form"/>
+           <field name="target">new</field>
+        </record>
+        
+
+    </data>
+</openerp>

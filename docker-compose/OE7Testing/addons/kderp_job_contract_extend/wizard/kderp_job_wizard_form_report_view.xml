@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_kdrep_job_wizard_form" model="ir.ui.view">
+			<field name="name">view.kderp.job.wizard.balance.sheet.form.form1</field>
+			<field name="model">kderp.job.wizard.balance.sheet.form</field>
+			<field name="arch" type="xml">
+				<form string="Input Value for Job Budget form" version="7.0" readonly="1" create="false" >
+					<group colspan="2" col="2">
+                        <field name="search_type"/>
+						<field name='pcodebudget' widget="many2many_tags" options="{'limit': 10, 'create': false, 'create_edit': false}"
+                               attrs="{'invisible': [('search_type','!=','select_code')]}"/>
+                        <group attrs="{'invisible': [('search_type','=','select_code')]}" colspan="4">
+                            <field name="custom_code" attrs="{'required':[('search_type','in',('beginswith_code','range_code'))]}"/>
+                            <label colspan="2" string="* Note:
+                                                    Using begins with: If you want search all code begin with 4, 7...., please input 4;7"/>
+                            <label colspan="2" string="Using Range Code: If you want search all code from 4000 to 7000, please input 4000~7000"/>
+                        </group>
+						<field name='file_type'/>
+					</group>						
+					<footer>
+						<button string='Print' name="print_report" type="object" class="oe_highlight"/>
+						or
+						<button string="Cancel"  special="cancel" class="oe_highlight"/>
+					</footer>					
+				</form>
+			</field>
+		</record>
+		
+        <record id="action_print_job_budget_form" model="ir.actions.act_window">
+            <field name="name">2.3 Balance Sheet Detail (filter by code)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.job.wizard.balance.sheet.form</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_kdrep_job_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+        
+ 		<record model="ir.values" id="action_print_job_budget_form_values">
+            <field name="model_id" ref="kderp_project.model_account_analytic_account" />
+            <field name="name">2.3 Balance Sheet Detail (filter by code)</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_print_job_budget_form'))" />
+            <field name="key">action</field>
+            <field name="model">account.analytic.account</field>
+        </record>
+    </data>
+</openerp>

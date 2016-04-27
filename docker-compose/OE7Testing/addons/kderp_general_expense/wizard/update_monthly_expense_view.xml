@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="action_server_manual_update_monthly_expense" model="ir.actions.server">
+            <field name="name">Update Monthly Expense</field>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_kderp_other_expense"/>
+            <field name="state">code</field>
+            <field name="code">self.check_and_submit_monthly_expense(cr, uid, [], context=context)</field>
+        </record>
+            
+        <record id="kderp_update_monthly_expense_form" model="ir.ui.view">
+            <field name="name">kderp.update.monthly.expense.form</field>
+            <field name="model">kderp.update.monthly.expense</field>
+            <field name="arch" type="xml">
+                <form string="Update Allocated Expense Status" version="7.0">
+                    <p class="oe_grey">
+						Click update, the system will be changed status of<br/>
+						All Allocated Expense which date before this time.
+						<b>From Draft -> Completed</b>                       	
+                    </p>
+                    <footer>
+                        <button icon="terp-update" string="Update" name="action_server_manual_update_monthly_expense" type="action" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_kderp_update_allocated_expense_status" model="ir.actions.act_window">
+            <field name="name">Update Allocated Expense</field>
+            <field name="res_model">kderp.update.monthly.expense</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kderp_update_monthly_expense_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_kderp_update_allocated_expense_status"
+            id="menu_action_kderp_allocated_expense_status"
+            parent="menu_kderp_general_exepense_config_menu"
+            sequence="176"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!--
+	Sequences types for KDERP Client Payment
+	-->
+        <record id="seq_type_kderp_client_payment_code" model="ir.sequence.type">
+            <field name="name">KDERP Client Payment Code</field>
+            <field name="code">kderp_client_payment_code</field>
+        </record>
+        
+	<!--
+	Sequences for KDERP Client Payment
+	-->
+		<!--  Ha Noi -->
+        <record id="seq_kderp_hn_client_payment_code" model="ir.sequence">
+            <field name="name">KDERP Client Payment - Ha Noi</field>
+            <field name="code">kderp_client_payment_code</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">IH</field>
+            <field name="suffix">YY-</field>
+            <field name="example">IH11-0000</field>
+            <field name="padding">4</field>
+        </record>
+        
+        <!--  HCM -->
+        <record id="seq_kderp_hcm_client_payment_code" model="ir.sequence">
+            <field name="name">KDERP Client Payment - HCM</field>
+            <field name="code">kderp_client_payment_code</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">IS</field>
+            <field name="suffix">YY-</field>
+            <field name="example">IS11-0000</field>
+            <field name="padding">4</field>
+        </record>
+        
+        
+    </data>
+</openerp>

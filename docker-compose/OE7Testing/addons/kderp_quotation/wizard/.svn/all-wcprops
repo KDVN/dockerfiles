@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/1060/trunk/src/kderp_quotation/wizard
+END
+create_contract_from_quotation.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1060/trunk/src/kderp_quotation/wizard/create_contract_from_quotation.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/339/trunk/src/kderp_quotation/wizard/__init__.py
+END
+create_contract_from_quotation_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1060/trunk/src/kderp_quotation/wizard/create_contract_from_quotation_view.xml
+END

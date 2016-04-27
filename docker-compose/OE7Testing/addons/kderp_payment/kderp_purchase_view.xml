@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_kderp_purchase_order_form_add_summary_payment_amount_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.add.summary.payment.amount</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref='kderp_purchase.purchase_order_form_kderp_purchase'/>
+            <field name="arch" type="xml">
+            	<field name="amount_total" position="after">            		
+					<field name="total_request_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+					<field name="total_vat_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+					<field name="total_payment_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	            </field>
+            </field>
+        </record>
+        
+        <!-- PO Menu -->            
+    	<record id="kderp_view_purchase_order_showover_tree" model="ir.ui.view">
+            <field name="name">kderp.view.purchase.order.over.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="priority">25</field>
+            <field name="arch" type="xml">
+				<tree fonts="bold:message_unread==True" colors="grey:state=='cancel';blue:state in ('wait','confirmed');red:state in ('except_invoice','except_picking')" string="Purchase Order">
+                    <field name="message_unread" invisible="1"/>
+                    <field name="name" string="PO No."/>
+                    <field name="date_order" string="PO Date"/>
+                    <field name="partner_id" string="Supplier" invisible="'partner_id' in context.get('group_by',[])"/>
+<!--                     <field name="company_id" groups="base.group_multi_company" widget="selection"/> -->
+<!--                     <field name="minimum_planned_date" invisible="context.get('quotation_only', False)"/> -->
+					<field name="account_analytic_id" string="Job No."/>
+					<field name='quotation_attached' string="Quotation"/>
+					<field name="roa_comaprison_attached" string="ROA/Comparision Sheet"/>
+					<!-- <field name="without_contract" string="Contract"/> -->
+					<field name='contract_attached' string="Contract"/>
+                    <field name="amount_total" string="Amount"/>
+                    <field name="pricelist_id" string="Cur."/>
+                    <field name="origin" string="Ref."/>
+                    <field name="po_over" string="Over?"/>
+                    <field name="state" string="Status"/>
+                </tree>
+			</field>
+		</record>
+		
+		<!-- Menu for PO Show Over-->
+		<record id="action_po_showover" model="ir.actions.act_window">
+            <field name="name">Purchase (With Over)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'kderp_search_po_over':True}</field>
+        </record>
+		<record id="action_window_view_po_show_over_form" model="ir.actions.act_window.view">
+            <field eval="10" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="kderp_purchase.purchase_order_form_kderp_purchase"/>
+            <field name="act_window_id" ref="action_po_showover"/>
+        </record>
+        <record id="action_window_view_po_show_over_tree" model="ir.actions.act_window.view">
+            <field eval="5" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="kderp_view_purchase_order_showover_tree"/>          
+            <field name="act_window_id" ref="action_po_showover"/>
+        </record>
+    	<menuitem action="action_po_showover" id="menu_purchase_filter_over_budget" parent="kderp_purchase.kderp_menu_all_purchase_order_action" sequence="30"/>
+    </data>
+</openerp>

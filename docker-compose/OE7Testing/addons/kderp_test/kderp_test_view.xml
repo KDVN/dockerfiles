@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<menuitem 
+        	id="kderp_test_root" name="Test" sequence="90"/>
+        <menuitem 
+        	id="kderp_test_menu" name="Example" sequence="5" parent="kderp_test_root"/>
+        <record id="view_kderp_test_view" model="ir.ui.view">
+            <field name="name">kderp.test.form</field>
+            <field name="model">kderp.test</field>
+            <field name="type">form</field>
+	      <field name="arch" type="xml">
+				<form string="Test">
+					<field name="list_code" string="Code"/>
+					<field name="start_date" string="Start Date"/>
+					<field name="end_date" string="End Date"/>
+					<field name="number_1"  on_change="onchange_note(number_1)" string="Number 1"/>
+					<field name="number_2"  on_change="onchange_note2(number_2)" string="Number 2"/>
+					<field name="total_1" string="Total Add"/>
+					<field name="total_2" string="Total Div"/>
+					<field name="note" string="Note"/>
+					<field name="note2" string="Note"/>
+				</form>
+			</field>
+        </record> 
+        
+		<record id="action_view_kderp_test_view" model="ir.actions.act_window">
+			<field name="name">Example Python</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">kderp.test</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        <menuitem 
+        			action="action_view_kderp_test_view" 
+        			id="kderp_menu_kderp_test_action" 
+        			parent="kderp_test_menu" sequence="20"/>
+    </data>
+</openerp>

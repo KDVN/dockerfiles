@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<!-- Contract Tree View -->
+		<record id="kderp_view_contract_client_tree_inherit_extend" model="ir.ui.view">
+            <field name="name">kderp.invoice.tree.inherit.extend</field>
+            <field name="model">kderp.invoice.client</field>
+            <field name='inherit_id' ref='kderp_contract.kderp_view_contract_client_tree'/>
+            <field name="arch" type="xml">
+				<field name="client_id" position='after'>
+					<field name='registration_date'/>
+					<field name='revise_date'/>
+					<field name='contracted_amount'/>
+					<field name='availability'/>
+					<field name='remark'/>
+				</field>
+			</field>
+		</record>
+                   
+		<!-- Contract Filter View -->
+		<!-- <record id="view_kderp_contract_filter_inherit_extend" model="ir.ui.view">
+            <field name="name">kderp.contract.select.inherit.extend</field>
+            <field name="model">kderp.contract.client</field>
+            <field name='inherit_id' ref='kderp_contract.view_kderp_contract_filter'/>
+            <field name="arch" type="xml">
+	            <xpath expr="//field[@name='name']" position="after">
+					<field name="revise_date" string='Rev. Date' filter_domain="[('revise_date','=',self)]"/>
+					<field name="availability" string="Availability" filter_domain="[('availability','=',self)]"/>
+	            </xpath>
+	            <filter string="Completed" name="state" domain="[('state','=','completed')]" position='after'>
+	            	<separator string="Availability"/>
+                    <filter string="In Use" name="availability" domain="[('availability','=','inused')]"/>
+                    <filter string="Cancelled" name="availability" domain="[('availability','=','cancelled')]"/>
+	            </filter>            	
+            </field>
+		</record>
+		 -->
+		<!-- Contract Form View -->
+		<!-- <record id="kderp_view_contract_extend_form_view_inherit" model="ir.ui.view">
+            <field name="name">kderp.view.contract.extend.form.inherit.form</field>
+            <field name="model">kderp.contract.client</field>
+            <field name='inherit_id' ref='kderp_contract.kderp_view_contract_client_form'/>
+            <field name="arch" type="xml">
+            	<button string="Attachment" position='before'>				
+            		<button name='action_contract_inused' icon='gtk-convert' string='In Used' type='object' attrs="{'invisible':['|',('state','=','completed'),('availability','=','inused')]}"/>
+   	        		<button name='action_contract_cancelled' icon='gtk-cancel' confirm='Are you sure to reject this contract?' string='Reject' type='object'  attrs="{'invisible':['|',('state','=','completed'),('availability','=','cancelled')]}"/>
+				</button>
+
+            	<label for="code" string="Contract No." class="oe_edit_only" position='replace'/>
+				<h2 position='replace'>
+					<group colspan="4" col="4">
+						<group colspan="2">
+							<label for="code" string="Contract No." class="oe_edit_only"/>
+							<h2>
+			                   <field name="code" colspan="2" class="oe_inline" nolabel="1"/>
+			                   <field colspan="2" class="oe_inline oe_edit_only" attrs="{'readonly':[('code','!=',False)]}" name="newcode_suggest" on_change="onchange_suggest_code(newcode_suggest)" nolabel="1"/>
+							</h2>
+						</group>
+						<group colspan="2">
+							<field name="availability"/>
+							<field name="remark"/>
+						</group>
+					</group>
+				</h2>			
+                      
+				<field name='registration_date' class="oe_inline" position='before'>
+					<field name='revise_date'/>
+					<lable/>
+					<lable/>					
+				</field>
+				<field name='registration_date' class="oe_inline" position='replace'>
+					<field name='registration_date' on_change='onchange_reg_date(registration_date,revise_date)'/>					
+				</field>
+            </field>
+		</record>
+		 -->
+
+	</data>
+</openerp>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<menuitem 
+        	id="kderp_exepense_advance_payment_root" name="Advance &amp; Cash" sequence="20" groups="group_kderp_advance_payment_menu"/>
+        <menuitem 
+        	id="kderp_exepense_advance_payment" name="Advance &amp; Cash" sequence="1" parent="kderp_exepense_advance_payment_root"/>
+        	
+		<menuitem 
+        	id="kderp_exepense_advance_payment_configuration" name="Configuration" sequence="15" parent="kderp_exepense_advance_payment_root"/>        	
+         
+    	<record id="view_kderp_advance_payment_tree" model="ir.ui.view">
+            <field name="name">view.kderp.advance.payment.tree</field>
+            <field name="model">kderp.advance.payment</field>
+            <field name="arch" type="xml">
+            	<tree string="Advance Payment" colors="red:outstanding==True;blue:state == 'draft';gray:state == 'cancel';green:state == 'cash_received';#B98A50:state== 'done'">
+            		<field name="name" string="Number"/>
+            		<field name="date"/>
+            		<field name="account_analytic_id"/>
+            		<field name="user_id"/>
+            		<field name="currency_id" string="Cur."/>
+            		<field name="advance_buying"/>            		
+            		<field name="request_amount" string="Requested Amt."/>
+            		<field name="cash_return"/>
+                    <field name="cash_payment"/>
+                    <field name="balance"/>
+            		<field name="state"/>
+            		<field name="description"/>
+            		<field name="outstanding" invisible="1"/>
+            	</tree>
+            </field>
+		</record>
+		 
+ 		<record id="view_kderp_advance_payment_form" model="ir.ui.view">
+            <field name="name">view.kderp.advance.payment.form</field>
+            <field name="model">kderp.advance.payment</field>
+            <field name="arch" type="xml">
+            	<form string="Advance Payment" version="7.0">            	
+	            	<header>						
+						<button icon="gtk-apply" name="btn_processing_to_approved" type='workflow' attrs="{'invisible':['|',('state','!=','draft'),('advance_buying','=','cash')]}" string="Approve"/>
+						<button icon="gtk-apply" name="btn_processing_to_wfcomplete" type='workflow' attrs="{'invisible':['|',('state','!=','draft'),('advance_buying','!=','cash')]}" string="Approve"/>
+						
+						<button icon="gtk-apply" name="btn_received_reimbursement" type='workflow' states="approved" string="Doc. Receive"/>
+						
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,waiting_for_complete" attrs="{'invisible':[('advance_buying','=','cash')]}" statusbar_colors='{"waiting_for_complete":"green","cancel":"red","draft":"blue"}' readonly="1"/>
+	                    <field name="state_cash" widget="statusbar" statusbar_visible="draft,cash_received" attrs="{'invisible':[('advance_buying','!=','cash')]}" statusbar_colors='{"waiting_for_complete":"green","cancel":"red","draft":"blue"}' readonly="1"/>
+	            	</header>
+	            	<sheet>
+	            		<div class="oe_title">
+	                        <h1>
+	                            <label string="Making Advance No." attrs="{'invisible': ['|',('state','not in',('draft')),('advance_buying','=','cash')]}"/>
+	                            <label string="Cash No." attrs="{'invisible': [('advance_buying','!=','cash')]}"/>
+	                            
+	                            <label string="Advance No." attrs="{'invisible': ['|',('state','in',('draft')),('advance_buying','=','cash')]}"/>
+	                            <field name="name" class="oe_inline" /><!-- on_change="new_code(user_id,name)" -->
+	                            <field name="outstanding" invisible="1"/>
+	                        </h1>
+	                    </div>
+	                    <group colspan="4" col="4" attrs="{'invisible': [('outstanding','!=',True)]}">
+	                      	<h1 style="color:red" class="oe_inline">
+	                      		<span style="font-style:oblique">Alert:</span> This user is in <span style="font-style:oblique; text-decoration:underline">Outstanding</span> List
+	                      	</h1>
+	                    </group>
+	                    <group colspan="4" col="4">
+	                    	<group string='Information' colspan="2">
+								<field name="date" string="Request Date" on_change="new_code(user_id,name,advance_buying)"/>
+                    			<field name="advance_buying" on_change="new_code(user_id,name,advance_buying)"/>
+                    			<field name="type_cash" string="Cash flow" attrs="{'invisible':[('advance_buying','!=','cash')]}" required="1"/>
+	                        	<field name="account_analytic_id"/>
+	                        	<field name="user_id" on_change="new_code(user_id,name,advance_buying)" widget="many2oneimage" options="{'model':'hr.employee','preview_image':'image_small'}"/>
+		                        <field name='currency_id' on_change="get_new_voucher(date_received_money,payment_voucher_no,date_of_received_reimbursement,receive_voucher_no,currency_id,advance_buying)"/>		                        
+		                        <field name='period_id' invisible="1"/>
+	                        </group>
+	                        <group string='Doc. Circling' colspan="2">
+	                        	<group col="4" colspan="2">
+		                        	<label for='date_received_money' attrs="{'invisible':[('advance_buying','=','cash'),('type_cash','=','receive')]}" string='Payment Date'/>
+		                        	<label for='date_received_money' attrs="{'invisible':['|',('advance_buying','!=','cash'),('type_cash','=','payment')]}" string='Received Date'/>
+									<field name='date_received_money' string="Payment Date" nolabel="1" on_change="get_new_voucher(date_received_money,payment_voucher_no,False,receive_voucher_no,currency_id,advance_buying)"/>
+									<lable/>
+									<field name="payment_voucher_no" attrs="{'invisible':[('advance_buying','=','cash')]}"/>
+								</group>
+									<field name='date_of_received_reimbursement' attrs="{'invisible': [('advance_buying','=','cash')]}" on_change="get_new_voucher(False,payment_voucher_no,date_of_received_reimbursement,receive_voucher_no,currency_id,advance_buying)"/>
+									<field name="receive_voucher_no" attrs="{'invisible':[('advance_buying','=','cash')]}"/>
+									<field name='date_acc_recv_doc'  string="Receive Request Adv." attrs="{'invisible': [('advance_buying','=','cash')]}"/>
+								<group colspan="2" col="4">
+									<label for='date_acc_recv_cashbook' string="Receive Cashbook" attrs="{'invisible': [('advance_buying','=','cash')]}"/>
+									<label for='date_acc_recv_cashbook' string="Acc. Date" attrs="{'invisible': [('advance_buying','!=','cash')]}"/>
+									<field name='date_acc_recv_cashbook' nolabel="1" class='oe_inline'/>
+								</group>
+	                        	<field name="user_input" widget="many2oneimage" options="{'model':'hr.employee','preview_image':'image_small'}"/>
+	                        </group>                            
+	                    </group>
+	                    <notebook>
+	                        <page string="Detail" default_focus="1">
+	                        	<group attrs="{'invisible':[('advance_buying','=','cash')]}" col="4" colspan="4">
+		                        	<group string="Request Info." colspan="4">
+			                            <field name="advance_line" context="{'id':active_id}" colspan="4" nolabel="1">
+			                                <tree string="Expense Details" editable="bottom">
+			                                    <field name="name"/>
+			                                    <field name="amount" sum='Sub-total'/>
+			                                </tree>
+			                            </field>
+			                            <group class="oe_subtotal_footer oe_right">
+			                                <div class="oe_subtotal_footer_separator oe_inline">
+			                                    <label for="request_amount"/>
+			                                </div>
+			                                <field name="request_amount" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+			                            </group>
+		                            </group>
+		                            <div class="oe_clear"/>
+		                            <group string='Detail of Reimburse' colspan="4"><!-- states="approved,waiting_for_complete,done,cancel" -->
+		                             	<field name="reimbursement_line" context="{'id':active_id,'user_id':user_id}" colspan="4" nolabel="1">
+			                                <tree string="Reimbursement Details" editable="bottom">
+			                                    <field name="date" on_change="get_new_voucher_code(parent.date_of_received_reimbursement,voucher_no,parent.currency_id)"/>
+			                                    <field name="user_id"/>
+			                                    <field name="other_user"/>
+			                                    <field name="supplier_id" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>
+			                                    <field name="name"/>
+			                                    <field name="amount" sum='Sub-total'/>
+			                                    <field name="voucher_no"/>
+			                                </tree>
+			                            </field>
+		                            	<group class="oe_subtotal_footer oe_right">
+		                            		<field name="date_of_settlement" string="Settlement Date"/>
+				                            <field name="reimbursement_amount"  string="Reimbursement Amt." widget="monetary" options="{'currency_field': 'currency_id'}"/>
+				                            <field name="cash_return" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+				                            <field name="cash_payment" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+			                                <div class="oe_subtotal_footer_separator oe_inline">
+			                                    <label for="balance"/>
+			                                </div>
+			                                <field name="balance" nolabel="1" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"/>
+										</group>
+		                            </group>
+								</group>
+								<group attrs="{'invisible':[('advance_buying','!=','cash')]}" default_focus="1"  col="4" colspan="4">
+		                            <group string='Cash Detail' attrs="{'invisible':[('advance_buying','!=','cash')]}"><!-- states="approved,waiting_for_complete,done,cancel" -->
+		                             	<field name="cash_line" context="{'id':active_id,'user_id':user_id}" colspan="4" nolabel="1">
+			                                <tree string="Cash Details" editable="bottom">
+			                                    <field name="date" on_change="get_new_voucher_code(parent.date_received_money,voucher_no,parent.currency_id,parent.type_cash)"/>
+			                                    <field name="user_id"/>
+			                                    <field name="other_user"/>
+			                                    <field name="supplier_id" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>
+			                                    <field name="name"/>
+			                                    <field name="amount" sum='Sub-total'/>
+			                                    <field name="voucher_no"/>
+			                                </tree>
+			                            </field>	                            	
+		                            </group>
+	                        	</group>
+	                        </page>
+	                        <page string='Voucher Related'>
+	                        	<separator string="Purchase Orders"/>
+	                        	<field name='purchase_ids'>
+	                        	<tree string="Purchase Orders" >
+	                       				<field name="name"/>
+	                       				<field name="date_order"/>
+	                       				<field name="partner_id"/>
+	                       			 	<field name="account_analytic_id" string="Job"/>
+	                       			 	<field name="quotation_attached"/>
+						                <field name="roa_comaprison_attached"/>
+						                <field name="contract_attached"/>
+	                       			  	<field name="amount_total" sum="Sub-total"/>
+	                       			  	<field name="pricelist_id" string="Cur."/>
+	                       			  	<field name="origin"/>
+	                       			  	<field name="state"/>	                       			  	
+	                       			 </tree>
+	                        	</field>
+	                        	<separator string="Other Expense"/>
+	                        	<field name='other_expense_ids'>	                        		                        	
+	                       			<tree string="Expense Details" >
+	                       				<field name="name"/> 
+	                       				<field name="date"/>
+	                       			 	<field name="account_analytic_id" string="Job"/>
+	                       			 	<field name="partner_id"/>
+	                       			 	<field name="budgets"/> 
+	                       			  	<field name="currency_id"/> 
+	                       			  	<field name="amount_untaxed"/> 
+	                       			  	<field name="amount_tax"/> 
+	                       			  	<field name="amount_total" sum="Sub-total"/> 
+	                       			  	<field name="state"/>	                       			 	
+	                       			 </tree>
+			                    </field>
+	                        </page>
+	                        <page string='Notes'>
+	                        	<field name='description' colspan="4" nolabel="1"/>
+	                        </page>
+	                    </notebook>	                    
+	            	</sheet>
+	            	<footer>
+	            		<button icon="gtk-cancel" name="btn_cancel" type='workflow' states="approved" string="Reject"/>						
+						<button icon="gtk-go-back" name="btn_approved_to_processing" type='workflow' states="approved" string="Back"/>
+	                	<button icon="gtk-convert" name="wkf_action_cancel_draft" states="cancel,waiting_for_complete,cash_received" string="Revise" type="object"/>
+	                	
+	                	<button icon="gtk-convert" name="wkf_action_open_for_revising" states="done" string="Open" type="object" groups="kderp_advance_payment.grp_kderp_open_close_adv"/>
+	                	<button icon="gtk-convert" name="wkf_action_close" states="revising" string="Close" type="object" groups="kderp_advance_payment.grp_kderp_open_close_adv"/>
+					</footer>
+	            </form>
+            </field>
+        </record>
+                
+        <!-- Adv. Payment Search View -->
+        <record id="view_kderp_advance_payment_filter" model="ir.ui.view">
+            <field name="name">kderp.advance.payment.select</field>
+            <field name="model">kderp.advance.payment</field>
+            <field name="arch" type="xml">
+                <search string="Search Advance Payment">
+                	<field name="name" string="Advance No." filter_domain="[('name','ilike',self)]"/>
+                	<field name="date" string="Date" />
+                	<field name="voucher_no_from_rbl" string="Payment Vourcher" filter_domain="[('voucher_no_from_rbl','ilike',self)]"/>
+                	<field name="user_id" string="User Request" filter_domain="[('user_id','ilike',self)]" widget='char'/>
+                    <field name="account_analytic_id" string="Infomation Related" filter_domain="['|',('account_analytic_id','ilike',self),('user_id','ilike',self)]"/>
+                    
+ 					<filter icon="terp-document-new" name="state_working" string="Working Adv" domain="[('state','not in',('done','cancel'))]" help="Working Adv"/>
+ 					<filter icon="terp-document-new" string="Processing" name="state" domain="[('state','=','draft')]"/>
+ 					<filter icon="terp-check" string="Approved" name="state" domain="[('state','=','approved')]"/>
+ 					<filter icon="terp-dolar_ok!" string="Reimbursement" domain="[('state','=','waiting_for_complete')]" help="Already Avanced, Waiting for Reimbursement"/>
+ 					<filter icon="terp-dolar_ok!" string="Money Received" domain="[('state','=','cash_received')]" />
+ 					<filter icon="terp-dolar_ok!" string="Completed" domain="[('state','=','done')]" help="Completed Advanced"/>
+ 					<filter icon="terp-cancel" string="Cancelled" domain="[('state','=','cancel')]" help="Cancalled Advanced"/>
+                    <separator/>
+                    <filter icon="terp-check" string="Outstanding list" name="outstanding" domain="[('outstanding','=',True)]" context="{'group_by':'user_id'}"/>
+                    <filter icon="terp-check" string="Advance" name="advnace" domain="[('advance_buying','!=','cash')]"/>
+                    <filter icon="terp-check" string="Cash" name="cash" domain="[('advance_buying','=','cash')]"/>
+                    <filter icon="terp-check" string="WF. Add Recv. Adv." name="date_acc_recv_doc" domain="[('date_acc_recv_doc','=',False)]"/>
+                    <filter icon="terp-check" string="WF. Acc. Add Recv. Cashbook" name="date_acc_recv_cashbook" domain="[('date_acc_recv_cashbook','=',False)])]"/>
+                    <!-- <filter icon="terp-check" string="WF. Acc. Add Recv. Adv. &amp; Cashbook" name="filter_both_date" domain="['|',('date_acc_recv_doc','=',False),('date_acc_recv_cashbook','=',False)]"/> -->
+                    <separator/>
+                    <filter name="adv_hanoi" string="Adv. Hanoi" domain="['|',('name','ilike','ADH'),('name','ilike','CH')]" />
+                    <filter name="adv_haiphong" string="Adv. Haiphong" domain="['|',('name','ilike','ADP'),('name','ilike','CP')]" />
+                    
+                    <group expand="0" string="Group By...">
+                        <filter string="Date" name='group_date' icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="User" name='group_user' icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Job" name='group_job' icon="terp-project" domain="[]" context="{'group_by':'account_analytic_id'}"/>
+                        <filter string="Status" name='group_state' icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>                        
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<!-- Menu Area -->			
+		<!-- All Advance Payment -->
+		<record id="kderp_action_all_advance_payment" model="ir.actions.act_window">
+            <field name="name">Advance &amp; Cash</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_state_working':1}</field>
+        </record>
+        <menuitem 
+        			action="kderp_action_all_advance_payment" 
+        			id="kderp_all_advance_payment_action" 
+        			parent="kderp_exepense_advance_payment" sequence="5"/>
+
+		<!-- Draft Advance Payment -->
+        <record id="kderp_action_adv_processing_advance_payment" model="ir.actions.act_window">
+            <field name="name">Processing</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.payment</field>
+            <field name="domain">[('state','=','draft')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>        
+		<menuitem 
+        			action="kderp_action_adv_processing_advance_payment" 
+        			id="kderp_menu_draft_advance_payment_action" 
+        			parent="kderp_all_advance_payment_action" sequence="5"/>
+        			
+        <!-- Approved -->
+        <record id="kderp_action_approved_advance_payment" model="ir.actions.act_window">
+            <field name="name">Approved</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.payment</field>
+            <field name="domain">[('state','=','approved')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		<menuitem 
+        			action="kderp_action_approved_advance_payment" 
+        			id="kderp_menu_approved_action" 
+        			parent="kderp_all_advance_payment_action" sequence="10"/>
+        			
+        <!-- Waiting for Complete -->
+        <record id="kderp_action_wfc_advance_payment" model="ir.actions.act_window">
+            <field name="name">Reimbursed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.payment</field>
+            <field name="domain">[('state','=','waiting_for_complete')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		<menuitem 
+        			action="kderp_action_wfc_advance_payment" 
+        			id="kderp_menu_wfc_advance_payment_action" 
+        			parent="kderp_all_advance_payment_action" sequence="15"/>
+        					
+		<!-- cash_received -->
+        <record id="kderp_action_kcr" model="ir.actions.act_window">
+            <field name="name">Money Received</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.payment</field>
+            <field name="domain">[('state','=','cash_received')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		<menuitem 
+        			action="kderp_action_kcr" 
+        			id="kderp_menu_cash_received_action" 
+        			parent="kderp_all_advance_payment_action" sequence="18"/>
+
+		<!-- Waiting for Reimbursement Advance Payment -->
+        <record id="kderp_action_done_advance_payment" model="ir.actions.act_window">
+            <field name="name">Complete</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.payment</field>
+            <field name="domain">[('state','=','done')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		<menuitem 
+        			action="kderp_action_done_advance_payment" 
+        			id="kderp_menu_done_advance_payment_action" 
+        			parent="kderp_all_advance_payment_action" sequence="25"/>
+        			
+       <!-- Action Open Advance Payment from Job -->	
+		<act_window 
+	            id="action_advance_payment_from_job"
+	            name="Advance Payment"
+	            res_model="kderp.advance.payment"
+	            src_model="account.analytic.account"
+	            domain="[('account_analytic_id','in',active_ids)]"/>
+	
+	</data>
+</openerp>

@@ -1,0 +1,61 @@
+from openerp.osv import fields, osv
+from openerp import netsvc
+from openerp import pooler
+from openerp.tools.translate import _
+import openerp.addons.decimal_precision as dp
+from openerp.osv.orm import browse_record, browse_null
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP
+
+class account_analytic_account(osv.osv):
+    _name = 'account.analytic.account'
+    _inherit = 'account.analytic.account'
+    _description = 'Analytic Account'
+    
+    def _get_total_budget(self, cr, uid, ids, name, args, context):
+        res = {}
+        if ids:
+            job_ids = ",".join(map(str,ids))
+            cr.execute("""Select 
+                            account_analytic_id,
+                            sum(coalesce(planned_amount,0)) as budget_amount
+                        from 
+                            kderp_budget_data kbd 
+                        where
+                            account_analytic_id in (%s)
+                        group by
+                            account_analytic_id""" % job_ids)
+            
+            for id, amount in cr.fetchall():
+                res[id]=amount
+        return res
+    
+   # def _delete_all_budget_line(self,cr,uid,ids,context):
+   #     kdvn_budget_data_ids=[]
+   #    kdvn_budget_data_obj =self.read(cr,uid,ids,['budget_data_ids'])
+   #     if kdvn_budget_data_obj:
+   #         kdvn_budget_data_ids =kdvn_budget_data_obj[0]['budget_data_ids'] 
+   #     if kdvn_budget_data_ids:
+   #         self.pool.get('kderp.budget.data').unlink(cr,uid,kdvn_budget_data_ids,context)        
+   #     return True
+    
+   # def _update_history(self, cr, uid, ids,context):
+   #     for kp in self.browse(cr,uid,ids):
+   #        self.pool.get('kdvn.budget.history').create_history(cr,uid,kp.id)
+   #     return True
+    
+   # def _get_budget_line(self, cr, uid, ids, context=None):
+   #     result = []
+   #    for kbd in self.pool.get('kderp.budget.data').browse(cr, uid, ids, context=context):
+   #         result.append(kbd.account_analytic_id.id)
+   #     return result
+            
+    _columns={
+              'total_budget_amount':fields.function(_get_total_budget,string='Total Budget',method=True,type='float',required=True, digits_compute=dp.get_precision('Budget'),
+                                                    store={
+                                                           'account.analytic.account':(lambda self, cr, uid, ids, c={}: ids, ['kderp_budget_data_line'], 20),
+                                                           'kderp.budget.data':(_get_budget_line, ['planned_amount','budget_id','account_analytic_id'], 20)})              
+              }
+    _sql_constraints = [
+        ('unique_code_analytic_account', 'unique (code)',  'Job code must be unique')
+    ]
+account_analytic_account()

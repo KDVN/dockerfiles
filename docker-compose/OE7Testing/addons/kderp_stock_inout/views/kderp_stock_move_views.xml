@@ -1,0 +1,120 @@
+<openerp>
+    <data>
+        <!-- Move for Move IN -->
+		 <record id="kderp_view_packing_detail_in_tree" model="ir.ui.view">
+            <field name="name">kderp.view.packing.detail.in.tree</field>
+            <field name="model">stock.move</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <tree string="Packing Detail" editable="top">
+                    <field colspan="4" name="product_id" domain="[('type','!=','service')]" invisible="1"/>
+                    <field name="purchase_line_id" string="Desc." domain="[('order_id','=',parent.purchase_id),('product_id.type','!=','service')]" on_change="purchase_order_line_change(purchase_line_id)" required="1" select="1"/>
+                    <field name="product_qty" select="1" string="Qty."/>
+                    <field name="product_uom" select="1" string="Unit"/>
+                    <field name="price_unit"/>
+                    <!--<field name="location_id" context="{'stock_usage':'!!internal'}"/>
+                    <field name="location_dest_id" context="{'stock_usage':'internal'}"/>-->
+                    <field name="date_expected"/>
+                    <field name="remarks"/>
+                    <field name="state" string="State"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Move for Move In Without PO -->
+        <record id="kderp_view_packing_detail_in_wopo_tree" model="ir.ui.view">
+            <field name="name">kderp.view.packing.detail.in.wopo.tree</field>
+            <field name="model">stock.move</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packing Detail" editable="top">
+                    <field colspan="4" context="{'filter_by1_location_id':parent.location_id,'location_ids':parent.location_id,'tree_view_ref':'kderp_stock_inout.view_kderp_product_for_stock_tree'}" name="product_id" domain="[('type','!=','service')]" on_change="onchange_product_id(product_id,parent.location_id,parent.location_dest_id)" required="1" select="1"/>
+                    <field name="product_qty" select="1" string="Qty."/>
+                    <field name="product_uom" select="1" string="Unit"/>
+                    <field name="price_unit"/>
+                    <!--<field name="location_id" context="{'stock_usage':'!!internal'}"/>
+                    <field name="location_dest_id" context="{'stock_usage':'internal'}"/>-->
+                    <field name="date_expected"/>
+                    <field name="remarks"/>
+                    <field name="state" string="State"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Move for Move Out -->
+        <record id="kderp_view_packing_detail_out_tree" model="ir.ui.view">
+            <field name="name">kderp.view.packing.detail.out.tree</field>
+            <field name="model">stock.move</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packing Detail" editable="top">
+                    <field colspan="4" context="{'filter_by_location_id':context.get('location_id',False),'location_ids':context.get('location_id',False),'tree_view_ref':'kderp_stock_inout.view_kderp_product_for_stock_tree'}" name="product_id" domain="[('type','!=','service')]" on_change="onchange_product_id(product_id,parent.location_id,parent.location_dest_id)" required="1" select="1"/>
+                    <field name="product_qty" select="1" string="Qty."/>
+                    <field name="product_uom" select="1" string="Unit"/>
+                    <field name="price_unit"/>
+                    <!--<field name="location_id" context="{'stock_usage':'internal'}"/>
+                    <field name="location_dest_id"/>-->
+                    <field name="date_expected"/>
+                    <field name="remarks"/>
+                    <field name="state" string="State"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Move for Move Internal -->
+        <record id="kderp_view_packing_detail_internal_tree" model="ir.ui.view">
+            <field name="name">kderp.view.packing.detail.internal.tree</field>
+            <field name="model">stock.move</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packing Detail" editable="top">
+                    <field colspan="4" context="{'filter_by_location_id':parent.location_id,'location_ids':parent.location_id,'tree_view_ref':'kderp_stock_inout.view_kderp_product_for_stock_tree'}" name="product_id" domain="[('type','!=','service')]" on_change="onchange_product_id(product_id,parent.location_id,parent.location_dest_id)" required="1" select="1"/>
+                    <field name="product_qty" select="1" string="Qty."/>
+                    <field name="product_uom" select="1" string="Unit"/>
+                    <!--<field name="location_id" context="{'stock_usage':'internal'}"/>
+                    <field name="location_dest_id" context="{'stock_usage':'internal'}"/>-->
+                    <field name="date_expected"/>
+                    <field name="remarks"/>
+                    <field name="state" string="State"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Move for Move All -->
+        <record id="kderp_view_stock_move_all_tree" model="ir.ui.view">
+            <field name="name">kderp.view.stock.move.all.tree</field>
+            <field name="model">stock.move</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packing Detail" create="false" edit="false" delete="false">
+                    <field name="product_id" domain="[('type','!=','service')]"/>
+                    <field name="name"/>
+                    <field name="purchase_id"/>
+                    <field name="product_qty" select="1" string="Qty."/>
+                    <field name="product_uom" select="1" string="Unit"/>
+                    <field name="price_unit"/>
+                    <field name="date_expected"/>
+                    <field name="remarks"/>
+                    <field name="state" string="State"/>
+                </tree>
+            </field>
+        </record>
+
+       	<record id="act_kderp_all_stock_move" model="ir.actions.act_window">
+            <field name="name">All Moves</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.move</field>
+            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="kderp_stock_inout.kderp_view_stock_move_all_tree"/>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <menuitem
+        			action="act_kderp_all_stock_move"
+        			id="kderp_stock_move_menu_all"
+        			parent="kderp_stock.menu_kderp_stock" groups ='kderp_stock_all_moves' sequence="20"/>
+
+    </data>
+</openerp>

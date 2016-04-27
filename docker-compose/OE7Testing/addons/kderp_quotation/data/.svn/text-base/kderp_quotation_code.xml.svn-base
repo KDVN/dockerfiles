@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!--
+	Sequences types for KDERP Quotation
+	-->
+        <record id="seq_type_kderp_hn_quotation" model="ir.sequence.type">
+            <field name="name">KDERP Hanoi Quotation</field>
+            <field name="code">kderp_hanoi_quotation</field>
+        </record>
+        <record id="seq_type_kderp_hp_quotation" model="ir.sequence.type">
+            <field name="name">KDERP Haiphong Quotation</field>
+            <field name="code">kderp_haiphong_quotation</field>
+        </record>
+        <record id="seq_type_kderp_hcm_quotation" model="ir.sequence.type">
+            <field name="name">KDERP HCM Quotation</field>
+            <field name="code">kderp_hcm_quotation</field>
+        </record>
+        <!--
+	Sequences for KDERP Quotation
+	-->
+        <record id="seq_kderp_hn_quotation" model="ir.sequence">
+            <field name="name">KDERP Hanoi Quotation</field>
+            <field name="code">kderp_hanoi_quotation</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">QH</field>
+            <field name="suffix">01</field>
+        </record>
+		
+		<record id="seq_kderp_hp_quotation" model="ir.sequence">
+            <field name="name">KDERP Haiphong Quotation</field>
+            <field name="code">kderp_haiphong_quotation</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">QP</field>
+            <field name="suffix">01</field>
+        </record>
+		
+		<record id="seq_kderp_hcm_quotation" model="ir.sequence">
+            <field name="name">KDERP HCM Quotation</field>
+            <field name="code">kderp_hcm_quotation</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">QS</field>
+            <field name="suffix">01</field>
+        </record>
+    </data>
+</openerp>

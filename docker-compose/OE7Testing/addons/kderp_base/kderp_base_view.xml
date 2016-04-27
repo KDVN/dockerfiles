@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<menuitem id="kderp_base.menu_kderp_budget_control_root" name="Project &amp; Contract" sequence="1" groups="kderp_base.group_kderp_budget_control_menu"/>
+		<menuitem id="kderp_base.menu_kderp_budget_control_configuration_root" parent="kderp_base.menu_kderp_budget_control_root" name="Configuration" sequence="200" groups="kderp_base.group_kderp_budget_control_admin"/>
+		
+		<menuitem id="kderp_base.menu_kderp_expense_root" name="PO &amp; Expense" sequence="5" groups="kderp_base.group_kderp_expense_menu"/>
+		<menuitem id="kderp_base.menu_kderp_expense_configuration_root" parent="kderp_base.menu_kderp_expense_root" name="Configuration" sequence="200" groups="kderp_base.group_kderp_purchase_admin_menu"/>
+
+	</data>
+</openerp>

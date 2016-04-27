@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+ <data>
+ 		 <act_window
+            id="action_open_payment_from_Supplier"
+            name="Payment to Supplier"
+            res_model="kderp.supplier.payment"
+            src_model="purchase.order"
+            domain="[('order_id','in',active_ids)]"
+           	key2="client_action_multi"/>
+         <!-- action open purchase from product -->
+         <act_window
+            id="action_open_purchase_from_product"
+            name="Open Purchase(s) Related"
+            res_model="purchase.order"
+            src_model="product.product"
+            domain="[('order_line.product_id','in',active_ids)]"
+            key2="client_action_multi"/> 
+
+	</data>
+</openerp>

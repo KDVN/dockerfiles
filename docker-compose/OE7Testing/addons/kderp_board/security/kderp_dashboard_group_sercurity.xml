@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+    
+    	<record model="ir.module.category" id="kderp_module_category_dashboard">
+			<field name="name">KDERP Dashboard</field>
+			<field name="sequence">150</field>
+		</record>
+		
+		<record id="group_kderp_dashboard_menu_for_sm_pm" model="res.groups">
+			<field name="name">KDERP - Menu for SM, PM</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+		</record>
+		
+		<record id="group_kderp_dashboard_menu_special_user" model="res.groups">
+			<field name="name">KDERP - Dash-board Menu @ Special User</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_dashboard_general_project_manager" model="res.groups">
+			<field name="name">KDERP - General Project Manager Dashboard / Read</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record>
+		   
+		<record id="group_kderp_dashboard_project_manager" model="res.groups">
+			<field name="name">KDERP - Project Manager Dashboard / Read</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record>
+		
+	    <record id="group_kderp_dashboard_site_manager" model="res.groups">
+			<field name="name">KDERP - Site Manager Dashboard / Read</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record>
+		
+	    <record id="group_kderp_dashboard_area_site_manager" model="res.groups">
+			<field name="name">KDERP - Area Site Manager Dashboard / Read</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record>
+		
+	    <record id="group_kderp_dashboard_estimation_manager_vietnam" model="res.groups">
+			<field name="name">KDERP - Estimation Manager Vietnam Dashboard / Read</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record>
+		
+	     <record id="group_kderp_dashboard_estimation_manager_japan" model="res.groups">
+			<field name="name">KDERP - Estimation Manager Japan Dashboard / Read</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record>
+		
+		<record id="group_kderp_dashboard_user_project" model="res.groups">
+			<field name="name">KDERP - User View Project</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record> 
+		<!-- group chi nhin thay toan bo Quotation co QH -->
+		<record id="group_kderp_dashboard_quotation_hanoi" model="res.groups">
+			<field name="name">KDERP - Quotation Ha Noi Rule</field>
+			<field name="category_id" ref="kderp_module_category_dashboard"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+		</record> 
+		
+    </data>
+</openerp>

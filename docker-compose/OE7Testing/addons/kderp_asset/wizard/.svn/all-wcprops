@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/2771/trunk/src/kderp_asset/wizard
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2419/trunk/src/kderp_asset/wizard/__init__.py
+END
+kderp_fixed_assets_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2771/trunk/src/kderp_asset/wizard/kderp_fixed_assets_report.py
+END
+kderp_fixed_assets_report_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2480/trunk/src/kderp_asset/wizard/kderp_fixed_assets_report_view.xml
+END

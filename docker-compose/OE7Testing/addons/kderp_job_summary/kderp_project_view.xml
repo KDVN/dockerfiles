@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>	
+  	    
+  	    <!-- Attachment Quotation -->
+        <record id="action_open_detail_of_budget_from_job" model="ir.actions.act_window">
+            <field name="name">Detail of Budget</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.budget.data</field>
+            <field name="src_model">kderp.budget.data</field>
+            <field name="view_type">form</field>
+            <field name="context">{'active_id':active_id}</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('id','=',active_id)]</field>
+        </record>
+        
+		<!-- Account Analytic Account Form Inherit Add Summary Amount Info. View -->
+		<record id="view_account_job_add_summary_amount_info_inherit_form" model="ir.ui.view">
+			<field name="name">view.account.job.add.summary.amount.info.inherit.form</field>
+			<field name="model">account.analytic.account</field>
+			<field name='inherit_id' ref='kderp_project.view_account_analytic_kderp_job_form'/>
+			<field name="arch" type="xml">
+				<field name="total_budget_amount" position='replace'>
+					<group col="2" string="VND" class="kdvn_float_readonly">
+						<field name="contracted_amount"/>
+						<field name="total_budget_amount"/>
+						<field name="cost_vnd"/>
+						<field name="paid_vnd"/>
+						<field name="claimed_amount"/>
+	               		<field name="collected_amount"/>
+					</group>
+				</field>					
+				<field name="total_budget_amount_usd" position='replace'>
+					<group col="2" string="USD" class="kdvn_float_readonly">
+						<field name="contracted_amount_usd" string="Contracted Amount"/>
+						<field name="total_budget_amount_usd" string="Total Budget"/>
+						<field name="cost_usd"/>
+						<field name="paid_usd"/>			
+	               		<field name="claimed_amount_usd"/>
+	               		<field name="collected_amount_usd"/>
+               		</group>
+				</field>
+				<field name='budget_id' position='replace'>
+					<field name='budget_id' domain="[('general_expense','=',False)]"/>
+				</field>
+				<field name='planned_amount' position='after'>
+					<field name='expense_amount' sum='Sub-Total'/>
+					<field name='paid_amount' sum='Sub-Total'/>
+					<field name='balance_amt' sum='Sub-Total'/>
+					<field name='balance_per'/>
+					<field name='over'/>
+					<button name="open_budget_detail" icon="gtk-zoom-fit" type="object"/>
+				</field>
+<!-- 				<field name="quotation_lists" position='replace'>
+					<field colspan="4" mode="tree" name="quotation_lists" nolabel="1" readonly="0">
+						<tree>
+							<button name="open_quotation" icon="gtk-zoom-fit" type="object"/>
+							<field name="name" string="No."/>
+		                    <field name="state"/>
+		                    <field name="dateofregistration" string="Date of Reg." invisible="'dateofregistration' in context.get('group_by',[])"/>
+		                    <field name="partner_id" context="{'show_address':0,'hide_name':0}" invisible="'partner_id' in context.get('group_by',[])"/>
+		                    <field name="owner_id" invisible="1"/>
+		                    <field name='currencies'/>
+		                    <field name="job_e_id" select="1"/>
+		                    <field name='approved_amount_e'/>
+		                    <field name="job_m_id" select="1"/>
+		                    <field name='approved_amount_m'/>
+							<field name='total_approved_amount'/>  
+						</tree>
+					</field>
+				</field> -->
+			</field>
+		</record>
+        
+    </data>
+</openerp>

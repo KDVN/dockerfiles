@@ -1,0 +1,12 @@
+<templates>
+<div t-name="kderp_oe_anatomy.action" class="oe_kderp_oe_anatomy oe_kderp_oe_anatomy_stopped">
+    <h4 class="kderp_oe_anatomy_timer">00:00:00</h4>
+    <p class="oe_kderp_oe_anatomy_start">
+        <button type="button">Start</button>
+    </p>
+    <p class="oe_kderp_oe_anatomy_stop">
+        <button type="button">Stop</button>
+    </p>
+    <ol class="oe_kderp_oe_anatomy_saved"></ol>
+</div>
+</templates>

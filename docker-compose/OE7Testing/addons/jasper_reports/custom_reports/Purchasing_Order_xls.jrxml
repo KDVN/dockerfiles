@@ -1,0 +1,1558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Request of Payment" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="97" bottomMargin="0">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="91"/>
+	<property name="ireport.y" value="92"/>
+	<property name="ireport.callouts" value="##Fri Mar 25 10:42:30 ICT 2011"/>
+	<property name="ireport.layers" value="##Mon Nov 14 16:28:24 ICT 2011\nlayer.2.visible=true\nlayer.1.name=VND\nlayer.0.visible=true\nlayer.2.id=3\nlayer.1.printWhenExpression=$F{Currency}\=\=&quot;VND&quot;\nlayer.2.name=USD\nlayer.2.printWhenExpression=$F{Currency}\!\=&quot;VND&quot;\nlayer.1.id=2\nlayer.1.visible=true\nlayer.0.id=0\nlayer.0.name=Background"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;contract_id/contract_job_summary_ids&apos;]"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="ID" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+	</field>
+	<field name="po_number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/name]]></fieldDescription>
+	</field>
+	<field name="Supplier_name" class="java.lang.Object">
+		<fieldDescription><![CDATA[/data/record/Supplier-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Supplier_Add" class="java.lang.Object">
+		<fieldDescription><![CDATA[/data/record/Address-address_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Date_of_Delivery-delivery_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Date_of_Delivery-delivery_date]]></fieldDescription>
+	</field>
+	<field name="Effective_Date-effective_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/effective_date]]></fieldDescription>
+	</field>
+	<field name="Offered_Price-amount_untaxed" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Offered_Price-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Disc._Amt.-discount_amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Disc._Amt.-discount_amount]]></fieldDescription>
+	</field>
+	<field name="Final_Price-final_price" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Final_Price-final_price]]></fieldDescription>
+	</field>
+	<field name="VAT_Amt.-amount_tax" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/VAT_Amt.-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="G.C.No" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/general_contract_no]]></fieldDescription>
+	</field>
+	<field name="G.C.Date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/general_contract_date]]></fieldDescription>
+	</field>
+	<field name="Received" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/receiver_id/name]]></fieldDescription>
+	</field>
+	<field name="DeliveryLocation" class="java.lang.Object">
+		<fieldDescription><![CDATA[/data/record/delivery_location_id/address]]></fieldDescription>
+	</field>
+	<variable name="G.C.Date" class="java.lang.String">
+		<variableExpression><![CDATA[$F{G.C.Date}==null||$F{G.C.Date}==""?"":String.valueOf(new SimpleDateFormat("dd-MMM-yyyy").format($F{G.C.Date}))]]></variableExpression>
+	</variable>
+	<variable name="DeliveryDate" class="java.lang.String">
+		<variableExpression><![CDATA[($F{Date_of_Delivery-delivery_date}==null||$F{Date_of_Delivery-delivery_date}=="")?"":String.valueOf(new SimpleDateFormat("dd-MMM-yyyy").format($F{Date_of_Delivery-delivery_date}))]]></variableExpression>
+	</variable>
+	<variable name="G.C.Date_VN" class="java.lang.String">
+		<variableExpression><![CDATA[$F{G.C.Date}==null||$F{G.C.Date}==""?"":String.valueOf(new SimpleDateFormat("dd-MM-yyyy").format($F{G.C.Date}))]]></variableExpression>
+	</variable>
+	<variable name="DeliveryDate_VN" class="java.lang.String">
+		<variableExpression><![CDATA[($F{Date_of_Delivery-delivery_date}==null||$F{Date_of_Delivery-delivery_date}=="")?"":String.valueOf(new SimpleDateFormat("dd-MM-yyyy").format($F{Date_of_Delivery-delivery_date}))]]></variableExpression>
+	</variable>
+	<variable name="effective_date" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Effective_Date-effective_date}==null||$F{Effective_Date-effective_date}==""?"":String.valueOf(new SimpleDateFormat("dd-MMM-yyyy").format($F{Effective_Date-effective_date}))]]></variableExpression>
+	</variable>
+	<variable name="effective_date_VN" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Effective_Date-effective_date}==null||$F{Effective_Date-effective_date}==""?"":String.valueOf(new SimpleDateFormat("dd-MM-yyyy").format($F{Effective_Date-effective_date}))]]></variableExpression>
+	</variable>
+	<group name="ID">
+		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupFooter>
+			<band height="719">
+				<staticText>
+					<reportElement x="0" y="89" width="123" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isUnderline="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Mesrs:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="138" y="119" width="457" height="14"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Supplier_Add}['en_CA']]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="353" y="361" width="39" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[UNIT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="31" width="595" height="24"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="16" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[PURCHASING ORDER]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="361" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="361" width="274" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[DESCRIPTION OF GOODS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="361" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[UNIT PRICE]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="104" width="457" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Supplier_name}['vi_VN']]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="361" width="45" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Q'TY]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="89" width="457" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Supplier_name}['en_CA']]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="55" width="595" height="18"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font fontName="Arial" size="14" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Đơn đặt hàng]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="419" y="74" width="176" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["No/ Số : "+$F{po_number}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="485" y="361" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[AMOUNT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="378" width="93" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Đơn giá]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="378" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[STT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="353" y="378" width="39" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[ĐV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="378" width="45" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[SL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="485" y="378" width="107" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Thành tiền]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="378" width="274" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Mô tả hàng hóa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="397" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="397" width="451" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="414" width="274" height="17" backcolor="#FFFFFF"/>
+					<box leftPadding="2">
+						<pen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Details as attached quotation.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="414" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="450" width="84" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="450" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="450" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="485" y="450" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Offered_Price-amount_untaxed}==null?0:$F{Offered_Price-amount_untaxed}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="450" width="274" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="467" width="84" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="467" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="467" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="485" y="467" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Disc._Amt.-discount_amount}==null?0:$F{Disc._Amt.-discount_amount}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="467" width="274" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Discount (Giảm giá)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="484" width="84" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="484" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="484" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="485" y="484" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Final_Price-final_price}==null?0:$F{Final_Price-final_price}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="484" width="274" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[SUB - TOTAL (After discount)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="501" width="84" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="501" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="501" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="485" y="501" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{VAT_Amt.-amount_tax}==null?0:$F{VAT_Amt.-amount_tax}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="501" width="274" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[VAT Amount (10%)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="518" width="84" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="518" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="518" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="414" width="45" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="431" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="353" y="431" width="39" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="353" y="414" width="39" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="308" y="431" width="45" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="133" width="457" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Supplier_Add}['vi_VN']]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="148" width="457" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Refered to General Agreement"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="163" width="457" height="15" forecolor="#000000"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Theo hợp đồng thỏa thuận chung"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="183" y="178" width="412" height="15"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["on or before   "+($V{DeliveryDate}==null?"":$V{DeliveryDate})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="193" width="457" height="15" forecolor="#000000"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Thời gian giao hàng: vào hoặc trước ngày "+($V{DeliveryDate_VN}==null?"":$V{DeliveryDate_VN})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="183" y="208" width="412" height="15"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{DeliveryLocation}['en_CA']]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="223" width="457" height="15" forecolor="#000000"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Địa điểm giao hàng : "+($F{DeliveryLocation}['vi_VN']==null?"":$F{DeliveryLocation}['vi_VN'])]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="199" y="238" width="396" height="15"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Received}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="253" width="457" height="15" forecolor="#000000"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Người nhận hàng : "+($F{Received}==null?"":$F{Received})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="124" y="283" width="471" height="1"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="104" width="123" height="15" forecolor="#000000"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" isUnderline="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Kính gửi"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+					<reportElement x="461" y="0" width="134" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Date:  "+$V{effective_date}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd MMMMM yyyy" isBlankWhenNull="true">
+					<reportElement x="461" y="16" width="134" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Ngày:  "+$V{effective_date_VN}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="193" width="123" height="15" forecolor="#000000"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Điều khoản giao hàng"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="148" width="123" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isUnderline="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Term of Payment:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="133" width="123" height="15" forecolor="#000000"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Địa chỉ"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="163" width="123" height="15" forecolor="#000000"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Điều khoản thanh toán"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="119" width="123" height="14"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isUnderline="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Address:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="178" width="123" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isUnderline="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Term of Delivery"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="208" width="45" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Place: "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="268" width="407" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Document required (Attached to VAT Invoice) : Referred to General Contract"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="285" width="407" height="15" forecolor="#000000"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Tài liệu (Đính kèm hóa đơn VAT) : Theo hợp đồng nguyên tắc"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="124" y="300" width="471" height="1"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="301" width="472" height="15"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="316" width="472" height="15"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="124" y="331" width="471" height="15"/>
+					<box rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="301" width="123" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Other (Khác)"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="358" width="2" height="180" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="2" y="358" width="591" height="2" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="593" y="358" width="2" height="180" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="2" y="536" width="591" height="2" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="485" y="414" width="107" height="17" backcolor="#FFFFFF"/>
+					<box rightPadding="2">
+						<pen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Offered_Price-amount_untaxed}==null?0:$F{Offered_Price-amount_untaxed}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="538" width="595" height="32"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["This Purchasing Order is an integral part of the General Contract No. "+$F{G.C.No}+" date "+$V{G.C.Date}+", so all the terms and conditions which are not mentioned in this Purchasing Order shall be kept as General Contract."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="0" y="570" width="595" height="38" forecolor="#000000"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.55" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Top" markup="none">
+						<font fontName="Arial" size="10" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Đơn đặt hàng này là một không thể tách rời của hợp đồng nguyên tắc số "+$F{G.C.No}+" Ký ngày "+$V{G.C.Date_VN}+", do đó tất cả các điều khoản và điều kiện không được đề cập đến trong đơn đặt hàng này sẽ thực hiện theo hợp đồng nguyên tắc."]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="34" y="699" width="165" height="20"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Authorized Signature]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="34" y="623" width="274" height="12"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[KINDEN VIETNAM CO., LTD.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="34" y="635" width="274" height="64"/>
+					<textElement>
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[CÔNG TY TNHH KINDEN VIỆT NAM]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="308" y="623" width="288" height="76"/>
+					<textElement markup="none">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Supplier_name}['en_CA']]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="308" y="608" width="288" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Acknowledged by]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="308" y="699" width="153" height="20"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Authorized Signature]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="178" width="45" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Time: "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="138" y="238" width="61" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Reveiver : "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="485" y="397" width="107" height="17" backcolor="#FFFFFF"/>
+					<box rightPadding="2">
+						<pen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["(VND) (at Site)"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="431" width="274" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[(Chi tiết theo bao gia đính kèm)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="431" width="31" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="485" y="431" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement mode="Opaque" x="485" y="518" width="107" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Total-amount_total}==null?0:$F{Total-amount_total}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="34" y="518" width="274" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.25" lineStyle="Dotted"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[GRAND TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="392" y="414" width="93" height="17" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" isItalic="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="89" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="104" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="119" width="15" height="14"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="148" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="133" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="164" width="15" height="14"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="193" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="178" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="209" width="15" height="14"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="238" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="223" width="15" height="15"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="123" y="254" width="15" height="14"/>
+					<box leftPadding="0" rightPadding="0">
+						<pen lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Prevent"/>
+	</title>
+	<detail>
+		<band splitType="Prevent"/>
+	</detail>
+</jasperReport>

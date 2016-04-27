@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		   	
+		<record id="view_account_analytic_kderp_yearlybudget_tree" model="ir.ui.view">
+			<field name="name">view.account.analytic.kderp.yearlybudget.tree</field>
+			<field name="model">account.analytic.account</field>
+			<field name="priority" eval="30"/>
+			<field name="arch" type="xml">
+				<tree string='Yearly G.E. Budget'>
+					<field name="full_name"/>
+					<field name="total_budget_amount"/>
+					<field name="cost_vnd" string='Expense'/>
+					<field name="paid_vnd" string='Payment'/>
+					<field name="state" invisible="'state' in context.get('group_by',[])" string='Status'/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_account_analytic_kderp_yearlybudget_form" model="ir.ui.view">
+			<field name="name">view.account.analytic.kderp.yearlybudget.form</field>
+			<field name="model">account.analytic.account</field>
+			<field name="priority" eval="30"/>
+			<field name="arch" type="xml">
+				<form string="Yearly G.E. Budget" version="7.0">
+				 	<header>
+						<field name="state" widget="statusbar" statusbar_visible="doing,closed"/>
+	                </header>
+                    <sheet string="Yearly G.E. Budget">
+	                	<h2><field name="full_name"/></h2>
+						<h3>
+                			<field name="code" class="oe_inline oe_edit_only" placeholder="G.E. Code"/>
+               				<field name="name" class="oe_edit_only"/>
+						</h3>
+						<group colspan="4" col="4">
+							<field name="date_start" string='Start Date'/>
+							<field name="date"  string='Closed Date'/>							
+						</group>
+						<group colspan="4" col="4">
+							<group colspan="2" col="2" string='Currencies'>
+								<field name="job_currency_ids" colspan="2" nolabel='1'/>
+							</group>
+							<group colspan="2" col="2" string='Remakrs'>
+								<field name='remark' nolabel='1'/>
+							</group>
+						</group>
+						<notebook>
+							<page string='G.E. Amount Info.'>
+								<group colspan="4" col="2">
+									<field name="total_budget_amount"/>
+									<field name="cost_vnd" string='Expense'/>
+									<field name="paid_vnd" string='Payment'/>
+								</group>
+							</page>
+							<page string='Budget'>
+		            			<field name='kderp_budget_data_line' limit="15">
+		            				<tree editable='top' string="Budget Data" fonts="bold:over=='Yes'" colors="red:over=='Yes'">
+		           						<field name='budget_id' domain="[('general_expense','=',True)]"/>
+		           						<field name='planned_amount' sum='Sub-Total'/>
+										<field name='expense_amount' string='Expense' sum='Sub-Total'/>
+										<field name='paid_amount' string='Payment' sum='Sub-Total'/>
+										<field name='balance_per' sum='Sub-Total'/>
+										<field name='over'/>
+										<button name="open_budget_detail" icon="gtk-zoom-fit" type="object" context="{'general_expense':True}"/>
+		            				</tree>
+		            			</field>		            			
+		            		</page>		            		
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_account_analytic_kderp_yearlybudget_search" model="ir.ui.view">
+            <field name="name">view.account.analytic.kderp.yearlybudget.search</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <search string="Job">
+                    <field name="name" filter_domain="['|','|', ('name','ilike',self), ('code','ilike',self), ('description','ilike',self)]" string="Code/Description"/>
+                    <field name="date"/>
+
+                    <filter string="On-Going" domain="[('state','=','doing')]"/>
+                    <filter string="Closed" domain="[('state','=','closed')]"/>
+                    <separator/>
+					
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}" groups="base.group_no_one"/>                    
+                    </group>
+                </search>
+            </field>
+        </record>
+		
+       	<record id="action_general_exepense_yearlybudget" model="ir.actions.act_window">
+			<field name="name">Yearly G.E Budget</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.analytic.account</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('general_expense','=',True)]</field>
+			<field name="context">{'general_expense':True,'default_general_expense':True}</field>
+			<field name="search_view_id" ref="view_account_analytic_kderp_yearlybudget_search"/>
+		</record>
+		
+		<!-- Link view to action -->
+		<record id="action_window_view_yearlybudget_form" model="ir.actions.act_window.view">
+            <field eval="10" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_analytic_kderp_yearlybudget_form"/>
+            <field name="act_window_id" ref="action_general_exepense_yearlybudget"/>
+        </record>
+        <record id="action_window_view_yearlybudget_tree" model="ir.actions.act_window.view">
+            <field eval="5" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_account_analytic_kderp_yearlybudget_tree"/>          
+            <field name="act_window_id" ref="action_general_exepense_yearlybudget"/>
+        </record>
+
+		<menuitem 
+        	action="action_general_exepense_yearlybudget" 
+        	id="menu_kderp_general_exepense_yearlybudget" 
+        	parent="menu_kderp_general_exepense_config_menu" sequence="10"/>        	
+		
+	</data>
+</openerp>

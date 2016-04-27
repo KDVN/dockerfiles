@@ -1,0 +1,219 @@
+113886239 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Could not load object from location : /usr/lib/pymodules/python2.7/openerp/addons/jasper_reports/custom_reports/transfer2_sub.jasper
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Could not load object from location : /usr/lib/pymodules/python2.7/openerp/addons/jasper_reports/custom_reports/transfer2_sub.jasper
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Could not load object from location : /usr/lib/pymodules/python2.7/openerp/addons/jasper_reports/custom_reports/transfer2_sub.jasper
+	at net.sf.jasperreports.engine.util.JRLoader.loadObjectFromLocation(JRLoader.java:262)
+	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluateReport(JRFillSubreport.java:301)
+	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluateSubreport(JRFillSubreport.java:327)
+	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluate(JRFillSubreport.java:263)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:258)
+	at net.sf.jasperreports.engine.fill.JRFillFrame.evaluate(JRFillFrame.java:147)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:258)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:499)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2026)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillGroupFooter(JRVerticalFiller.java:922)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillGroupFooters(JRVerticalFiller.java:788)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportEnd(JRVerticalFiller.java:298)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:134)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:942)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:860)
+	at net.sf.jasperreports.engine.fill.JRFiller.fillReport(JRFiller.java:84)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:624)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:213)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:122)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Could not load object from location : /usr/lib/pymodules/python2.7/openerp/addons/jasper_reports/custom_reports/transfer2_sub.jasper
+	at net.sf.jasperreports.engine.util.JRLoader.loadObjectFromLocation(JRLoader.java:262)
+	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluateReport(JRFillSubreport.java:301)
+	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluateSubreport(JRFillSubreport.java:327)
+	at net.sf.jasperreports.engine.fill.JRFillSubreport.evaluate(JRFillSubreport.java:263)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:258)
+	at net.sf.jasperreports.engine.fill.JRFillFrame.evaluate(JRFillFrame.java:147)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:258)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:499)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2026)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillGroupFooter(JRVerticalFiller.java:922)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillGroupFooters(JRVerticalFiller.java:788)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportEnd(JRVerticalFiller.java:298)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:134)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:942)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:860)
+	at net.sf.jasperreports.engine.fill.JRFiller.fillReport(JRFiller.java:84)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:624)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:213)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:122)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+114453875 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098660315_329556: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098660315_329556 @ line 779, column 81.
+1 error
+
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098660315_329556: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098660315_329556 @ line 779, column 81.
+1 error
+
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098660315_329556: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098660315_329556 @ line 779, column 81.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:99)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:189)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:122)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098660315_329556: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098660315_329556 @ line 779, column 81.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098660315_329556: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098660315_329556 @ line 779, column 81.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:99)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:189)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:122)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098660315_329556: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098660315_329556 @ line 779, column 81.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+114525694 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098732139_920123: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098732139_920123 @ line 779, column 81.
+1 error
+
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098732139_920123: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098732139_920123 @ line 779, column 81.
+1 error
+
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098732139_920123: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098732139_920123 @ line 779, column 81.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:99)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:189)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:122)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098732139_920123: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098732139_920123 @ line 779, column 81.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098732139_920123: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098732139_920123 @ line 779, column 81.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:99)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:189)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:122)
+	at sun.reflect.GeneratedMethodAccessor34.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:622)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_transfer_sub_1394098732139_920123: 779: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.Integer) field_ID.getValue()', is a bad expression as the left hand side of an assignment operator at line: 779 column: 81. File: calculator_transfer_sub_1394098732139_920123 @ line 779, column 81.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Action update khong hien thi thong bao de update hay cancel -->
+		<!-- <record id="action_server_module_gdt_company_update" model="ir.actions.server">
+           <field name="name">Gdt Company Update</field>
+           <field name="condition">True</field>
+           <field name="type">ir.actions.server</field>
+           <field name="model_id" ref="model_gdt_companies" />
+           <field name="state">code</field>
+           <field name="code">self.action_update(cr, uid, context.get('active_ids', []), context=context)</field>
+       </record>
+
+       <record model="ir.values" id="action_module_gdt_company_update">
+           <field name="name">action_module_gdt_company_update</field>
+           <field name="action_id" ref="action_server_module_gdt_company_update" />
+           <field name="value" eval="'ir.actions.server,' + str(ref('action_server_module_gdt_company_update'))" />
+           <field name="key">action</field>
+           <field name="model_id" ref="model_gdt_companies" />
+           <field name="model">gdt.companies</field>
+           <field name="key2">client_action_multi</field>
+       </record> -->
+       <!-- Winzard Update hien thi bang thong bao chon update hay cancel-->
+       <record id="view_update_to_gdt_companies" model="ir.ui.view">
+            <field name="name">Gdt Company Update</field>
+            <field name="model">wizard.gdt.companies</field>
+            <field name="arch" type="xml">
+                <form string="Gdt Company Update" version="7.0">
+                    <h3>Do you want to update?</h3>
+                    <footer>
+                    	<button name="action_update_companies" string="Update" type="object" class="oe_highlight"/>
+                    	or
+                    	<button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+		<act_window name="Gdt Company Update"
+            res_model="wizard.gdt.companies"
+            src_model="gdt.companies"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_view_update_to_gdt_companies"/>
+   	</data>
+</openerp>

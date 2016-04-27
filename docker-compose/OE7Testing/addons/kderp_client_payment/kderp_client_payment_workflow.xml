@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- Activity -->				
+        <record id="wkf_payment_from_client" model="workflow">
+            <field name="name">Payment From Client Workflow</field>
+            <field name="osv">account.invoice</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record id="act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_payment_from_client"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+        </record>
+
+        <record id="act_open" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_payment_from_client"/>
+            <field name="name">open</field>
+            <field name="action">write({'state':'open'})</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record id="act_paid" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_payment_from_client"/>
+            <field name="name">paid</field>
+            <field name="flow_stop">True</field>
+            <field name="action">write({'state':'paid'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+        <record id="act_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_payment_from_client"/>
+            <field name="name">cancel</field>
+            <field name="flow_stop">True</field>
+            <field name="action">write({'state':'cancel'})</field>
+            <field name="kind">function</field>
+        </record>
+<!-- Transaction -->
+        <record id="tr_draft_open" model="workflow.transition">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_open"/>
+            <field name="signal">kderp_invoice_open</field>
+            <field name="role_id" ref="group_making_payment_from_client"/>
+        </record>
+
+        <record id="tr_open_paid" model="workflow.transition">
+            <field name="act_from" ref="act_open"/>
+            <field name="act_to" ref="act_paid"/>
+            <field name="signal">action_to_done</field>
+            <field name="group_id" ref="group_confirm_payment_from_client"/>
+        </record>
+                
+        <record id="tr_draft_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">kderp_invoice_cancel</field>
+            <field name="group_id" ref="group_confirm_payment_from_client"/>
+        </record>
+        
+        <record id="tr_open_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_open"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">kderp_invoice_cancel</field>
+            <field name="group_id" ref="group_confirm_payment_from_client"/>
+        </record>
+
+        <record id="tr_paid_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_paid"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">kderp_invoice_cancel</field>
+            <field name="group_id" ref="group_admin_payment_from_client"/>
+        </record>
+        
+    </data>
+</openerp>

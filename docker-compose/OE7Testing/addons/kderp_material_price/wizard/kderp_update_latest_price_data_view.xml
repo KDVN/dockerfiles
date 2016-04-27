@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="kderp_update_price_data_form" model="ir.ui.view">
+            <field name="name">kderp.update.price.data.form</field>
+            <field name="model">kderp.update.price.data</field>
+            <field name="arch" type="xml">
+                <form string="Update Price Data" version="7.0">
+                    <p class="oe_grey">
+                        <b><i>Data automatic update twice a day</i></b><br/>                        	
+                    </p>
+                    <footer>
+                        <button icon="terp-update" string="Get Price Data" name="action_update_latest_price" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_kderp_update_price_data" model="ir.actions.act_window">
+            <field name="name">Update Price Data</field>
+            <field name="res_model">kderp.update.price.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kderp_update_price_data_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_kderp_update_price_data"
+            id="menu_action_kderp_update_data_price"
+            parent="kderp_material_price.menu_update_price_master_list"/>
+
+    </data>
+</openerp>

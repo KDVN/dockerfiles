@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Inherit View PO Search revising search condition partner_id -->
+		<!-- <record id="view_purchase_order_filter_view_inherit" model="ir.ui.view">
+            <field name="name">kderp.purchase.filter.view.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref='kderp_purchase.view_purchase_order_filter'/>
+            <field name="arch" type="xml">                
+				<field name="partner_id" position='replace'>
+					<field name="partner_id" filter_domain="['|',('partner_id', 'child_of', self),('partner_id', 'ilike', self)]" string="Supplier" widget="char"/>
+				</field>                
+            </field>
+        </record> -->
+ 		
+	</data>
+</openerp>

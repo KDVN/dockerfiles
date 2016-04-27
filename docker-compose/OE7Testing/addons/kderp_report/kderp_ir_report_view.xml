@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<record id="act_report_pentaho_form_inherit" model="ir.ui.view">
+			<field name="name">ir.report.pentaho.form.kderp.inherit</field>
+			<field name="model">ir.actions.report.xml</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.act_report_xml_view"/>
+			<field name="arch" type="xml">
+				<page string="Other Configuration" position="inside">
+					<group string="Create Print Wizard" atrrs="{'invisible': [('is_pentaho_report', '!=', True)]}">
+						<field name="convert_to_wizard" atrrs="{'invisible': [('is_pentaho_report', '!=', True)]}"/>
+						<button name="update_print_action" type="object" string="Update" atrrs="{'invisible': [('is_pentaho_report', '!=', True)]}"/>
+					</group>
+				</page>
+			</field>
+		</record>
+			
+		<record model='ir.ui.view' id='kderp_wiz_pentaho_report_prompt_inherit'>
+			<field name='name'>kderp.wiz.pentaho.report.prompt.inherit</field>
+			<field name='model'>ir.actions.report.promptwizard</field>
+			<field name="inherit_id" ref="pentaho_reports.wiz_pentaho_report_prompt"/>
+			<field name='arch' type='xml'>
+				<button name='check_report' position='replace'>
+					<button class="oe_highlight" string='Open/Print' name='check_report' type='object' />
+				</button>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

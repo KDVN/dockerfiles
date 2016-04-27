@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 		
+		<menuitem id='kderp_menu_asset_root' name='Asset Management' sequence="15" groups="group_kderp_asset_management_menu"/>
+		<menuitem id='kderp_menu_asset_sub_root' parent="kderp_menu_asset_root" name='Asset Management' sequence="5" groups="group_kderp_asset_management_read"/>
+		
+		<menuitem id='kderp_menu_asset_configuration_root' parent="kderp_menu_asset_root" name='Configuration' sequence="15" groups="group_kderp_asset_management_admin"/>
+		
+		<!-- Physical Location -->
+		<record id="kderp_tree_view_kderp_asset_location" model="ir.ui.view">
+            <field name="name">kderp.asset.location.tree</field>
+            <field name="model">kderp.asset.location</field>
+            <field name="arch" type="xml">
+                <tree string="Physical Location" editable="top">
+                    <field name="name"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_kderp_kderp_asset_location" model="ir.actions.act_window">
+            <field name="name">Location</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.asset.location</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Location.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_kderp_kderp_asset_location" id="menu_kderp_action_kderp_asset_location_view" parent="kderp_menu_asset_configuration_root"/>
+        
+		<!-- Asset Code Accounting List -->
+		<record id="kderp_tree_view_asset_accounting_code" model="ir.ui.view">
+            <field name="name">kderp.asset.code.accounting.tree</field>
+            <field name="model">kderp.asset.code.accounting</field>
+            <field name="arch" type="xml">
+                <tree string="Asset Code" editable="top">
+                	<field name="type"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="typeofasset_id"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_kderp_asset_code_accounting" model="ir.actions.act_window">
+            <field name="name">Asset Code (Accounting)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.asset.code.accounting</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Asset Code.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_kderp_asset_code_accounting" id="menu_kderp_action_asset_code_accounting_view" parent="kderp_menu_asset_configuration_root"/>
+        
+        <!-- Asset Code List -->
+		<record id="kderp_tree_view_asset_code" model="ir.ui.view">
+            <field name="name">kderp.asset.code.tree</field>
+            <field name="model">kderp.asset.code</field>
+            <field name="arch" type="xml">
+                <tree string="Asset Code" colors="red:parent_id==False" fonts="bold: parent_id==False">
+                    <field name="code"/>
+                    <field name="full_name" string="Description"/>                    
+                    <field name="parent_id"/>
+                    <!-- <field name="asset_code_accounting_id" attrs="{'required':[('parent_id','!=',False)]}"/> -->
+				</tree>
+			</field>
+		</record>
+		
+		<record id="kderp_form_view_asset_code" model="ir.ui.view">
+            <field name="name">kderp.asset.code.form</field>
+            <field name="model">kderp.asset.code</field>
+            <field name="arch" type="xml">
+                <form string="Asset Code" version='7.0' >
+                	<h1>
+                		<field name="full_name" nolabel="1" colspan="4"/>
+                	</h1>
+                	<group colspan="4" col="4">                		
+	                    <field name="code"/>
+	                    <field name="name"/>                    
+	                    <field name="parent_id"/>	                    
+	                    <!-- <field name="asset_code_accounting_id" attrs="{'required':[('parent_id','=',False)]}"/> -->
+                    </group>
+                    <field name='child_ids' colspan="4" widget='many2many'>
+                    	<tree oncreate='false' ondelete='false'>
+                    		<field name="code"/>
+	                    	<field name="name"/>
+                    	</tree>
+                    </field>
+				</form>
+			</field>
+		</record>
+		<!-- search code asset -->
+		<record id="kderp_search_view_asset_code" model="ir.ui.view">
+            <field name="name">kderp.asset.code.search</field>
+            <field name="model">kderp.asset.code</field>
+            <field name="arch" type="xml">
+                <search string="Asset Code" >
+                    <field name="code" string="Code"/>
+                    <field name="name" string="Description"/>                    
+				</search>
+			</field>
+		</record>
+		<record id="action_kderp_asset_code" model="ir.actions.act_window">
+            <field name="name">Asset Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.asset.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Asset Code.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_kderp_asset_code" id="menu_kderp_action_asset_code_view" parent="kderp_menu_asset_configuration_root"/>
+		
+		<!--  Type of Asset -->
+		<record id="kderp_tree_view_type_of_asset" model="ir.ui.view">
+            <field name="name">kderp.type.of.asset.tree</field>
+            <field name="model">kderp.type.of.asset</field>
+            <field name="arch" type="xml">
+                <tree string="Type of Asset" editable="top">
+                	<field name="name"/>
+                    <field name="from_value"/>
+                    <field name="to_value"/>
+                    <field name="description"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_kderp_asset_type" model="ir.actions.act_window">
+            <field name="name">Asset Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.type.of.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Asset Type.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_kderp_asset_type" id="menu_kderp_action_asset_type_view" parent="kderp_menu_asset_configuration_root"/>
+		
+		<!-- Asset Management View -->
+		<record id="kderp_search_view_asset" model="ir.ui.view">
+            <field name="name">kderp.asset.management.search</field>
+            <field name="model">kderp.asset.management</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Search Asset">
+                    <field name="code" string="Asset Number" filter_domain="['|',('code','ilike',self),('old_code','ilike',self)]"/>
+                    <field name="asset_code_id" string="Asset Code" widget='text' filter_domain="[('asset_code_id','ilike',self)]"/>
+                    <field name="current_user_id" widget='text' string='Current User' filter_domain="[('current_user_id','ilike',self)]"/>
+                    <field name="current_job_id" widget='text' string='Current Job' filter_domain="[('current_job_id','ilike',self)]"/>
+                    <field name="name" string='Specification' filter_domain="[('name','ilike',self)]"/>
+                    <field name="asset_usage_ids" string="Asset Usage" filter_domain="[('asset_usage_ids','ilike',self)]"/>
+                    <field name="physical_location_id" string="Physical Location"/>
+                    <field name="price" string='Price' filter_domain="[('price','=',self)]"/>
+                    
+                    <separator/>
+                    <filter icon="terp-document-new" string="Processing &amp; In Used" name="asset_working" domain="[('state','in',('draft','inused'))]"/>
+                    <filter icon="terp-document-new" string="In Stock" name="asset_working" domain="[('state','=','instock')]"/>
+                    <separator/>
+					<filter icon="terp-check" string="Liquidated" name="liquidated" domain="[('state','=','liquidated')]"/>
+					<filter icon="terp-check" string="Out of Date" name="outofdate" domain="[('state','=','outofdate')]"/>
+					<separator/>
+					<!--<filter string="Fixed Asset" name="type_asset_acc_id.typeofasset_id" domain="[('type_asset_acc_id.typeofasset_id','=','FA')]"/>-->
+					<filter string="Fixed Asset" name="type_asset_acc_id.typeofasset_id" domain="[('fixed_asset','=',True)]"/>
+					<filter string="Tools &amp; Equipment" name="type_asset_acc_id.typeofasset_id" domain="[('type_asset_acc_id.typeofasset_id','=','EQ'),('type_asset_acc_id.typeofasset_id.from_value','=','15000000')]"/>
+					<filter string="Small tools" name="type_asset_acc_id.typeofasset_id" domain="[('type_asset_acc_id.typeofasset_id','=','EQ'),('type_asset_acc_id.typeofasset_id.from_value','=','1000000')]"/>
+                    <separator/>
+                    <filter string="Asset Hanoi"  name="refcode_inhanoi" domain="['|',('refcode','not ilike','hcm'),('refcode','=',False)]"/>
+
+                    <group expand="0" string="Group By...">
+                        <filter string="User" icon="terp-personal" domain="[]" context="{'group_by':'current_user_id'}"/>
+                        <filter string="Asset Type" icon="terp-personal" domain="[]" context="{'group_by':'asset_code_id'}"/>
+                        <filter string="Physical Location" icon="terp-personal" domain="[]" context="{'group_by':'physical_location_id'}"/>
+                        <filter string="Job" icon="terp-personal" domain="[]" context="{'group_by':'current_job_id'}"/>
+                       
+                    </group>
+               </search>
+            </field>
+        </record>
+
+		<record id="kderp_tree_view_asset" model="ir.ui.view">
+            <field name="name">kderp.asset.management.tree</field>
+            <field name="model">kderp.asset.management</field>
+            <field name="arch" type="xml">
+                <tree string="Asset Management" fonts="italic:state=='draft'" colors="blue:state in ('inused');red:state in ('outofdate')">
+                    <field name="code" string="Asset No."/>
+                    <field name="name"/>
+                    <field name="asset_code_id" string="Asset Code"/>
+                    <!-- <field name="type_asset_id" invisible="1"/> -->
+                    <field name="dateofinvoice" string="Invoice Date"/>
+                    <field name="price"/>
+                    <field name="old_code"/>  
+                    <field name="current_user_id"/>
+                    <field name="dateofbeginning"/>
+                    <field name="current_job_id" string="Job"/>
+                    <field name="physical_location_id" string="Physical Location"/>
+                    <field name="current_remark" string="Remark"/>
+                    <field name="refcode"/>
+                    <field name="state"/>
+				</tree>
+			</field>
+		</record>
+        
+ 		<record id="kderp_form_view_asset" model="ir.ui.view">
+            <field name="name">kderp.asset.management.form</field>
+            <field name="model">kderp.asset.management</field>
+            <field name="arch" type="xml">
+                <form string="Asset Management" version="7.0">
+                	<header>
+                		<button icon='gtk-convert' name='action_submit' type='object' string='Approve' states='draft'/>
+                		<button icon='gtk-convert' name='action_liquidated' type='object' string='Liquidated' states='inused,instock'/>
+                		<button icon='gtk-convert' name='action_outdated' type='object' string='Outdated' states='inused,instock'/>
+                		<button icon='gtk-convert' name='action_instock' type='object' string='In Stock' states='draft,inused'/>
+                		<field name="state" widget="statusbar" statusbar_visible="draft,inused,instock"/>
+                	</header>
+                	<sheet>
+                		 <label for="code" string="Asset No." class="oe_edit_only"/>
+						<h1><field name="code"/></h1>
+                		<group colspan="4" col="4" string='Asset Info.'>
+		                    <!-- <field name="type_asset_id" on_change="onchange_asset_fixedtools(type_asset_id,type_asset_acc_id,asset_code_id,code)"/> -->
+		                    <field name="type_asset_acc_id" string="Asset Type" on_change="get_new_code(type_asset_acc_id, asset_code_id, code, price,dateofinvoice)" options="{'limit':8}"/>	                    
+		                    <field name="asset_code_id" string="Asset Code" on_change="get_new_code(type_asset_acc_id, asset_code_id, code, price,dateofinvoice)"/>
+		                    
+		                    <field name="refcode"/>
+              				<field name="old_code"/>
+		                    <field name="physical_location_id"/>
+		                    <field name="current_job_id"/>
+		                    <field name='dateofinput'/>
+		                    <newline/>
+		                    <field name="name" colspan="4"/>
+		                    <field name='makername'/>
+		                    <field name='brandname'/>
+		                    <field name='usefullife'/>
+		                    <field name='asset_state'/>
+		                    <field name='parent_id' string="Parent Asset" domain="[('id','!=',active_id),('parent_id','=',False),('state','!=','liquidated')]" />
+						</group>
+						<notebook>
+							<page string='Purchase Info.'>
+								<group colspan="4" col="4">
+									<field name='supplier'/>
+									<field name='dateofliquidated'/>
+									<field name='dateofinvoice' on_change="get_new_code(type_asset_acc_id, asset_code_id, code, price,dateofinvoice)"/>
+									<field name='warranty_time'/>
+									<field name='price'  on_change="check_warning(price,type_asset_acc_id)"/>
+									<field name='quantity'/>
+								</group>
+							</page>
+							<page string='Related Asset'>
+								<button name="%(act_kderp_create_sub_asset)d" context="{'active_id':active_id}" string="Create Sub-Asset" type="action" icon="gtk-execute"/>
+								<group string='Sub Asset'>
+									<field name="related_asset_ids" widget="many2many" domain="[('id','!=',active_id),('parent_id','=',False),('state','!=','liquidated')]" nolabel="1"/>
+								</group>
+<!-- 							Tam thoi dong sub Asset -->
+<!-- 							<group string='Sub Asset'> -->
+<!-- 								<field name="sub_asset_ids" nolabel="1" colspan="4"/>	 -->		
+<!-- 							</group> -->
+							</page>
+							<page string="Remarks">
+								<field name='remarks' colspan="4" nolabel="1"/>
+							</page>
+						</notebook>
+						<group col="4" colspan="4" string='Detail of Asset Usage'>
+							<field name='asset_usage_ids' nolabel="1" mode="tree" view_type='tree'>
+								<tree string='Detail of Asset Usage' editable="top">
+									<field name="job_id"/>
+									<field name="physical_location_id"/>
+									<field name="user_id" required="1"/>
+									<field name="manager_id"/>
+									<field name="usedtime" required="1"/>
+									<field name="endtime"/>
+									<field name="remarks"/>
+								</tree>
+							</field>
+						</group>
+                    </sheet>
+                    <footer class="kdvn_form_footer">
+                		<button icon="gtk-convert" name="action_revised" groups="kderp_asset_management.group_kderp_asset_management_revise" states="inused,instock,outofdate,liquidated" string="Revise" type="object" />
+	            	</footer>
+				</form>
+			</field>
+		</record>
+        
+        <record id="action_kderp_asset" model="ir.actions.act_window">
+            <field name="name">Asset Management</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.asset.management</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_asset_working':1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a Asset.
+              </p>
+            </field>
+        </record>
+        <menuitem action="action_kderp_asset" id="menu_kderp_action_asset_view" parent="kderp_menu_asset_sub_root"/>
+      
+    </data>
+</openerp>

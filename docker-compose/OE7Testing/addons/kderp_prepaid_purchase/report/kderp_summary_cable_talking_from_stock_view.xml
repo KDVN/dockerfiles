@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+     	
+     	<record model="ir.actions.report.xml" id="report_summary_talking_quantity">
+     		<field name="model">kderp.prepaid.purchase.order.line.detail</field>
+     		<field name="jasper_model_id" ref="kderp_prepaid_purchase.model_kderp_prepaid_purchase_order_line_detail"/>
+     	    <field name="name">Summary Talking Quantity</field>
+        	<field name="report_name">kderp.summary.of.cable.quantity.talking.from.storage.xls</field>
+        	<field name="report_type">xls</field>
+        	<field name="jasper_output">xls</field>
+        	<field name="jasper_report">True</field>
+            <field name="auto">False</field>
+            <field name="menu">True</field>
+		</record>
+		
+		<record model="ir.values" id="prepaid_purchase_print_summary_talking_quantity">
+            <field name="model_id" ref="kderp_prepaid_purchase.model_kderp_prepaid_purchase_order"/>
+            <field name="name">Summary Talking Quantity</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.report.xml,' + str(ref('report_summary_talking_quantity'))" />
+            <field name="key">action</field>
+            <field name="model">kderp.prepaid.purchase.order</field>
+        </record>
+
+    </data>
+</openerp>

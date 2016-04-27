@@ -1,0 +1,114 @@
+<openerp>
+    <data>
+
+		<record model="ir.ui.view" id="kderp_stock_picking_in_tree">
+             <field name="name">kderp.stock.picking.in.tree</field>
+             <field name="model">stock.picking</field>
+             <field name="type">tree</field>
+             <field eval="5" name="priority"/>
+             <field name="arch" type="xml">
+                 <tree string="Stock Picking" colors="blue:state=='draft';red:state=='cancel';">
+                     <field name="name" string="Packing No."/>
+                     <field name="purchase_id"/>
+                     <field name="partner_id"/>
+                     <field name="location_dest_id"/>
+                     <field name="date"/>
+                     <field name="min_date"/>
+                     <field name="date_done"/>
+                     <field name="origin" string='Ref. No.'/>
+                     <field name="state"/>
+                 </tree>
+             </field>
+        </record>
+
+        <record id="kderp_view_packing_detail_tree" model="ir.ui.view">
+            <field name="name">kderp.view.packing.detail.tree</field>
+            <field name="model">stock.move</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <tree string="Packing Detail" editable="top">
+                    <field colspan="4" name="product_id" domain="[('type','!=','service')]" invisible="1"/>
+                    <field name="purchase_line_id" string="Desc." domain="[('order_id','=',parent.purchase_id),('product_id.type','!=','service')]" on_change="purchase_order_line_change(purchase_line_id)" required="1" select="1"/>
+                    <field name="product_qty" select="1" string="Qty."/>
+                    <field name="product_uom" select="1" string="Unit"/>
+                    <field name="location_dest_id"/>
+                    <field name="date_expected"/>
+                    <field name="state" string="State"/>
+                </tree>
+            </field>
+        </record>
+    
+		<record model="ir.ui.view" id="kderp_stock_picking_in_form">
+			<field name="name">kderp.stock.picking.in.form</field>
+			<field name="model">stock.picking</field>
+			<field name="type">form</field>
+			<field eval="5" name="priority"/>
+			<field name="inherit_id" ref="kderp_stock.kderp_view_picking_form"/>
+			<field name="arch" type="xml">
+                <field name="partner_id" position="replace">
+                    <field name="purchase_id" on_change="onchange_po_id(purchase_id)"/>
+                    <field name="partner_id" string="Supplier" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>
+                </field>
+                <field name="date_done" position="attributes">
+                    <attribute name="string">Received Date</attribute>
+                </field>
+                <field name="location_id" position="attributes">
+                    <attribute name="context">{'stock_usage':'!!internal'}</attribute>
+                </field>
+                <field name="location_dest_id" position="attributes">
+                    <attribute name="context">{'stock_usage':'internal'}</attribute>
+                </field>
+                <field name="move_lines" position="replace">
+                     <field name="move_lines" string="Detail Packing"
+                            context="{'address_in_id': partner_id,'location_id': location_id,'location_dest_id': location_dest_id,
+                                        'tree_view_ref':'kderp_stock_inout.kderp_view_packing_detail_in_tree',
+                                         'picking_type': 'in',
+                                         'show_productCode': True}" options='{"reload_on_button": true}'/>
+                </field>
+                <header position="inside">
+                    <button name="action_transfer" icon="gtk-convert" string="Transfer" class="oe_cancel" type="object" states="done" context="{'location_dest_id':location_dest_id}"/>
+                </header>
+                <button name="draft_validate" position="replace">
+                    <button name="draft_validate" states="draft" string="Confirm &amp; Receive" type="object" class="oe_highlight" groups="kderp_stock.kderp_stock_receive_packing"/>
+                </button>
+                <button name="action_process" position="replace">
+                    <button name="action_process" states="assigned" string="Receive" groups="kderp_stock.kderp_stock_receive_packing" type="object" class="oe_highlight"/>
+                </button>
+          </field>
+		</record>
+
+    
+		<record id="act_kderp_stock_picking_in" model="ir.actions.act_window">
+            <field name="name">Packing In</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','in'),('purchase_id','!=',False)]</field>
+            <field name="context">{'picking_type':'in'}</field>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <!-- Link Action Window with view -->
+		<record model='ir.actions.act_window.view' id="action_windows_picking_in_form_view">
+			<field name="sequence" eval="10"/>
+			<field name="view_id" ref="kderp_stock_picking_in_form"/>
+			<field name="view_mode">form</field>
+			<field name="act_window_id" ref="act_kderp_stock_picking_in"/>
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_windows_picking_in_tree_view">
+			<field name="sequence" eval="5"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="kderp_stock_picking_in_tree"/>
+			<field name="act_window_id" ref="act_kderp_stock_picking_in"/>
+		</record>
+                     
+        <menuitem 
+        			action="act_kderp_stock_picking_in" 
+        			id="kderp_stock_picking_menu_in" 
+        			parent="kderp_stock.menu_kderp_stock_receive_delivery" sequence="1" groups ='group_kderp_menu_packing_in'/>
+               <!-- groups ='group_kderp_packingmenu_' -->
+
+    </data>
+</openerp>

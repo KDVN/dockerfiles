@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2556/trunk/src/kderp_temp_for_migrate
+END
+kderp_migrate.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2556/trunk/src/kderp_temp_for_migrate/kderp_migrate.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/573/trunk/src/kderp_temp_for_migrate/__init__.py
+END
+kderp_migrate_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2267/trunk/src/kderp_temp_for_migrate/kderp_migrate_view.xml
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/573/trunk/src/kderp_temp_for_migrate/__openerp__.py
+END

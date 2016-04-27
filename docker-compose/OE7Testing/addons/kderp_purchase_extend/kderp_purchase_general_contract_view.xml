@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="kderp_view_partner_inherit_form_add_po_gc" model="ir.ui.view">
+            <field name="name">kderp.view.partner.inherit.form.add.po.gc</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="kderp_partner.view_partner_kderp_inherit_form"/>
+            <field name="arch" type="xml">
+				<page string="Address" position="after">
+					<page string="General Contract" invisible="not context.get('default_supplier', False)">
+						<field name="kderp_purchase_general_contract_ids" invisible="not context.get('default_supplier', False)" colspan="4" nolabel="1">
+							<tree editable='top'>
+								<field name='name'/>
+								<field name='date'/>
+								<field name='description'/>
+							</tree>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>		
+		
+		<record id="purchase_order_form_kderp_purchase_inherit_add_po_gcno" model="ir.ui.view">
+            <field name="name">purchase.order.form.kderp.purchase.inherit.add.po.gcno</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref='kderp_purchase.purchase_order_form_kderp_purchase'/>
+            <field name="arch" type="xml">				
+				<field name="notes" position='after'>
+					<field name="purchase_general_contract_id" domain="[('partner_id','=',partner_id)]" context="{'partner_id':partner_id}"/>
+				</field>
+				<field name="partner_id" position='replace'>
+					<field name="partner_id" on_change="onchange_partner_id(partner_id,date_order)" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>
+				</field>				
+            </field>
+        </record>
+
+	</data>
+</openerp>

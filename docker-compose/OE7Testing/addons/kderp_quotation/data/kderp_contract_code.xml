@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!--
+	Sequences types for KDERP Contract
+	-->
+        <record id="seq_type_kderp_contract_code" model="ir.sequence.type">
+            <field name="name">KDERP Contract Code</field>
+            <field name="code">kderp_contract_code</field>
+        </record>
+        
+	<!--
+	Sequences for KDERP Contract
+	-->
+		<!--  Ha Noi -->
+        <record id="seq_kderp_hn_contract_code" model="ir.sequence">
+            <field name="name">KDERP Contract - In Ha Noi</field>
+            <field name="code">kderp_contract_code</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">CH</field>
+            <field name="suffix">YY-</field>
+            <field name="example">CH11-0001</field>
+        </record>
+        
+        <!--  Hai Phong -->
+        <record id="seq_kderp_hp_contract_code" model="ir.sequence">
+            <field name="name">KDERP Contract - In Hai Phong</field>
+            <field name="code">kderp_contract_code</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">CP</field>
+            <field name="suffix">YY-</field>
+            <field name="example">CP11-0001</field>
+        </record>
+        
+        <!--  HCM -->
+        <record id="seq_kderp_hcm_contract_code" model="ir.sequence">
+            <field name="name">KDERP Contract - In H.C.M.</field>
+            <field name="code">kderp_contract_code</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">CS</field>
+            <field name="suffix">YY-</field>
+            <field name="example">CS11-0001</field>
+        </record>
+    </data>
+</openerp>

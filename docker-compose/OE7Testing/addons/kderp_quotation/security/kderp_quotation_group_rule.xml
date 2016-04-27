@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<!-- Rule for Quotation Hai Phong-->
+	    <record model="ir.rule" id="kderp_rule_line_quoation_haiphong_local">
+	        <field name="name">KDERP Quotation - Hai Phong see Quotation in Hai Phong only</field>
+	       	<field name="model_id" ref="sale.model_sale_order"/>
+	        <field name="global" eval="False"/>
+	    	<field name="domain_force">['|',('job_e_id.code', 'ilike', 'PE%%'),'|',('create_uid','=',user.id),'|',('job_e_id.code', 'ilike', 'PP%%'),'|',('job_m_id.code', 'ilike', 'PM%%'),'|', ('job_m_id.code', 'ilike', 'PP%%'),('name' ,'ilike','QP%%')]</field>
+	   		<field eval="[(6,0,[ref('kderp_quotation.group_kderp_quotation_haiphong_local_group')])]" name="groups"/>
+	    </record>
+    <!-- PM - Rule for Quotation E -->
+		<record id="kderp_rule_dashboard_pm_quoation_e" model="ir.rule">
+            <field name="name">KDERP Dashboard - Project Manager see all Quotation related - E</field>
+	       	<field name="model_id" ref="sale.model_sale_order"/>
+        	<field name="global" eval="False"/>
+        	<field name="domain_force">['&amp;',('job_e_id.state','in',['doing','done']),'|',('job_e_id.user_id','=',user.id),('job_e_id.project_manager_ref','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_project_manager')])]" name="groups"/>
+        </record>  
+    <!-- PM - Rule for Quotation M-->
+		<record id="kderp_rule_dashboard_pm_quoation_m" model="ir.rule">
+            <field name="name">KDERP Dashboard - Project Manager see all Quotation related - E</field>
+	       	<field name="model_id" ref="sale.model_sale_order"/>
+        	<field name="global" eval="False"/>
+        	<field name="domain_force">['&amp;',('job_m_id.state','in',['doing','done']),'|',('job_m_id.user_id','=',user.id),('job_m_id.project_manager_ref','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_project_manager')])]" name="groups"/>
+        </record>  
+    <!-- Rule for Area Site Manager E -->
+     	<record id="kderp_rule_dashboard_asm_quoation_e" model="ir.rule">
+            <field name="name">KDERP Dashboard - Area Site Manager see all Quotation  related E</field>
+            <field model="ir.model" name="model_id" search="[('model', '=', 'sale.order')]"/>
+            <field name="global" eval="False"/>
+          	<field name="domain_force">[('job_e_id.state','in',['doing','done']),('job_e_id.area_site_manager_id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_area_site_manager')])]" name="groups"/>
+        </record>  
+    <!-- Rule for Area Site Manager M-->
+     	<record id="kderp_rule_dashboard_asm_quoation_m" model="ir.rule">
+            <field name="name">KDERP Dashboard - Area Site Manager see all Quotation  related M</field>
+            <field model="ir.model" name="model_id" search="[('model', '=', 'sale.order')]"/>
+            <field name="global" eval="False"/>
+          	<field name="domain_force">[('job_m_id.state','in',['doing','done']),('job_m_id.area_site_manager_id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_area_site_manager')])]" name="groups"/>
+        </record>
+    <!-- SM - Rule for Quotation E -->
+		<record id="kderp_rule_dashboard_sm_quoation_e" model="ir.rule">
+            <field name="name">KDERP Dashboard - Site Manager see all Quotation related E</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+          	<field name="domain_force">[('job_e_id.state','in',['doing','done']),('job_e_id.manager_id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_site_manager')])]" name="groups"/>
+        </record>   
+    <!-- SM - Rule for Quotation M -->
+		<record id="kderp_rule_dashboard_sm_quoation_m" model="ir.rule">
+            <field name="name">KDERP Dashboard - Site Manager see all Quotation related M</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+          	<field name="domain_force">[('job_m_id.state','in',['doing','done']),('job_m_id.manager_id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_site_manager')])]" name="groups"/>
+        </record>  
+    <!-- EMV - Rule for Quoysyion -->
+		<record id="kdvn_rule_dashboard_emv_quoation" model="ir.rule">
+            <field name="name">KDVN Dashboard - Estimation Vietnam Manager see all Quotation  related</field>
+            <field name="global" eval="False"/>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_estimation_manager_vietnam')])]" name="groups"/>
+            <field name="domain_force">['|',('estimation_m_manager_v','=',user.id),('estimation_e_manager_v','=',user.id)]</field>
+        </record>
+       
+    <!-- EMJ - Rule for Quotation  -->
+		<record id="kderp_rule_dashboard_emj_quoation" model="ir.rule">
+            <field name="name">KDERP Dashboard - Estimation Japan Manager see all Quotation  related</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+            <field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_estimation_manager_japan')])]" name="groups"/>
+            <field name="domain_force">['|',('estimation_m_manager_j','=',user.id),('estimation_e_manager_j','=',user.id)]</field>
+        </record>
+      
+    <!-- GPM - Rule for Quotation E -->
+		<record id="kderp_rule_dashboard_gpm_quoation_e" model="ir.rule">
+            <field name="name">KDERP Dashboard - General Project Manager see all Quotation  related</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+            <field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_general_project_manager')])]" name="groups"/>
+       		<field name="domain_force">[('job_e_id.state','in',['doing','done']),('job_e_id.general_project_manager_id','=',user.id)]</field>
+        </record> 
+        
+    <!-- GPM - Rule for Quotation M -->
+		<record id="kderp_rule_dashboard_gpm_quoation_m" model="ir.rule">
+            <field name="name">KDERP Dashboard - General Project Manager see all Quotation  related</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+            <field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_general_project_manager')])]" name="groups"/>
+       		<field name="domain_force">[('job_m_id.state','in',['doing','done']),('job_m_id.general_project_manager_id','=',user.id)]</field>
+        </record> 
+        
+    <!-- ########### Rule for Quotation - Site Manager, Project Manager ########### -->
+		<record id="kderp_rule_quotation_when_no_job" model="ir.rule">
+            <field name="name">KDERP Quotation Rule - Project Manager and Site View Quotation (Not Have Job)</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+              <field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_site_manager')])]" name="groups"/>
+            <field name="domain_force">['|','|','|',('project_manager_id','=',user.id),('project_manager_m_id','=',user.id),('site_manager_e_id','=',user.id),('site_manager_m_id','=',user.id)]</field>
+        </record>  
+    <!-- UVP - Rule for Quoation E --> 
+        <record id="kderp_rule_dashboard_uvp_quoation_e" model="ir.rule">
+            <field name="name">KDERP Dashboard - User View Project see all Quotation  related E</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+         	 <field name="domain_force">[('job_e_id.state','in',['doing','done']),('job_e_id.user_related_ids.id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_user_project')])]" name="groups"/>
+        </record>
+    <!-- UVP - Rule for Quoation M --> 
+        <record id="kderp_rule_dashboard_uvp_quoation_m" model="ir.rule">
+            <field name="name">KDERP Dashboard - User View Project see all Quotation  related E</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="False"/>
+         	 <field name="domain_force">[('job_m_id.state','in',['doing','done']),('job_m_id.user_related_ids.id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('kderp_board.group_kderp_dashboard_user_project')])]" name="groups"/>
+        </record>
+	</data>
+</openerp>
+
+

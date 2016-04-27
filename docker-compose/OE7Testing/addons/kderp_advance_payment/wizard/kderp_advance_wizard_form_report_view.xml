@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_kderp_advance_wizard_cash_form_form" model="ir.ui.view">
+			<field name="name">view.kderp.advance.wizard.cash.form.form</field>
+			<field name="model">kderp.advance.wizard.cash.form</field>
+			<field name="arch" type="xml">
+				<form string="Input Value for Advance Cash Payment form" version="7.0" create="false" readonly="1">
+					<sheet>
+						<button string='Print' name="print_report" type="object" class="oe_highlight"/>
+						<group>
+							<field name='pVAT'/>
+							<field name='pEXRATE'/>
+						 	<field name='currency_id'/>										
+						</group>
+					</sheet>					
+				</form>
+			</field>
+		</record>
+		
+        <record id="action_print_advance_cash_payment_form" model="ir.actions.act_window">
+            <field name="name">Cash Payment (VAT)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.advance.wizard.cash.form</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_kderp_advance_wizard_cash_form_form"/>
+            <field name="target">new_popup</field>
+        </record>
+        
+ 		<record model="ir.values" id="action_print_advance_cash_payment_form_values">
+            <field name="model_id" ref="kderp_advance_payment.model_kderp_advance_payment" />
+            <field name="name">Cash Payment (VAT)</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_print_advance_cash_payment_form'))" />
+            <field name="key">action</field>
+            <field name="model">kderp.advance.payment</field>
+        </record>
+
+    </data>
+</openerp>

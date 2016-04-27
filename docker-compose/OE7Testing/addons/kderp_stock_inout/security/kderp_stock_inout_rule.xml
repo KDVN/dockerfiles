@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<!-- PM and PMRef. and GPM - Rule for Stock move -->
+		<record model="ir.rule" id="kderp_rule_dashboard_pm_stock_move">
+			<field name="name">KDERP Dashboard - General and Project Manager see all Stock Move </field>
+			<field name="model_id" ref="model_stock_move"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in',"(select sm.id from account_analytic_account aaa left join jobs_stock_rel rsl on aaa.id = account_analytic_id left join stock_move sm on rsl.stock_id in (sm.location_id,sm.location_dest_id) where %s in (user_id,project_manager_ref,general_project_manager_id) and sm.id >0)")]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like', '%Project Manager Dashboard%')]"/>
+		</record>
+			
+		<!-- SM, ASM  - Rule for Stock move -->
+		<record model="ir.rule" id="kderp_rule_dashboard_sm_stock_move">
+		 	<field name="name">KDERP Dashboard - Site Area Manager see all Stock Move </field>
+			<field name="model_id" ref="model_stock_move"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in',"(select sm.id from account_analytic_account aaa left join jobs_stock_rel rsl on aaa.id = account_analytic_id left join stock_move sm on rsl.stock_id in (sm.location_id,sm.location_dest_id) where %s in (area_site_manager_id,manager_id) and sm.id >0)")]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Site Manager Dashboard%')]"/>
+		</record>
+			
+		<!-- PM and PMRef. and GPM - Rule for Stock picking -->
+		<record model="ir.rule" id="kderp_rule_dashboard_pm_stock_picking">
+		 	<field name="name">KDERP Dashboard - General and Project Manager see all Stock Picking </field>
+			<field name="model_id" ref="model_stock_picking"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in',"(select sp.id from account_analytic_account aaa left join jobs_stock_rel rsl on aaa.id = account_analytic_id left join stock_picking sp on rsl.stock_id in (sp.location_id,sp.location_dest_id) where %s in (user_id,project_manager_ref,general_project_manager_id) and sp.id >0)")]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like', '%Project Manager Dashboard%')]"/>
+		</record>
+			
+		<!-- SM, ASM  - Rule for Stock picking -->
+		<record model="ir.rule" id="kderp_rule_dashboard_sm_stock_picking">
+		 	<field name="name">KDERP Dashboard - Site and Area Manager see all Stock Picking </field>
+			<field name="model_id" ref="model_stock_picking"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in',"(select sp.id from account_analytic_account aaa left join jobs_stock_rel rsl on aaa.id = account_analytic_id left join stock_picking sp on rsl.stock_id in (sp.location_id,sp.location_dest_id) where %s in (area_site_manager_id,manager_id) and sp.id >0)")]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Site Manager Dashboard%')]"/>
+		</record>
+			
+		<!-- PM and PMRef. and GPM - Rule for Stock location -->
+		<record model="ir.rule" id="kderp_rule_dashboard_pm_stock_location">
+		 	<field name="name">KDERP Dashboard - General and Project Manager see all Stock Location </field>
+			<field name="model_id" ref="model_stock_location"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in',"(select sl.id from account_analytic_account aaa left join jobs_stock_rel rsl on aaa.id = account_analytic_id left join stock_location sl on rsl.stock_id in (sl.id) where %s in (user_id,project_manager_ref,general_project_manager_id) and sl.id >0)")]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like', '%Project Manager Dashboard%')]"/>
+		</record>
+			
+		<!-- SM, ASM  - Rule for Stock location -->
+		<record model="ir.rule" id="kderp_rule_dashboard_sm_stock_location">
+		 	<field name="name">KDERP Dashboard -Site and Area Manager see all Stock Location </field>
+			<field name="model_id" ref="model_stock_location"/>
+			<field name="global" eval="False"/>
+			<field name="domain_force">[('id','in',"(select sl.id from account_analytic_account aaa left join jobs_stock_rel rsl on aaa.id = account_analytic_id left join stock_location sl on rsl.stock_id in (sl.id) where %s in (area_site_manager_id,manager_id) and sl.id >0)")]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Site Manager Dashboard%')]"/>
+		</record>
+		
+		<!-- storekeeper - Rule for Purchase -->
+		<record model="ir.rule" id="kderp_rule_stockeeper_purchase_order">
+		 	<field name="name">KDERP Stockeeper - Purchase Order </field>
+			<field name="model_id" ref="kderp_purchase.model_purchase_order"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in','(select po.id from purchase_order po left join purchase_order_line pol  on po.id = pol.order_id left join stock_location sl on sl.id in (pol.location_id,pol.location_dest_id) left join storekeeper_user_rel rsl  on rsl.stock_id =sl.id where %s in (rsl.user_id) and pol.id >0)')]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Storekeeper%')]"/>
+		</record>
+			
+	 	<!-- storekeeper - Rule for Stock Move -->
+		<record model="ir.rule" id="kderp_rule_stockeeper_stock_move">
+		 	<field name="name">KDERP Stockeeper - Stock Move </field>
+			<field name="model_id" ref="model_stock_move"/>
+			<field name="domain_force">[('id','in','(select sm.id  from stock_move  sm left join stock_location sl on sl.id in (sm.location_id,sm.location_dest_id) left join storekeeper_user_rel rsl on rsl.stock_id =sl.id where %s in (rsl.user_id) and sm.id >0)')]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Storekeeper%')]"/>
+		</record> 
+			
+		<!-- storekeeper - Rule for Stock Picking -->
+		<record model="ir.rule" id="kderp_rule_stockeeper_stock_picking">
+		 	<field name="name">KDERP Stockeeper - Stock Picking </field>
+			<field name="model_id" ref="model_stock_picking"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in','(select sp.id  from stock_picking  sp left join stock_location sl on sl.id in (sp.location_id,sp.location_dest_id) left join storekeeper_user_rel rsl on rsl.stock_id =sl.id where %s in (rsl.user_id) and sp.id >0)')]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Storekeeper%')]"/>
+		</record>
+			
+		<!-- storekeeper - Rule for Stock location -->
+		<record model="ir.rule" id="kderp_rule_stockeeper_location">
+		 	<field name="name">KDERP Stockeeper - Stock Location </field>
+			<field name="model_id" ref="model_stock_location"/>
+			<field name="perm_read" eval="True"/>
+			<field name="global" eval="False"/>
+		 	<field name="domain_force">[('id','in','(select sl.id  from stock_location sl  left join storekeeper_user_rel rsl on rsl.stock_id in (sl.id) where %s in (rsl.user_id) and sl.id >0)')]</field>
+		 	<field model="res.groups" name="groups" search="[('name', 'like',' %Storekeeper%')]"/>
+		</record>
+			
+    </data>
+</openerp>

@@ -1,0 +1,278 @@
+161847189 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Report design not valid : 
+	 1. Field not found : Staff_In_Charge
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Report design not valid : 
+	 1. Field not found : Staff_In_Charge
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : Staff_In_Charge
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:258)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:140)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by:
+net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : Staff_In_Charge
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:258)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:140)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+169816448 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696349956_858983: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 116. File: calculator_phieuchi1_1382696349956_858983 @ line 713, column 116.
+1 error
+
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696349956_858983: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 116. File: calculator_phieuchi1_1382696349956_858983 @ line 713, column 116.
+1 error
+
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696349956_858983: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 116. File: calculator_phieuchi1_1382696349956_858983 @ line 713, column 116.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696349956_858983: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 116. File: calculator_phieuchi1_1382696349956_858983 @ line 713, column 116.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696349956_858983: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 116. File: calculator_phieuchi1_1382696349956_858983 @ line 713, column 116.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696349956_858983: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 116. File: calculator_phieuchi1_1382696349956_858983 @ line 713, column 116.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+169949689 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696483205_978422: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 117. File: calculator_phieuchi1_1382696483205_978422 @ line 713, column 117.
+1 error
+
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696483205_978422: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 117. File: calculator_phieuchi1_1382696483205_978422 @ line 713, column 117.
+1 error
+
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696483205_978422: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 117. File: calculator_phieuchi1_1382696483205_978422 @ line 713, column 117.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696483205_978422: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 117. File: calculator_phieuchi1_1382696483205_978422 @ line 713, column 117.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696483205_978422: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 117. File: calculator_phieuchi1_1382696483205_978422 @ line 713, column 117.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696483205_978422: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 117. File: calculator_phieuchi1_1382696483205_978422 @ line 713, column 117.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+169999252 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696532767_342327: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 114. File: calculator_phieuchi1_1382696532767_342327 @ line 713, column 114.
+1 error
+
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696532767_342327: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 114. File: calculator_phieuchi1_1382696532767_342327 @ line 713, column 114.
+1 error
+
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696532767_342327: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 114. File: calculator_phieuchi1_1382696532767_342327 @ line 713, column 114.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696532767_342327: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 114. File: calculator_phieuchi1_1382696532767_342327 @ line 713, column 114.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696532767_342327: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 114. File: calculator_phieuchi1_1382696532767_342327 @ line 713, column 114.
+1 error
+
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:101)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:188)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:215)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:131)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:113)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:97)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:136)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:120)
+	at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed, calculator_phieuchi1_1382696532767_342327: 713: 
+"(java.lang.String) field_JobCode.getValue().substring(0, 2).toUpperCase()" is a method call expression, but it should be a variable expression at line: 713 column: 114. File: calculator_phieuchi1_1382696532767_342327 @ line 713, column 114.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:296)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:787)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:438)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:97)
+	... 17 more

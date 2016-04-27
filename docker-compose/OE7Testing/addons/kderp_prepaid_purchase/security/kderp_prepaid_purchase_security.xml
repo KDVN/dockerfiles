@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">		
+		<!-- Group Prepaid Purchase Order -->
+		<record model="ir.module.category" id="module_category_kderp_prepaid_purchase">
+	      	<field name="name">KDERP Prepaid Purchase</field>
+	       	<field name="sequence">15</field>
+		</record>
+		
+		<record id="group_kderp_prepaid_purchase_read" model="res.groups">
+	       	<field name="name">KDERP - Prepaid Purchase / Read </field>
+	      	<field name="category_id" ref="module_category_kderp_prepaid_purchase"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_prepaid_purchase_write" model="res.groups">
+	       	<field name="name">KDERP - Prepaid Purchase / Write </field>
+	      	<field name="category_id" ref="module_category_kderp_prepaid_purchase"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_prepaid_purchase_create" model="res.groups">
+	       	<field name="name">KDERP - Prepaid Purchase / Create </field>
+	      	<field name="category_id" ref="module_category_kderp_prepaid_purchase"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_prepaid_purchase_delete" model="res.groups">
+	       	<field name="name">KDERP - Prepaid Purchase / Delete </field>
+	      	<field name="category_id" ref="module_category_kderp_prepaid_purchase"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id='group_kderpprepaid_purchase_full' model='res.groups'>
+	        <field name='name'>KDERP - Prepaid Purchase / Full</field>
+	        <field name="category_id" ref="module_category_kderp_prepaid_purchase"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_prepaid_purchase_read')),
+	          								(4, ref('group_kderp_prepaid_purchase_write')),
+	        								(4, ref('group_kderp_prepaid_purchase_create')),
+	        								(4, ref('group_kderp_prepaid_purchase_delete'))]"/>
+  	   </record>  	   
+    	
+	</data>
+</openerp>

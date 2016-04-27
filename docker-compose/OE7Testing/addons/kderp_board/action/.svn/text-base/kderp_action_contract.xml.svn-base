@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+ <data noupdate="0">
+    
+       <act_window
+            id="action_open_payment_client_from_contract"
+            name="Payment from Client"
+            res_model="account.invoice"
+            src_model="kderp.contract.client"
+            domain="[('contract_id','in',active_ids)]"
+            key2="client_action_multi"/>
+            
+     	<act_window
+            id="action_open_job_from_contract"
+            name="Job"
+            res_model="account.analytic.account"
+            src_model="kderp.contract.client"
+            context="{'kderp_search_default_contract_job_lists':active_ids}"
+            key2="client_action_multi"/> 
+            
+      
+	
+  </data>
+</openerp>

@@ -1,0 +1,11 @@
+<!-- kderp_oe_anatomy/kderp_oe_anatomy.xml -->
+<openerp>
+    <data>
+        <record model="ir.actions.client" id="action_client_example">
+            <field name="name">Client Action</field>
+            <field name="tag">example.action</field>
+        </record>
+        <menuitem action="action_client_example"
+                  id="menu_client_example"/>
+    </data>
+</openerp>

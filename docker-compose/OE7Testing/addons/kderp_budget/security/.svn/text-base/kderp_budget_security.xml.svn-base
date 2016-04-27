@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+	
+		<record id="group_kderp_budget_category_full" model="res.groups">
+	        <field name="name">Group KDERP - Budget Category / Full </field>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	    <record id="group_kderp_account_budget_post_full" model="res.groups">
+	        <field name="name">Group KDERP - KDERP Budget Code / Full </field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+		
+	    <record id="group_kderp_budget_data_read" model="res.groups">
+	        <field name="name">Group KDERP - Budget Data / Read </field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	
+	    <record id="group_kderp_budget_data_write" model="res.groups">
+	        <field name="name">Group KDERP - Budget Data / Write </field>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_budget_data_read'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	
+	    <record id="group_kderp_budget_data_create" model="res.groups">
+	        <field name="name">Group KDERP - Budget Data / Create </field>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_budget_data_read'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	    <record id="group_kderp_budget_data_delete" model="res.groups">
+	        <field name="name">Group KDERP - Budget Data / Delete </field>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_budget_data_read'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	    <record id="group_kderp_budget_data_full" model="res.groups">
+	        <field name="name">Group KDERP - Budget Data / Full </field>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_budget_data_read')),
+	        								(4, ref('group_kderp_budget_data_write')),
+	        								(4, ref('group_kderp_budget_data_create')),
+	        								(4, ref('group_kderp_budget_data_delete'))]"/>        
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	    <record id="group_kderp_budget_history_read" model="res.groups">
+	        <field name="name">Group KDERP - Budget History / Read </field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	     <record id="group_kderp_budget_history_write" model="res.groups">
+	        <field name="name">Group KDERP - Budget History / Write </field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	     <record id="group_kderp_budget_history_create" model="res.groups">
+	        <field name="name">Group KDERP - Budget History / Create </field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	     <record id="group_kderp_budget_history_delete" model="res.groups">
+	        <field name="name">Group KDERP - Budget History / Delete </field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+	    <record id="group_kderp_budget_history_full" model="res.groups">
+	        <field name="name">Group KDERP - Budget History / Full </field>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_budget_history_read')),
+	        								(4, ref('group_kderp_budget_history_write')),
+	        								(4, ref('group_kderp_budget_history_create')),
+	        								(4, ref('group_kderp_budget_history_delete'))]"/>        
+	        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+	    </record>
+	    
+    </data>
+</openerp>

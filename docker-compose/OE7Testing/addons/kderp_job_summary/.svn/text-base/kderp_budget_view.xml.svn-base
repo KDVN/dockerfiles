@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    
+    	<record id="kderp_view_budget_data_tree" model="ir.ui.view">
+            <field name="name">kderp.view.account.budget.data.tree</field>
+            <field name="model">kderp.budget.data</field>
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+                <tree string="Budget Data" fonts="bold:over=='Yes'" colors="red:over=='Yes'">
+                    <field name="account_analytic_id"/>
+                    <field name="budget_id"/>
+					<field name='planned_amount'/>
+					<field name='expense_amount'/>
+					<field name='paid_amount'/>
+					<field name='balance_per'/>
+					<field name='over'/>
+					<field name="detail_budget" colspan="4" nolabel="1"/>
+                </tree>
+            </field>
+        </record>
+        
+    	<record id="kderp_view_budget_data_form" model="ir.ui.view">
+            <field name="name">kderp.view.account.budget.data.form</field>
+            <field name="model">kderp.budget.data</field>
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+                <form string="Budget Data" create='false' delete='false' edit='false'>
+                    <field name="account_analytic_id"/>
+                    <field name="budget_id"/>
+					<field name='planned_amount'/>
+					<field name='expense_amount'/>
+					<field name='paid_amount'/>
+					<field name='balance_per'/>
+					<field name='over'/>
+					<field name="detail_budget" colspan="4" nolabel="1">
+						<tree string='Expense Budget Line' create="false" delete="false" edit="false">
+		            		<field name='name'/>
+		            		<field name='account_analytic_id'/>             
+				            <field name='amount' sum='Sub-total'/>
+							<field name='payment_amount' sum='Sub-total'/>
+							<field name='partner_id'/>
+							<field name='description'/>
+	            		</tree>
+            		</field>
+                </form>
+            </field>
+        </record>
+        
+	</data>
+</openerp>

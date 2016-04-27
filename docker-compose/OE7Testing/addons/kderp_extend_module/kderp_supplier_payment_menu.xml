@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	 
+	 <menuitem action="kderp_supplier_payment.action_draft_kderp_supplier_tree" id="kderp_supplier_payment.menu_draft_supplier_payment_tree" sequence="2"
+	 	parent="kderp_supplier_payment.menu_supplier_payment_tree"/>
+	
+	 <!-- Procurement Checking Supplier Payment -->
+	 <record id="kderp_supplier_payment.action_processing_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">Procurement Checking</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','pr_dept_checking')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="kderp_supplier_payment.action_processing_kderp_supplier_tree" id="kderp_supplier_payment.menu_processing_supplier_payment_tree" sequence="3" 
+	 	parent="kderp_supplier_payment.menu_supplier_payment_tree"/>
+	 
+	 <!-- BC Checking Supplier Payment -->
+	 <record id="action_bc_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">BC Checking</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','submitting')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_bc_kderp_supplier_tree" id="menu_bc_supplier_payment_tree" sequence="4" 
+	 	parent="kderp_supplier_payment.menu_supplier_payment_tree"/>
+	 
+	 <!-- BC Passed Supplier Payment -->
+	 <record id="action_bc_passed_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">BC Checked</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','bc_passed')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_bc_passed_kderp_supplier_tree" id="menu_bc_passed_supplier_payment_tree" sequence="5" 
+	 	parent="kderp_supplier_payment.menu_supplier_payment_tree"/>
+	 	
+	 <!-- PM Checking Supplier Payment -->
+	 <record id="action_pm_checking_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">PM Checking</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','bc_checked')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_pm_checking_kderp_supplier_tree" id="menu_pm_checking_supplier_payment_tree" sequence="6" 
+	 	parent="kderp_supplier_payment.menu_supplier_payment_tree"/>
+	 	
+	  <!-- PM Checking Supplier Payment -->
+	 <record id="action_bod_checking_kderp_supplier_tree" model="ir.actions.act_window">
+		<field name="name">BOD Checking</field>
+		<field name="res_model">kderp.supplier.payment</field>
+		<field name="view_type">form</field>
+		<field name="domain">[('state','=','waiting_bod')]</field>
+		<field name="view_mode">tree,form,calendar,graph</field>
+		<field name="context">{'default_type':'in_invoice', 'type':'in_invoice', 'journal_type': 'purchase'}</field>
+	 </record>
+
+	 <menuitem action="action_bod_checking_kderp_supplier_tree" id="menu_bod_checking_supplier_payment_tree" sequence="7" 
+	 	parent="kderp_supplier_payment.menu_supplier_payment_tree"/>
+	 
+    </data>
+</openerp>

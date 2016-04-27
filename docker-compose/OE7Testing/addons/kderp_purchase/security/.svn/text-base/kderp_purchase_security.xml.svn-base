@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<record model="ir.module.category" id="module_category_kderp_purchase_order">
+	      	<field name="name">KDERP Purchase</field>
+	       	<field name="sequence">170</field>
+		</record>
+		
+		<!-- Group Allow Open and Close PO Completed -->
+		<record id="group_kderp_purchase_open" model="res.groups">
+	       <field name="name">KDERP - Purchase Order @ Open for Revising / Workflow</field>
+	       <field name="category_id" ref="module_category_kderp_purchase_order"/>
+		</record>
+		
+		<!-- Group Allow Cancel PO -->
+		<record id="group_kderp_cancel_purchase" model="res.groups">
+	       <field name="name">KDERP - Purchase Order @ Cancel a PO / Workflow</field>
+	       <field name="category_id" ref="module_category_kderp_purchase_order"/>
+		</record>
+		
+		<record id="group_kderp_purchase_order_read" model="res.groups">
+	       	<field name="name">KDERP - Purchase Order / Read </field>
+	      	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_purchase_order_write" model="res.groups">
+	       <field name="name">KDERP - Purchase Order / Write </field>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	       <field name="category_id" ref="module_category_kderp_purchase_order"/>
+		</record>
+		
+		<record id="group_kderp_purchase_order_create" model="res.groups">
+	       <field name="name">KDERP - Purchase Order / Create </field>
+	       <field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+	   <record id="group_kderp_purchase_order_delete" model="res.groups">
+	       <field name="name">KDERP - Purchase Order / Delete </field>
+	       <field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	   </record>
+	   
+	   <record id='group_kderp_purchase_order_full' model='res.groups'>
+	        <field name='name'>KDERP - Purchase Data / Full</field>
+	        <field name="category_id" ref="module_category_kderp_purchase_order"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_purchase_order_read')),
+	          								(4, ref('group_kderp_purchase_order_write')),
+	        								(4, ref('group_kderp_purchase_order_create')),
+	        								(4, ref('group_kderp_purchase_order_delete'))]"/>
+  	   </record>
+  	   
+   		 <!-- Group for Rule Hai Phong-->
+	   <record id='group_kderp_purchase_order_haiphong_local_group' model='res.groups'>
+	       <field name='name'>KDERP - Purchase Hai Phong</field>
+	       <field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	   </record>
+	   
+	   <record id ='group_kderp_link_vat_to_rop' model ='res.groups'>
+	    	<field name='name'>KDERP - Link VAT to ROP</field>
+	    	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_super_lock_unlock_payment_to_supplier' model ='res.groups'>
+	    	<field name='name'>KDERP - Super Lock and Unlock Payment to Supplier</field>
+	    	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_view_unlock_payment_to_supplier'  model ='res.groups'>
+	    	<field name='name'>KDERP - View Unlock Payment to Supplier</field>
+	    	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_purchase_workflow_process_group' model='res.groups'>
+	        <field name='name'>KDERP - Purchase Order Work-flow Process</field>  
+	      	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_expense_workflow_process_group' model='res.groups'>
+	        <field name='name'>KDERP - Expense Work-flow Process</field>
+	       	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_haiphong_po_related_in_haiphong_menu' model='res.groups'>
+	        <field name='name'>KDERP - PO Related In HaiPhong / P.O. menu</field>
+	       	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_haiphong_pomenu' model='res.groups'>
+	        <field name='name'>KDERP - PO HaiPhong / P.O. menu</field> 
+	        <field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	     <record id='group_kderp_see_pomenu' model='res.groups'>
+	        <field name='name'>KDERP - Purchase Order / P.O. menu</field>
+	       	<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id='group_kderp_see_expensemenu' model='res.groups'>
+	        <field name='name'>KDERP - Purchase Order / Expense menu</field>
+	        <field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+    	<record id='group_kderp_po_delete_all_pol' model='res.groups'>
+       		<field name='name'>KDERP - Delete All Purchase Order Line</field>
+       		<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+  		</record>
+  		
+  		<record id='group_kderp_purchase_admin' model='res.groups'>
+       		<field name='name'>KDERP - Purchase Admin</field>
+       		<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	      	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+  		</record>
+  		<record id='group_kderp_confirm_r_o_a' model='res.groups'>
+       		<field name='name'>KDERP - Confirm R.O.A</field>
+       		<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	      	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+  		</record>
+  		<record id='group_kderp_making_order' model='res.groups'>
+       		<field name='name'>KDERP - Making Order</field>
+       		<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	      	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+  		</record>
+  		<record id='group_kderp_confirm delivery' model='res.groups'>
+       		<field name='name'>KDERP - Confirm Delivery</field>
+       		<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	      	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+  		</record>
+  		<record id='group_kderp_mark_po_complete' model='res.groups'>
+       		<field name='name'>KDERP - Mark PO Completed</field>
+       		<field name="category_id" ref="module_category_kderp_purchase_order"/>
+	      	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+  		</record>
+    </data>
+</openerp>

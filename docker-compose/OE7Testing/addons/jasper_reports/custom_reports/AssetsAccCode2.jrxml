@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AssetsAccCode2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;detail_ids&apos;]"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.size.fix.enabled" value="true"/>
+	<property name="net.sf.jasperreports.export.xlsx.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="128"/>
+	<parameter name="ParentID" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="DATA_Source" class="java.lang.Object"/>
+	<parameter name="REWIND" class="java.lang.Object">
+		<defaultValueExpression><![CDATA[$P{DATA_Source}.moveFirst()]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="ParentID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+	</field>
+	<field name="old_code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/old_code]]></fieldDescription>
+	</field>
+	<field name="Type_Acc_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/type_asset_acc_id/typeofasset_id/name]]></fieldDescription>
+	</field>
+	<field name="Type_Acc_fixedType" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/type_asset_acc_id/type]]></fieldDescription>
+	</field>
+	<field name="Type_Acc_fixedCode" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/type_asset_acc_id/code]]></fieldDescription>
+	</field>
+	<field name="Type_Acc_fixedDes" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/type_asset_acc_id/name]]></fieldDescription>
+	</field>
+	<field name="dateofinvoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/dateofinvoice]]></fieldDescription>
+	</field>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/code]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/name]]></fieldDescription>
+	</field>
+	<field name="state" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/state]]></fieldDescription>
+	</field>
+	<field name="price" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/detail_ids/original_price]]></fieldDescription>
+	</field>
+	<field name="date_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Start_Date-date_start]]></fieldDescription>
+	</field>
+	<field name="date_stop" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Stop_Date-date_stop]]></fieldDescription>
+	</field>
+	<field name="asset_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id]]></fieldDescription>
+	</field>
+	<field name="depreciation" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/detail_ids/depreciation]]></fieldDescription>
+	</field>
+	<field name="reduce" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/detail_ids/Reduce-reduce]]></fieldDescription>
+	</field>
+	<field name="accumulated_depreciation" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/detail_ids/accumulated_depreciation]]></fieldDescription>
+	</field>
+	<field name="User" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/current_user_id/full_name]]></fieldDescription>
+	</field>
+	<field name="location" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/detail_ids/asset_id/physical_location_id/name]]></fieldDescription>
+	</field>
+	<sortField name="Type_Acc_name"/>
+	<sortField name="Type_Acc_fixedType"/>
+	<sortField name="Type_Acc_fixedCode"/>
+	<sortField name="dateofinvoice"/>
+	<sortField name="code"/>
+	<variable name="totalFixAssetType" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetType" calculation="Sum">
+		<variableExpression><![CDATA[$F{price}==null?0:$F{price}]]></variableExpression>
+	</variable>
+	<variable name="totalFixAssetTypeDep" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetType" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciation}==null?0:$F{depreciation}]]></variableExpression>
+	</variable>
+	<variable name="totalFixAssetTypeRed" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetType" calculation="Sum">
+		<variableExpression><![CDATA[$F{reduce}==null?0:$F{reduce}]]></variableExpression>
+	</variable>
+	<variable name="totalFixAssetTypeAcc" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetType" calculation="Sum">
+		<variableExpression><![CDATA[$F{accumulated_depreciation}==null?0:$F{accumulated_depreciation}]]></variableExpression>
+	</variable>
+	<variable name="totalAccName" class="java.lang.Double" resetType="Group" resetGroup="grpAccAsset" calculation="Sum">
+		<variableExpression><![CDATA[$F{price}==null?0:$F{price}]]></variableExpression>
+	</variable>
+	<variable name="totalAccNameDep" class="java.lang.Double" resetType="Group" resetGroup="grpAccAsset" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciation}==null?0:$F{depreciation}]]></variableExpression>
+	</variable>
+	<variable name="totalAccNameRed" class="java.lang.Double" resetType="Group" resetGroup="grpAccAsset" calculation="Sum">
+		<variableExpression><![CDATA[$F{reduce}==null?0:$F{reduce}]]></variableExpression>
+	</variable>
+	<variable name="totalAccNameAcc" class="java.lang.Double" resetType="Group" resetGroup="grpAccAsset" calculation="Sum">
+		<variableExpression><![CDATA[$F{accumulated_depreciation}==null?0:$F{accumulated_depreciation}]]></variableExpression>
+	</variable>
+	<variable name="countGroup" class="java.lang.Integer" resetType="Group" resetGroup="grpFixAssetCode" calculation="Count">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="count" class="java.lang.Integer" resetType="Group" resetGroup="grpFixAssetType" incrementType="Group" incrementGroup="grpFixAssetCode" calculation="Count">
+		<variableExpression><![CDATA[$F{Type_Acc_fixedCode}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<variable name="totalFixAssetCode" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{price}==null?0:$F{price}]]></variableExpression>
+	</variable>
+	<variable name="totalFixAssetCodeDep" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciation}==null?0:$F{depreciation}]]></variableExpression>
+	</variable>
+	<variable name="totalFixAssetCodeRed" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{reduce}==null?0:$F{reduce}]]></variableExpression>
+	</variable>
+	<variable name="totalFixAssetCodeAcc" class="java.lang.Double" resetType="Group" resetGroup="grpFixAssetCode" calculation="Sum">
+		<variableExpression><![CDATA[$F{accumulated_depreciation}==null?0:$F{accumulated_depreciation}]]></variableExpression>
+	</variable>
+	<variable name="state" class="java.lang.String">
+		<variableExpression><![CDATA[(($F{state}=="inused")?"In Use":(($F{state}=="liquidated")?"Liquidated":(($F{state}=="instock")?"In Stock":"Out Of Date")))]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[($F{Type_Acc_name}=="FA")&&($P{ParentID}==$F{ParentID})&&($F{Type_Acc_fixedType}=="1")&&($F{Type_Acc_fixedCode}=="2")]]></filterExpression>
+	<group name="grpAccAsset">
+		<groupExpression><![CDATA[$F{Type_Acc_name}]]></groupExpression>
+	</group>
+	<group name="grpFixAssetType">
+		<groupExpression><![CDATA[$F{Type_Acc_fixedType}]]></groupExpression>
+	</group>
+	<group name="grpFixAssetCode">
+		<groupExpression><![CDATA[$F{Type_Acc_fixedCode}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField evaluationTime="Group" evaluationGroup="grpFixAssetCode">
+					<reportElement x="0" y="0" width="842" height="20"/>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Type_Acc_fixedCode}+". "+$F{Type_Acc_fixedDes}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField evaluationTime="Group" evaluationGroup="grpFixAssetCode" pattern="#,##0">
+					<reportElement mode="Transparent" x="410" y="0" width="60" height="20" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalFixAssetCode}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="710" y="0" width="35" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="grpFixAssetCode" pattern="#,##0">
+					<reportElement mode="Transparent" x="650" y="0" width="60" height="20" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalFixAssetCode}-$V{totalFixAssetCodeAcc}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="grpFixAssetCode" pattern="#,##0">
+					<reportElement mode="Transparent" x="530" y="0" width="60" height="20" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalFixAssetCodeRed}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="grpFixAssetCode" pattern="#,##0">
+					<reportElement mode="Transparent" x="470" y="0" width="60" height="20" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalFixAssetCodeDep}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="grpFixAssetCode" pattern="#,##0">
+					<reportElement mode="Transparent" x="590" y="0" width="60" height="20" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalFixAssetCodeAcc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="410" height="20"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Transparent" x="745" y="0" width="50" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="795" y="0" width="47" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="20" y="0" width="75" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="95" y="0" width="45" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{old_code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="357" y="0" width="53" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{dateofinvoice}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="332" y="0" width="25" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[new Integer($F{dateofinvoice}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="140" y="0" width="192" height="20"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="20" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{grpFixAssetCode_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="710" y="0" width="35" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{state}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="410" y="0" width="60" height="20"/>
+				<box rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{price}==null?0:$F{price}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="470" y="0" width="60" height="20"/>
+				<box rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{depreciation}==null?0:$F{depreciation}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="530" y="0" width="60" height="20"/>
+				<box rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{reduce}==null?0:$F{reduce}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="590" y="0" width="60" height="20"/>
+				<box rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{accumulated_depreciation}==null?0:$F{accumulated_depreciation}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="650" y="0" width="60" height="20"/>
+				<box rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{price}==null?0:$F{price}-($F{accumulated_depreciation}==null?0:$F{accumulated_depreciation})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="745" y="0" width="50" height="20"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{User}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="795" y="0" width="47" height="20"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

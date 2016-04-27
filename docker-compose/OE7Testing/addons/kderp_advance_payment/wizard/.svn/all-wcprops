@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2895/trunk/src/kderp_advance_payment/wizard
+END
+kderp_cashonhand_report_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2881/trunk/src/kderp_advance_payment/wizard/kderp_cashonhand_report_view.xml
+END
+kderp_advance_wizard_form_report_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/2895/trunk/src/kderp_advance_payment/wizard/kderp_advance_wizard_form_report_view.xml
+END
+kderp_advance_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2653/trunk/src/kderp_advance_payment/wizard/kderp_advance_report.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2856/trunk/src/kderp_advance_payment/wizard/__init__.py
+END
+kderp_advance_report_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2653/trunk/src/kderp_advance_payment/wizard/kderp_advance_report_view.xml
+END
+kderp_cashonhand_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2822/trunk/src/kderp_advance_payment/wizard/kderp_cashonhand_report.py
+END
+kderp_advance_wizard_form_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2895/trunk/src/kderp_advance_payment/wizard/kderp_advance_wizard_form_report.py
+END

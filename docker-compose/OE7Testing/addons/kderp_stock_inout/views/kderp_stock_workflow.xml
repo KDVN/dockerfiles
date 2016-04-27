@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+ 		<record id="stock.wkf_picking" model="workflow">
+            <field name="name">stock.picking.basic</field>
+            <field name="osv">stock.picking</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Draft () Auto move -->
+        <record id="stock.act_draft_automove" model="workflow.activity">
+            <field name="wkf_id" ref="stock.wkf_picking"/>
+            <field name="name">auto_move</field>
+            <field name="kind">function</field>
+            <field name="action">draft_force_assign()
+                                </field>
+        </record>
+
+        <!-- Transaction -->
+        <record id="stock.trans_draft_automove" model="workflow.transition">
+            <field name="act_from" ref="stock.act_draft"/>
+            <field name="act_to" ref="stock.act_draft_automove"/>
+            <field name="condition">type=='out'</field>
+        </record>
+        <record id="stock.trans_automove_confirmed" model="workflow.transition">
+            <field name="act_from" ref="stock.act_draft_automove"/>
+            <field name="act_to" ref="stock.act_confirmed"/>
+            <field name="condition">type=='out'</field>
+        </record>
+
+        <record id="stock.trans_draft_confirmed" model="workflow.transition">
+            <field name="act_from" ref="stock.act_draft"/>
+            <field name="act_to" ref="stock.act_confirmed"/>
+            <field name="condition">True</field>
+            <field name="condition">type!='out'</field>
+            <field name="signal">button_confirm</field>
+        </record>
+
+	</data>
+</openerp>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>	
+		
+		<record id="kderp_attachment_form_kderp_attachment_inherit_extend" model="ir.ui.view">
+            <field name="name">kderp.attachment.form.kderp.attachment.inherit.extend</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref='kderp_common.kderp_attachemnt_view_form'/>
+            <field name="arch" type="xml">
+				<field name="q_attached_qcombine" position='after'>
+					<field name="quotation_budget_na" on_change="onchange_quotation_buget_na(quotation_budget_na,q_attached_qcombine,q_attached_bm,q_attached_be)"/>
+				</field>
+				<field name="q_attached_qcombine" position='replace'>
+					<field name="q_attached_qcombine" on_change="onchange_quotation_buget(quotation_budget_na,q_attached_qcombine,q_attached_bm,q_attached_be)"/>
+				</field>
+				<field name="q_attached_bm" position='replace'>
+					<field name="q_attached_bm" on_change="onchange_quotation_buget(quotation_budget_na,q_attached_qcombine,q_attached_bm,q_attached_be)"/>
+				</field>
+				<field name="q_attached_be" position='replace'>
+					<field name="q_attached_be" on_change="onchange_quotation_buget(quotation_budget_na,q_attached_qcombine,q_attached_bm,q_attached_be)"/>
+				</field>
+				
+				<!-- Add new Quotation N/A, Quotation Job Budet N/A -->
+				<field name="q_attached" position='replace'>
+					<group col="4" colspan="4">
+						<field name="q_attached" string="Quotation"/>
+					</group>
+				</field>
+				<group string='Job Budget' position='replace'>
+					<group string='Job Budget'>
+						<field name="q_attached_je" string='Electrical' on_change='onchange_quotation_job_budget(q_attached_je, q_attached_jm, q_attached_jcombine)'/>
+						<field name="q_attached_jm" string='Mechanical' on_change='onchange_quotation_job_budget(q_attached_je, q_attached_jm, q_attached_jcombine)'/>
+						<field name="q_attached_jcombine" string='Combine' on_change='onchange_quotation_job_budget(q_attached_je, q_attached_jm, q_attached_jcombine)'/>
+						<field name="quotation_job_budget_na" string='N/A' on_change='onchange_quotation_job_budget_na(quotation_job_budget_na)'/>
+					</group>							
+				</group>				
+            </field>
+        </record>
+        
+    	<!-- <record id="kderp_attachment_form_kderp_attachment_quotation_read_only" model="ir.ui.view">
+            <field name="name">kderp.attachment.form.kderp.attachment.quotation.read.only</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref='kderp_common.kderp_attachemnt_view_form'/>
+            <field name="groups_id" eval="[(6, 0, [ref('kderp_quotation.group_kderp_quotation_jobinfo_full') ])]"/>
+            <field name="arch" type="xml">
+				<field name='q_attached_qcombine' position="attributes">
+	            	<attribute name="readonly">1</attribute>
+	        	</field>
+	        	<field name='q_attached_bm' position="attributes">
+	            	<attribute name="readonly">1</attribute>
+	        	</field>
+            </field>
+        </record> -->
+        
+	</data>
+</openerp>

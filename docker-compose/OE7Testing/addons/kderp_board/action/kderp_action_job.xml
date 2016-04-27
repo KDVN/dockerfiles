@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+    
+    	<!-- Action Open Quotation from Job -->
+	<act_window
+            id="action_job_to_quotation"
+            name="Quotation"
+            res_model="sale.order"
+            src_model="account.analytic.account"
+            domain="['|',('job_e_id','in',active_ids),('job_m_id','in',active_ids)]"
+            key2="client_action_multi"/> 
+            
+    <!-- Action Open Contract from Job -->
+    <act_window
+            id="action_open_contract_from_job"
+            name="Contract"
+            res_model="kderp.contract.client"
+            src_model="account.analytic.account"
+            context="{'kderp_search_default_job_contract_lists':active_ids}"
+            key2="client_action_multi"/>
+             
+    <!-- Action Open Client Payment from Job -->
+    <act_window
+            id="action_open_payment_client_from_job"
+            name="Client Payment"
+            res_model="account.invoice"
+            src_model="account.analytic.account"
+            context="{'kderp_search_default_job_payment_client_lists':active_ids}"
+            key2="client_action_multi"/> 
+            
+     <!-- Action Open Purchase from Job -->
+    <act_window
+            id="action_purchase_from_job"
+            name="Purchase"
+            res_model="purchase.order"
+            src_model="account.analytic.account"
+         	domain="['|',('order_line.account_analytic_id','in',active_ids),('account_analytic_id','in',active_ids)]"
+         	key2="client_action_multi"/>
+	 <act_window
+            id="action_other_expense_from_job"
+            name="Other Expense"
+            res_model="kderp.other.expense"
+            src_model="account.analytic.account"
+         	domain="['|',('expense_line.account_analytic_id','in',active_ids),('account_analytic_id','in',active_ids)]"
+         	key2="client_action_multi"/>
+    </data>
+</openerp>

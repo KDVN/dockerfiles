@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="group_kderp_general_expense_code_read" model="res.groups">
+	       	<field name="name">KDERP - G.E Code / Read </field>
+	      	<field name="category_id" ref="module_category_kderp_general_expense"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_general_expense_code_write" model="res.groups">
+	       <field name="name">KDERP - G.E Code / Write </field>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	       <field name="category_id" ref="module_category_kderp_general_expense"/>
+		</record>
+		
+		<record id="group_kderp_general_expense_code_create" model="res.groups">
+	       <field name="name">KDERP - G.E Code / Create </field>
+	       <field name="category_id" ref="module_category_kderp_general_expense"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+	   <record id="group_kderp_general_expense_code_delete" model="res.groups">
+	       <field name="name">KDERP - G.E Code / Delete </field>
+	       <field name="category_id" ref="module_category_kderp_general_expense"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	   </record>
+	   
+	   <record id='group_kderp_general_expense_code_full' model='res.groups'>
+	        <field name='name'>KDERP - G.E Code / Full</field>
+	        <field name="category_id" ref="module_category_kderp_general_expense"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_general_expense_code_read')),
+	          								(4, ref('group_kderp_general_expense_code_write')),
+	        								(4, ref('group_kderp_general_expense_code_create')),
+	        								(4, ref('group_kderp_general_expense_code_delete'))]"/>
+  	   </record>
+  	   
+  	   <record id="group_kderp_general_expense_code_close" model="res.groups">
+		       <field name="name">KDERP - Close General Expense @ / Workflow</field>
+		       <field name="category_id" ref="module_category_kderp_general_expense"/>
+		</record>
+		
+		<record id="group_kderp_general_expense_code_re_open" model="res.groups">
+		       <field name="name">KDERP - Re Open General Expense @ / Workflow</field>
+		       <field name="category_id" ref="module_category_kderp_general_expense"/>
+		</record> 
+	</data>	
+</openerp>
+
+

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+                   
+    	<record id="product_product_kderp_tree" model="ir.ui.view">
+            <field name="name">product.product.kderp.tree</field>
+            <field name="model">product.product</field>
+            <field eval="5" name="priority"/>
+<!--             <field name="inherit_id" ref="product.product_product_tree_view"/> -->
+            <field name="arch" type="xml">
+                  <tree string="Material - Services">
+                    <field name="default_code" string="Code"/>
+                    <field name="name" string="Description"/>
+                    <field name="budget_id" string="Budget Code" invisible="'budget_id' in context.get('group_by',[])"/>
+                    <field name="category_follow_japan_id" string="Japan Code"/>
+                    <field name="categ_id" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="variants" groups="product.group_product_variant"/>
+                    <field name="uom_id" string="Unit of Measure" groups="product.group_uom"/>
+                    <field name="qty_available" invisible="1"/>
+                    <field name="virtual_available" invisible="1"/>
+                    <field name="lst_price" invisible="1"/>
+                    <field name="price" invisible="not context.get('pricelist',False)"/>
+                    <field name="standard_price" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+                  </tree>
+           	</field>
+       </record>
+   
+    	<record id="product_normal_kderp_inherit_form_view" model="ir.ui.view">
+            <field name="name">product.normal.kderp.inherit.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+            	<!-- Move default code from Information tab to Header -->
+            	<field name='default_code' position='replace'/>
+            	<div class="oe_edit_only" position='before'> 
+            	 	<div class="oe_edit_only">
+						<label for="default_code" string="Code"/>
+					</div>
+					<h1>
+						<field name="default_code"/>
+					</h1>
+				</div>
+				<!-- Replace Sale Price by budget_id (Link to Budget) -->
+				<field name="list_price" position='replace'>
+					<field name="budget_id"/>
+					<field name="category_follow_japan_id"/>
+				</field>
+				<!--  Replace buttons -->
+				<!-- <div name="buttons" position="replace"/> -->
+				<page string='Information' position='after'>
+					<page string='Brand'>
+						<field colspan="4" mode="tree" name="brand_ids" nolabel="1">
+							<tree colors="red:(default_brand==True)" editable="top" min_rows="3" string="Brand name">
+								<field name="brandname_id"/>
+								<field name="default_brand"/>
+							</tree>
+						</field>
+					</page>
+				</page>
+            </field>
+		</record>
+
+		<record id="product_normal_kderp_product_List_select" model="ir.ui.view">
+            <field name="name">product.normal.kderp.product.list.filter</field>
+            <field name="model">product.product</field>
+            <field name="priority" eval="5"/>
+            <field name="arch" type="xml">
+               	<search>
+               		<field name="name" string="Product Code/Name" filter_domain="['|',('name','ilike',self),('default_code','ilike',self)]"/>
+               		<field name="budget_id" string="Budget Code" widget='text' filter_domain="[('budget_id','ilike',self)]"/>
+               		<field name="category_follow_japan_id" widget='text' string="Kinden Category" filter_domain="[('category_follow_japan_id','ilike',self)]"/>
+               		<group expand="0" string="Group By...">
+                        <filter string="Budget" domain="[]" context="{'group_by':'budget_id'}"/>
+                        <filter string="Kinden Category" domain="[]" context="{'group_by':'category_follow_japan_id'}"/>
+                    </group>
+            	</search>		
+			</field>
+		</record>
+		
+		<record id="kderp_brand_name_tree" model="ir.ui.view">
+            <field name="name">kderp.brand.name.tree</field>
+            <field name="model">kderp.brand.name</field>
+            <field name="type">tree</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">                
+				<tree string="Brands Name" editable='top'>
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+		
+		<record id="kderp_brand_name_form" model="ir.ui.view">
+            <field name="name">kderp.brand.name.form</field>
+            <field name="model">kderp.brand.name</field>
+            <field name="type">form</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">                
+				<form string="Brands Name">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="product_ids" colspan="4" nolabel="1">
+                    	<tree editable='top' string='Product List'>
+                    		<field name="product_id"/>
+							<field name="default_brand"/>
+						</tree>
+                    </field>
+                </form>
+			</field>
+		</record>
+		
+        <record id="kderp_brands_name" model="ir.actions.act_window">
+            <field name="name">Brand Name</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.brand.name</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+		<menuitem action="kderp_brands_name" id="menu_brand_name" parent="kderp_base.menu_kderp_expense_configuration_root" groups="group_kderp_brand_name_full"/>
+        
+        <record id="kderp_kinden_coporation_tree" model="ir.ui.view">
+            <field name="name">kderp.product.category.japan.tree</field>
+            <field name="model">kderp.product.category.japan</field>
+            <field name="type">tree</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">                
+				<tree editable="top" string="Kinden Corp. Category">
+                    <field name="code" select="1"/>
+                    <field name="name" select="1"/>
+                </tree>
+			</field>
+		</record>
+		
+		<record id="kderp_kinden_coporation_menu" model="ir.actions.act_window">
+            <field name="name">Kinden Corp. Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.product.category.japan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        <menuitem action="kderp_kinden_coporation_menu" id="menu_kinden_expense_corp" parent="kderp_base.menu_kderp_expense_configuration_root" groups="group_kderp_product_japan_full"/>
+        
+        <menuitem id="kderp_exepense_products" name="Products" sequence="10" parent="kderp_base.menu_kderp_expense_root"/>
+      	
+        <record id="product_normal_action_puchased_kderp" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_filter_to_purchase":1}</field>
+            <field name="view_id" ref="product_product_kderp_tree"/>
+<!--             <field name="search_view_id" ref="product_search_form_view"/> -->
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new product.
+              </p><p>
+                You must define a product for everything you purchase, whether
+                it's a physical product, a consumable or services you buy to
+                subcontractants.
+              </p><p>
+                The product form contains detailed information to improve the
+                purchase process: prices, procurement logistics, accounting data,
+                available suppliers, etc.
+              </p>
+            </field>
+        </record>
+
+      	<menuitem name="Material &amp; Services" id="menu_kderp_expense_products" action="kderp_product.product_normal_action_puchased_kderp" sequence="5"
+          	parent="kderp_exepense_products"/>
+        
+        
+        
+	</data>
+</openerp>

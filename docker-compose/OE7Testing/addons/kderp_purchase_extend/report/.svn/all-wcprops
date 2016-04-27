@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2753/trunk/src/kderp_purchase_extend/report
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2753/trunk/src/kderp_purchase_extend/report/__init__.py
+END
+kderp_purchase_materialsub_budget_balancesheet.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/2753/trunk/src/kderp_purchase_extend/report/kderp_purchase_materialsub_budget_balancesheet.py
+END
+kderp_purchase_materialsub_budget_balancesheet_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/2753/trunk/src/kderp_purchase_extend/report/kderp_purchase_materialsub_budget_balancesheet_view.xml
+END

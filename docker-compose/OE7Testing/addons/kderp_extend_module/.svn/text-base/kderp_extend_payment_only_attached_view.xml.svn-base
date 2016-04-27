@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>			
+<!-- 
+        <record id="kderp_payment_form_set_edit_payment_info" model="ir.ui.view">
+			<field name="name">client.payment.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_client_payment_form"/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_group_only_attachment_payment') ])]"/> 
+			<field name="arch" type="xml">
+				<form string="Invoice" position="attributes">
+					<attribute name="edit">false</attribute>
+					<attribute name="create">false</attribute>
+					<attribute name="delete">false</attribute>
+				</form>
+			</field>
+		</record>
+    
+        <record id="kderp_payment_tree_set_edit_payment_info" model="ir.ui.view">
+			<field name="name">client.payment.tree</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_client_payment_tree"/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_group_only_attachment_payment') ])]"/>
+			<field name="arch" type="xml">
+				<tree string="Invoice" position="attributes">
+					<attribute name="edit">false</attribute>
+					<attribute name="create">false</attribute>
+					<attribute name="delete">false</attribute>
+				</tree>
+			</field>
+		</record>
+		 -->
+		<!-- Chi cho attached trong VAT Invoice 
+        <record id="kderp_payment_form_set_edit_payment_info1" model="ir.ui.view">
+			<field name="name">kderp.invoice.form</field>
+			<field name="model">kderp.invoice</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_red_invoice_form"/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_group_only_attachment_payment') ])]"/> 
+			<field name="arch" type="xml">
+				<form string="VAT Invoices" position="attributes">
+					<attribute name="edit">false</attribute>
+					<attribute name="create">false</attribute>
+					<attribute name="delete">false</attribute>
+				</form>
+			</field>
+		</record>
+    -->
+    <!-- 
+        <record id="kderp_VAT_invoice_tree_set_edit_VAT_invoice_info" model="ir.ui.view">
+			<field name="name">kderp.vat.invoice.tree.set.edit.vat.invoice.info</field>
+			<field name="model">kderp.invoice</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_red_invoice_tree"/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_group_only_attachment_payment') ])]"/>
+			<field name="arch" type="xml">
+				<tree string="VAT Invoices" position="attributes">
+					<attribute name="edit">false</attribute>
+					<attribute name="create">false</attribute>
+					<attribute name="delete">false</attribute>
+				</tree>
+			</field>
+		</record>
+		 -->
+		<!-- Chi cho attached trong Received Money -->
+		<!-- <record id="kderp_Received_Money_form_set_edit_Received_Money_info" model="ir.ui.view">
+			<field name="name">kderp.received.money.form.set.edit.received.money.info</field>
+			<field name="model">kderp.received</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_kderp_recevied_from_client_form"/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_group_only_attachment_payment') ])]"/> 
+			<field name="arch" type="xml">
+				<form string="Receive from Client" position="attributes">
+					<attribute name="edit">false</attribute>
+					<attribute name="create">false</attribute>
+					<attribute name="delete">false</attribute>
+				</form>
+			</field>
+		</record>
+    
+        <record id="kderp_received_money_tree_set_edit_received_money_info" model="ir.ui.view">
+			<field name="name">kderp.received.money.tree.set.edit.received.money.info</field>
+			<field name="model">kderp.received</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_kderp_recevied_from_client_tree"/>
+			<field name="groups_id" eval="[(6, 0, [ref('kderp_group_only_attachment_payment') ])]"/>
+			<field name="arch" type="xml">
+				<tree string="Receive from Client" position="attributes">
+					<attribute name="edit">false</attribute>
+					<attribute name="create">false</attribute>
+					<attribute name="delete">false</attribute>
+				</tree>
+			</field>
+		</record>
+		 -->
+		
+	</data>
+</openerp>

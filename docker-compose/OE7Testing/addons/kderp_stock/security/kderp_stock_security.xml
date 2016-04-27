@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<record model="ir.module.category" id="module_category_kderp_stock">
+	      	<field name="name">KDERP Stock</field>
+	       	<field name="sequence">10</field>
+		</record>
+		
+		<record id="group_kderp_stock_picking_read" model="res.groups">
+	       	<field name="name">KDERP - Stock Picking / Read </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_picking_write" model="res.groups">
+	       	<field name="name">KDERP - Stock Picking / Write </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_picking_create" model="res.groups">
+	       	<field name="name">KDERP - Stock Picking / Create </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_picking_delete" model="res.groups">
+	       	<field name="name">KDERP - Stock Picking / Delete </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id='group_kderp_stock_picking_full' model='res.groups'>
+	        <field name='name'>KDERP - Stock Picking / Full</field>
+	        <field name="category_id" ref="module_category_kderp_stock"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_stock_picking_read')),
+	          								(4, ref('group_kderp_stock_picking_write')),
+	        								(4, ref('group_kderp_stock_picking_create')),
+	        								(4, ref('group_kderp_stock_picking_delete'))]"/>
+  	   	</record>
+  	   
+	  	<record id="group_kderp_stock_period_year" model="res.groups">
+		      <field name="name">KDERP Stock / Stock Period Year</field>
+		      <field name="category_id" ref="module_category_kderp_stock"/>
+		      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_period_year_read" model="res.groups">
+		      <field name="name">KDERP - Stock Period Year / Read</field>
+		      <field name="category_id" ref="module_category_kderp_stock"/>
+		      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+  	   <record id="group_kderp_stock_period_year_write" model="res.groups">
+		      <field name="name">KDERP - Stock Period Year / Write</field>
+		      <field name="category_id" ref="module_category_kderp_stock"/>
+		      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_period_year_create" model="res.groups">
+		      <field name="name">KDERP - Stock Period Year / Create</field>
+		      <field name="category_id" ref="module_category_kderp_stock"/>
+		      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_period_year_delete" model="res.groups">
+		      <field name="name">KDERP - Stock Period Year / Delete</field>
+		      <field name="category_id" ref="module_category_kderp_stock"/>
+		      <field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id='group_kderp_stock_period_year_full' model='res.groups'>
+	        <field name='name'>KDERP - Stock Period Year / Full</field>
+	        <field name="category_id" ref="module_category_kderp_stock"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_stock_period_year_read')),
+	          								(4, ref('group_kderp_stock_period_year_write')),
+	        								(4, ref('group_kderp_stock_period_year_create')),
+	        								(4, ref('group_kderp_stock_period_year_delete'))]"/>
+	      </record>
+  	   <!-- Group Menu Stock -->
+  	   <record id="group_menu_kderp_stock" model="res.groups">
+	       	<field name="name">KDERP Menu Stock</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_sub_menu_kderp_stock" model="res.groups">
+	       	<field name="name">KDERP Stock / Stock</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="kderp_stock_close_and_open_year" model="res.groups">
+	       	<field name="name">KDERP Stock /Open &amp; Close Stock Year</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+	
+		<!-- Group receive packing -->
+		<record id="kderp_stock_receive_packing" model="res.groups">
+	       	<field name="name">KDERP Stock / Received Packing</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+
+		<!-- Group Warehouse Manager -->
+		<record id="kderp_warehouse_manager" model="res.groups">
+	       	<field name="name">KDERP Warehouse / Manager</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<!-- Group Menu Stock Product -->
+		<!-- <record id="group_menu_stock_product" model="res.groups">
+	       	<field name="name">KDERP Menu Stock product</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record> -->
+		<!-- Group Menu Stock Management -->
+		<record id="group_menu_stock_management" model="res.groups">
+	       	<field name="name">KDERP Menu Stock / Management</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+
+		<!-- Group Menu Stock Configuration -->
+		<record id="group_menu_stock_configuration" model="res.groups">
+	       	<field name="name">KDERP Stock / Stock Configuration</field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_location_read" model="res.groups">
+	       	<field name="name">KDERP - Stock Location / Read </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_location_write" model="res.groups">
+	       	<field name="name">KDERP - Stock Location / Write </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_location_create" model="res.groups">
+	       	<field name="name">KDERP - Stock Location / Create </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id="group_kderp_stock_location_delete" model="res.groups">
+	       	<field name="name">KDERP - Stock Location / Delete </field>
+	      	<field name="category_id" ref="module_category_kderp_stock"/>
+	       	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+		</record>
+		
+		<record id='group_kderp_stock_location_full' model='res.groups'>
+	        <field name='name'>KDERP - Stock Location / Full</field>
+	        <field name="category_id" ref="module_category_kderp_stock"/>
+	        <field name="implied_ids" eval="[(4, ref('group_kderp_stock_location_read')),
+	          								(4, ref('group_kderp_stock_location_write')),
+	        								(4, ref('group_kderp_stock_location_create')),
+	        								(4, ref('group_kderp_stock_location_delete'))]"/>
+  	   	</record>
+    </data>
+</openerp>

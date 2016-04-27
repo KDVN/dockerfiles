@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="kderp_res_users_form_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+            	<field name="tz" position="after">
+            		<field name='location_user'/>
+            	</field>
+            </field>
+		</record>
+		
+		<!-- User Preference Form -->
+		<record id="kderp_res_users_preference_form_inherit" model="ir.ui.view">
+            <field name="name">res.users.preference.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+            <field name="arch" type="xml">
+            	<field name="tz" position="after">
+            		<field name='location_user'/>
+            	</field>
+            </field>
+		</record>
+		
+
+	</data>
+</openerp>

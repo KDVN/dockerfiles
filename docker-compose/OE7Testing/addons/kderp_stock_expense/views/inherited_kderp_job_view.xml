@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="kderp_project_form_vew_inherit_add_expense_inout" model="ir.ui.view">
+			<field name="name">kderp.project.form.view.inherit.add.expense.inout</field>
+			<field name="model">account.analytic.account</field>
+			<field name='inherit_id' ref='kderp_project.view_account_analytic_kderp_job_form'/>
+			<field name="arch" type="xml">
+				<page string="Viewer" position="after">
+                    <page string="Adjust Expense" groups="kderp_stock_expense.kderp_group_show_pending_expense">
+                        <group string="Expense In">
+                            <field name="moving_expense_in_ids" nolabel="1" help="If expense moved the remaining budget will be decrease">
+                                <tree colors="blue:expense_state_in == 'pending'" editable="top">
+                                    <field name="budget_id"/>
+                                    <field name="name"/>
+                                    <field name="subtotal"/>
+                                    <field name="from_analytic_id"/>
+                                    <field name="to_analytic_id" invisible="1"/>
+                                    <field name="state" string="Move Status"/>
+                                    <field name="expense_state_in"/>
+                                    <button name="move_expense" icon="gtk-convert" type="object" help="Accept adjust expense" context="{'job_id_move': to_analytic_id,'move_type': 'in'}"
+                                            attrs="{'invisible': ['|',('expense_state_in','=','adjusted'),('state','in',('draft','cancel'))]}"/>
+                                    <button name="revoke_expense" icon="gtk-go-back" type="object" help="Move to Pending" attrs="{'invisible': ['|',('expense_state_in','=','pending'),('state','in',('draft','cancel'))]}" context="{'job_id_move': to_analytic_id}"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Expense Out">
+                            <field name="moving_expense_out_ids" nolabel="1" help="If expense moved the remaining budget will be increase">
+                                <tree colors="blue:expense_state_out == 'pending'" editable="top">
+                                    <field name="budget_id"/>
+                                    <field name="name"/>
+                                    <field name="subtotal"/>
+                                    <field name="to_analytic_id"/>
+                                    <field name="from_analytic_id" invisible="1"/>
+                                    <field name="state" string="Move Status"/>
+                                    <field name="expense_state_out"/>
+                                    <button name="move_expense" icon="gtk-convert" type="object" context="{'job_id_move': from_analytic_id, 'move_type': 'out'}" help="Accept adjust expense" attrs="{'invisible': ['|',('expense_state_out','=','adjusted'),('state','in',('draft','cancel'))]}"/>
+                                    <button name="revoke_expense" icon="gtk-go-back" type="object" help="Move to Pending" attrs="{'invisible': ['|',('expense_state_out','=','pending'),('state','in',('draft','cancel'))]}" context="{'job_id_move': from_analytic_id}"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+			</field>
+		</record>
+
+    </data>
+</openerp>

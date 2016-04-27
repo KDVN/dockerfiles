@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_kderp_qc_form_add_location" model="ir.ui.view">
+			<field name="name">kderp.quotation.contract.form.add.location</field>
+			<field name="model">kderp.quotation.contract</field>
+			<field name='inherit_id' ref='kderp_quotation.view_kderp_qc_form'/>
+			<field name="arch" type="xml">
+				<field name="contract_name_new" position='after'>
+					<field name='project_location_id' on_change="onchange_location_city(project_location_id)"/>
+                    <field name='city_province_id'/>
+				</field>							
+			</field>
+		</record>
+
+    </data>
+</openerp>

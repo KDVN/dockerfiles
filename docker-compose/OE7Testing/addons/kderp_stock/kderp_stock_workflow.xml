@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+ 		<record id="stock.wkf_picking" model="workflow">
+            <field name="name">stock.picking.basic</field>
+            <field name="osv">stock.picking</field>
+            <field name="on_create">False</field>
+        </record>
+        
+	</data>
+</openerp>

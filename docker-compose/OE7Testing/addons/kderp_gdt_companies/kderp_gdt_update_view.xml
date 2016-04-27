@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 		<record model="ir.values" id="action_gdt_update">
+            <field name="name">Update</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window'"/>
+            <field name="key">action</field>
+            <field name="model">gdt.companies</field>
+        </record>
+    </data>
+</openerp>

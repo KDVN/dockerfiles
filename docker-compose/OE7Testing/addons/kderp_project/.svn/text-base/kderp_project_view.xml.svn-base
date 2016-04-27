@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<menuitem id="menu_kderp_budget_job_budget" parent="kderp_base.menu_kderp_budget_control_root" name="Job &amp; Budget" sequence="15"/>
+		
+		<record id="view_kderp_analytic_tree_inherit" model="ir.ui.view">
+			<field name="name">view.analytic.tree.kderp.total.budget.inherit</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="account.view_account_analytic_account_tree"/>
+			<field name="arch" type="xml">
+				<field name='name' position='replace'>
+					<field name='name'/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="view_kderp_analytic_form_inherit" model="ir.ui.view">
+			<field name="name">view.analytic.form.kderp.total.budget.inherit</field>
+			<field name="model">account.analytic.account</field>
+			<field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+			<field name="arch" type="xml">
+			    <field name="manager_id" position="after">
+			        <field name="total_budget_amount"/>
+			    </field>
+			</field>
+		</record>
+		
+		<record id="action_account_analytic_account_kderp_job_form" model="ir.actions.act_window">
+            <field name="name">Job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account.view_account_analytic_account_tree"/>
+            <field name="search_view_id" ref="account.view_account_analytic_account_search"/>
+        </record>
+       
+        <!-- <menuitem action="action_account_analytic_account_form" id="account_analytic_def_account"
+            parent="menu_analytic_accounting"
+            groups="analytic.group_analytic_accounting"/> -->
+		<menuitem id="menu_job" action="action_account_analytic_account_kderp_job_form" name="Job" parent="menu_kderp_budget_job_budget" sequence="40"/>
+		
+		  <!-- All project - For Dasboard -->
+		<record id="action_kderp_all_project_view_dashboard" model="ir.actions.act_window">
+            <field name="name">Job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+              <field name="view_id" ref="account.view_account_analytic_account_tree"/>
+            <field name="search_view_id" ref="account.view_account_analytic_account_search"/>
+        </record>
+        <menuitem action="action_kderp_all_project_view_dashboard" id="menu_job_all_dasboard" parent="menu_kderp_budget_job_budget" />
+    	<!-- cai dat button sau -->
+		<!--  <button colspan="1" icon="gtk-clear" string='Delete Budgets' name='_delete_all_budget_line' confirm='Are you sure you want to delete all budget!' type='object' groups=kderp_project.group_kderp_project_delete_all_budget_line_button/>
+			<button name="_update_history" colspan="1" string="Update History" type="object" icon="gtk-execute"/>
+	        <button name="%(wizard_project_budget_detail_open)d"  target="new"  string='Input Budget' icon="gtk-edit" type="action"/>					       	
+		-->			
+				
+		<!-- 
+		<act_window
+            id="action_job_to_contract"
+            name="Contract"
+            res_model="kderp.contract.client"
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+            
+         <act_window
+            id="action_job_to_other_expense"
+            name="Other Expense"
+            res_model="kderp.purchase.order"
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+            
+         <act_window
+            id="action_job_to_payment_from_client"
+            name="Payment From Client"
+            res_model="kderp..payment.from.client"
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+            
+         <act_window
+            id="action_job_to_payment_to_supllier"
+            name="Payment To Supplier"
+            res_model="kderp.request.of.payment"
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+            
+          <act_window
+            id="action_job_project_revenue"
+            name="Project Revenue"
+            res_model=""
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+            
+          <act_window
+            id="action_job_to_purchase"
+            name="Purchase"
+            res_model="kderp.purchase.order"
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+            
+         <act_window
+            id="action_job_to_Quotation"
+            name="Quotation"
+            res_model="sale.order"
+            src_model="account.analytic.account"
+            domain="[('x_job_ids','in',active_ids)]"/>
+		 -->
+		 -->
+		 
+		 
+		 	
+	</data>
+</openerp>

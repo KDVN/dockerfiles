@@ -1,0 +1,25 @@
+JAVA_HOME=
+added manifest
+adding: com/(in = 0) (out= 0)(stored 0%)
+adding: com/nantic/(in = 0) (out= 0)(stored 0%)
+adding: com/nantic/jasperreports/(in = 0) (out= 0)(stored 0%)
+adding: com/nantic/jasperreports/Translator.class(in = 7404) (out= 2159)(deflated 70%)
+adding: com/nantic/jasperreports/JasperServer.class(in = 9559) (out= 4603)(deflated 51%)
+adding: com/nantic/jasperreports/Translator.java(in = 8773) (out= 1816)(deflated 79%)
+adding: com/nantic/jasperreports/I18nGroovyCompiler.java(in = 10968) (out= 2336)(deflated 78%)
+adding: com/nantic/jasperreports/ReportCompiler.java(in = 1832) (out= 964)(deflated 47%)
+adding: com/nantic/jasperreports/JasperServer.java(in = 13845) (out= 3732)(deflated 73%)
+adding: com/nantic/jasperreports/I18nGroovyCompiler.class(in = 8320) (out= 2564)(deflated 69%)
+adding: com/nantic/jasperreports/ReportCompiler.class(in = 923) (out= 565)(deflated 38%)
+adding: com/nantic/jasperreports/LanguageTable.java(in = 1728) (out= 904)(deflated 47%)
+adding: com/nantic/jasperreports/XmlMultiLanguageDataSource.class(in = 1573) (out= 842)(deflated 46%)
+adding: com/nantic/jasperreports/CsvMultiLanguageDataSource.java(in = 4555) (out= 1618)(deflated 64%)
+adding: com/nantic/jasperreports/LanguageTable.class(in = 521) (out= 343)(deflated 34%)
+adding: com/nantic/jasperreports/I18nGetText.class(in = 1690) (out= 944)(deflated 44%)
+adding: com/nantic/jasperreports/XmlMultiLanguageDataSource.java(in = 3048) (out= 1288)(deflated 57%)
+adding: com/nantic/jasperreports/CsvMultiLanguageDataSource.class(in = 3267) (out= 1610)(deflated 50%)
+adding: com/nantic/jasperreports/I18nGetText.java(in = 2370) (out= 1120)(deflated 52%)
+JasperServer: Attempting to start XML-RPC Server at localhost/127.0.0.1:8090...
+JasperServer: Started successfully.
+JasperServer: Accepting requests. (Halt program to stop.)
+JasperServer: Compiling /usr/lib/python2.7/dist-packages/openerp/addons/jasper_reports/custom_reports/report2.jrxml

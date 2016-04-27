@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/1969/trunk/src/kderp_partner
+END
+kderp_partner.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/1836/trunk/src/kderp_partner/kderp_partner.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/10/trunk/src/kderp_partner/__init__.py
+END
+kderp_partner_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/1969/trunk/src/kderp_partner/kderp_partner_view.xml
+END
+kderp_res_bank_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1697/trunk/src/kderp_partner/kderp_res_bank_view.xml
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/1697/trunk/src/kderp_partner/__openerp__.py
+END

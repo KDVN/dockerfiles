@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_job_and_contract_configuration" model="ir.ui.view">
+            <field name="name">Job and Contract Configure</field>
+            <field name="model">kderp.job.contract.config</field>
+            <field name="arch" type="xml">
+                <form string="Configure Job &amp; Contract" class="oe_form_configuration" version="7.0">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <separator string="Job Configure"/>
+                    <group>
+                        <label for="id" string="Control Area"/>
+                        <div>
+                            <div>
+                                <field name="group_control_area_for_job" class="oe_inline"
+                                       on_change="onchange_group_control_for_job(group_control_area_for_job)"/>
+                                <label for="group_control_area_for_job"/>
+                            </div>
+                        </div>
+                    </group>
+                    <separator string="Contract Configure"/>
+                    <group>
+                        <label for="id" string="Control Area"/>
+                        <div>
+                            <div>
+                                <field name="group_control_area_for_contract" class="oe_inline" on_change="onchange_group_control_area_for_contract(group_control_area_for_contract)"/>
+                                <label for="group_control_area_for_contract"/>
+                            </div>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_kderp_job_contract_configurations" model="ir.actions.act_window">
+            <field name="name">Configure Job &amp; Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kderp.job.contract.config</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="menu_job_contract_config" name="Job &amp; Contract" parent="base.menu_config"
+            sequence="30" action="action_kderp_job_contract_configurations"/>
+
+    </data>
+</openerp>

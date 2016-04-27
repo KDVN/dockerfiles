@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2183/trunk/src/kderp_advance_payment/period
+END
+kderp_cash_period_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2183/trunk/src/kderp_advance_payment/period/kderp_cash_period_view.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1996/trunk/src/kderp_advance_payment/period/__init__.py
+END
+kderp_cash_period.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2183/trunk/src/kderp_advance_payment/period/kderp_cash_period.py
+END

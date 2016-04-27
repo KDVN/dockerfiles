@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="kderp_common.action_kderp_location_view" model="ir.actions.act_window">
+			<field name="context">{'name_only': 1}</field>
+		</record>
+
+		<menuitem action="kderp_common.action_kderp_location_view" id="menu_kderp_location_view" parent="kderp_project.menu_kderp_budget_job_budget" groups="group_kderp_project_location_menu" sequence="50"/>
+
+	</data>
+</openerp>

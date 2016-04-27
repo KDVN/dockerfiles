@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record model="ir.ui.view" id="view_kderp_general_expense_inherit">
+		    <field name="name">view.kderp.other.expense.ge.form.inherit</field>
+		    <field name="model">kderp.other.expense</field>
+		   <field name="inherit_id" ref="kderp_general_expense.view_kderp_other_expense_ge_form"/>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+		    	<field name='expense_line' position='before'>
+            		<group>         
+            			<button attrs="{'invisible':['|',('advance_payment_id','>',0),('state','not in',('draft','waiting_for_payment'))]}" context="{'expense_id':active_id,'account_analytic_id':account_analytic_id}" name="%(act_kderp_wizard_cash_advance)d" type='action' groups= "kderp_general_expense.group_kderp_cash_advance_from_ge"  string='Create Cash/Advance' icon='gtk-new' />
+	         		</group>
+            	</field>
+				   
+		    </field>
+		</record>
+	
+	</data>
+</openerp>

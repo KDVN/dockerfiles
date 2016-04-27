@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Budget Balance Sheet" language="groovy" pageWidth="595" pageHeight="842" columnWidth="569" leftMargin="15" rightMargin="11" topMargin="10" bottomMargin="9" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;kderp_budget_data_line&apos;]"/>
+	<parameter name="CURRENT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\VNDuong\\Desktop\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ParentID" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="SR_DATA_SOURCE_SHORT" class="java.lang.Object"/>
+	<parameter name="SR_DATA_SOURCE_LONG" class="java.lang.Object"/>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="ParentID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+	</field>
+	<field name="JobNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[Account_Code-code]]></fieldDescription>
+	</field>
+	<field name="JobName" class="java.lang.String">
+		<fieldDescription><![CDATA[Account_Name-name]]></fieldDescription>
+	</field>
+	<field name="PME" class="java.lang.String">
+		<fieldDescription><![CDATA[user_id/name]]></fieldDescription>
+	</field>
+	<field name="Client" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_id/name]]></fieldDescription>
+	</field>
+	<field name="Planned_Amount-planned_amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[kderp_budget_data_line/planned_amount]]></fieldDescription>
+	</field>
+	<field name="Ordered_Amount-ordered_amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[kderp_budget_data_line/expense_with_contract]]></fieldDescription>
+	</field>
+	<field name="No_Order_Amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[kderp_budget_data_line/expense_without_contract]]></fieldDescription>
+	</field>
+	<field name="Payment_VND-pay_amount_vnd" class="java.lang.Double">
+		<fieldDescription><![CDATA[kderp_budget_data_line/paid_amount]]></fieldDescription>
+	</field>
+	<field name="Contract_Amt_VND" class="java.lang.Double">
+		<fieldDescription><![CDATA[contracted_amount]]></fieldDescription>
+	</field>
+	<field name="Direct_Amt_USD" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Direct_Amount_USD-direct_amount_usd]]></fieldDescription>
+	</field>
+	<field name="Claim_Amt_VND" class="java.lang.Double">
+		<fieldDescription><![CDATA[claimed_amount]]></fieldDescription>
+	</field>
+	<field name="Received_Amt_VND" class="java.lang.Double">
+		<fieldDescription><![CDATA[collected_amount]]></fieldDescription>
+	</field>
+	<field name="OwnerName" class="java.lang.String">
+		<fieldDescription><![CDATA[Owner_Clients-owner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="BudgetCode" class="java.lang.String">
+		<fieldDescription><![CDATA[kderp_budget_data_line/budget_id/code]]></fieldDescription>
+	</field>
+	<field name="BudgetName" class="java.lang.String">
+		<fieldDescription><![CDATA[kderp_budget_data_line/budget_id/name]]></fieldDescription>
+	</field>
+	<field name="ParentBudgetCategory" class="java.lang.String">
+		<fieldDescription><![CDATA[kderp_budget_data_line/budget_id/budget_categ_id/parent_id/name]]></fieldDescription>
+	</field>
+	<field name="BudgetCategory" class="java.lang.String">
+		<fieldDescription><![CDATA[kderp_budget_data_line/budget_id/budget_categ_id/name]]></fieldDescription>
+	</field>
+	<field name="CompleteDate" class="java.util.Date">
+		<fieldDescription><![CDATA[completion_date]]></fieldDescription>
+	</field>
+	<field name="StartDate" class="java.util.Date">
+		<fieldDescription><![CDATA[date_start]]></fieldDescription>
+	</field>
+	<field name="Received_Amt_USD" class="java.lang.Double">
+		<fieldDescription><![CDATA[collected_amount_usd]]></fieldDescription>
+	</field>
+	<field name="Claim_Amt_USD" class="java.lang.Double">
+		<fieldDescription><![CDATA[claimed_amount_usd]]></fieldDescription>
+	</field>
+	<field name="Contract_Amt_USD" class="java.lang.Double">
+		<fieldDescription><![CDATA[contracted_amount_usd]]></fieldDescription>
+	</field>
+	<field name="Over" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[budget_status_ids/over]]></fieldDescription>
+	</field>
+	<field name="Budget_Amt_VND" class="java.lang.Double">
+		<fieldDescription><![CDATA[total_budget_amount]]></fieldDescription>
+	</field>
+	<field name="Budget_Amt_USD" class="java.lang.Double">
+		<fieldDescription><![CDATA[total_budget_amount_usd]]></fieldDescription>
+	</field>
+	<field name="BudgetCategory_Sequence" class="java.lang.Integer">
+		<fieldDescription><![CDATA[kderp_budget_data_line/budget_id/budget_categ_id/sequence]]></fieldDescription>
+	</field>
+	<field name="Total_Cost_In_USD" class="java.lang.Double">
+		<fieldDescription><![CDATA[cost_usd]]></fieldDescription>
+	</field>
+	<field name="Total_Cost_In_VND" class="java.lang.Double">
+		<fieldDescription><![CDATA[cost_vnd]]></fieldDescription>
+	</field>
+	<field name="total_site_expense" class="java.lang.Double">
+		<fieldDescription><![CDATA[budget_total_cat_ids/site_expense]]></fieldDescription>
+	</field>
+	<field name="total_sub_contractor" class="java.lang.Double">
+		<fieldDescription><![CDATA[budget_total_cat_ids/sub_contractor]]></fieldDescription>
+	</field>
+	<field name="total_material" class="java.lang.Double">
+		<fieldDescription><![CDATA[budget_total_cat_ids/material]]></fieldDescription>
+	</field>
+	<sortField name="JobNumber"/>
+	<sortField name="ParentBudgetCategory"/>
+	<sortField name="BudgetCategory_Sequence"/>
+	<sortField name="BudgetCode"/>
+	<variable name="Sum_POWContract_BudgetCodeGroup" class="java.lang.Double" resetType="Group" resetGroup="BudgetCode Group" calculation="Sum">
+		<variableExpression><![CDATA[$F{Ordered_Amount-ordered_amount}==null?0:$F{Ordered_Amount-ordered_amount}]]></variableExpression>
+	</variable>
+	<variable name="Sum_POWOContract_BudgetCodeGroup" class="java.lang.Double" resetType="Group" resetGroup="BudgetCode Group" calculation="Sum">
+		<variableExpression><![CDATA[$F{No_Order_Amount}==null?0:$F{No_Order_Amount}]]></variableExpression>
+	</variable>
+	<variable name="Sum_POContract_BudgetParentCategory" class="java.lang.Double" resetType="Group" resetGroup="Parent Budget Category Group" calculation="Sum">
+		<variableExpression><![CDATA[($F{No_Order_Amount}==null?0:$F{No_Order_Amount})+($F{Ordered_Amount-ordered_amount}==null?0:$F{Ordered_Amount-ordered_amount})]]></variableExpression>
+	</variable>
+	<variable name="Total_Budget_ParentCategory_Amount" class="java.lang.Double" resetType="Group" resetGroup="Parent Budget Category Group" calculation="Sum">
+		<variableExpression><![CDATA[$F{Planned_Amount-planned_amount}==null?0:$F{Planned_Amount-planned_amount}]]></variableExpression>
+	</variable>
+	<variable name="Contract_Amt_VND" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Contract_Amt_VND}==null?0:$F{Contract_Amt_VND}]]></variableExpression>
+	</variable>
+	<variable name="Contract_Amt_USD" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Contract_Amt_USD}==null?0:$F{Contract_Amt_USD}]]></variableExpression>
+	</variable>
+	<variable name="Total_Contract_Amt_VND" class="java.lang.Double" resetType="None">
+		<variableExpression><![CDATA[$V{Contract_Amt_VND}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="Total_Contract_Amt_USD" class="java.lang.Double" incrementType="Report">
+		<variableExpression><![CDATA[$V{Contract_Amt_USD}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Claim_Amt_VND" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Claim_Amt_VND}==null?0:$F{Claim_Amt_VND}]]></variableExpression>
+	</variable>
+	<variable name="Total_Claim_Amt_VND" class="java.lang.Double" incrementType="Report">
+		<variableExpression><![CDATA[$V{Claim_Amt_VND}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Claim_Amt_USD" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Claim_Amt_USD}==null?0:$F{Claim_Amt_USD}]]></variableExpression>
+	</variable>
+	<variable name="Total_Claim_Amt_USD" class="java.lang.Double" incrementType="Report">
+		<variableExpression><![CDATA[$V{Claim_Amt_USD}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Budget_Amt_VND" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Budget_Amt_VND}==null?0:$F{Budget_Amt_VND}]]></variableExpression>
+	</variable>
+	<variable name="Total_Budget_Amt_VND" class="java.lang.Double" incrementType="Report">
+		<variableExpression><![CDATA[$V{Budget_Amt_VND}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Budget_Amt_USD" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Budget_Amt_USD}==null?0:$F{Budget_Amt_USD}]]></variableExpression>
+	</variable>
+	<variable name="Total_Budget_Amt_USD" class="java.lang.Double" incrementType="Report">
+		<variableExpression><![CDATA[$V{Budget_Amt_USD}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Per_Contract_Amt" class="java.lang.Double">
+		<variableExpression><![CDATA[1.00]]></variableExpression>
+	</variable>
+	<variable name="VTemp" class="java.lang.Integer">
+		<variableExpression><![CDATA[290797]]></variableExpression>
+		<initialValueExpression><![CDATA[290797]]></initialValueExpression>
+	</variable>
+	<variable name="ActualCost_VND" class="java.lang.Double" resetType="Group" resetGroup="Job Group" calculation="Sum">
+		<variableExpression><![CDATA[$V{Sum_POWContract_BudgetCodeGroup}+$V{Sum_POWOContract_BudgetCodeGroup}]]></variableExpression>
+	</variable>
+	<variable name="Per_Actual_Cost" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{ActualCost_VND}==null || $V{Total_Budget_Amt_VND}==0?0:($V{ActualCost_VND}/$V{Total_Budget_Amt_VND})]]></variableExpression>
+	</variable>
+	<variable name="countBudget" class="java.lang.Integer" resetType="Group" resetGroup="Job Group" incrementType="Group" incrementGroup="BudgetCode Group" calculation="Count">
+		<variableExpression><![CDATA[$F{BudgetCode}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Subtotal" class="java.math.BigDecimal" resetType="Group" resetGroup="Job Group" calculation="Sum">
+		<variableExpression><![CDATA[$V{countBudget}<45?($F{Planned_Amount-planned_amount}==null?0:$F{Planned_Amount-planned_amount}):0]]></variableExpression>
+	</variable>
+	<variable name="total_mat_subcon" class="java.lang.Double">
+		<variableExpression><![CDATA[($F{total_sub_contractor}==null?0:$F{total_sub_contractor})+($F{total_material}==null?0:$F{total_material})]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[($F{ParentBudgetCategory}=="Direct Cost")&&($F{BudgetCategory}!="Site Expense")]]></filterExpression>
+	<group name="Job Group" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{JobNumber}]]></groupExpression>
+		<groupHeader>
+			<band height="96">
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="0" width="160" height="30" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9" isBold="false" isItalic="false" isUnderline="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+					</textElement>
+					<text><![CDATA[MATERIAL/SUB-CONTRACTOR
+BUDGET SUMMARY SHEET]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="160" y="0" width="90" height="15" backcolor="#CCCCCC"/>
+					<box leftPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[CONTRACTED AMOUNT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="160" y="30" width="90" height="15" backcolor="#CCCCCC"/>
+					<box leftPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[MATERIAL/SUB-CON COST]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="USD #,##0.00">
+					<reportElement mode="Opaque" x="360" y="0" width="70" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Contract_Amt_USD}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="160" y="15" width="90" height="15" backcolor="#CCCCCC"/>
+					<box leftPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[BUDGET AMOUNT]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="VND #,##0">
+					<reportElement x="250" y="15" width="75" height="15"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_VND}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="USD #,##0.00">
+					<reportElement x="360" y="15" width="70" height="15"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_USD}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="#,##0.00 %">
+					<reportElement mode="Opaque" x="325" y="0" width="35" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Per_Contract_Amt}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="#,##0.00 %">
+					<reportElement x="325" y="15" width="35" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[1]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="VND #,##0">
+					<reportElement mode="Opaque" x="250" y="0" width="75" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Contract_Amt_VND}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="30" y="66" width="64" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{JobNumber}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement stretchType="RelativeToBandHeight" x="134" y="81" width="151" height="15"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{OwnerName}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="81" width="30" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[PM(E/M)]]></text>
+				</staticText>
+				<textField>
+					<reportElement stretchType="RelativeToBandHeight" x="134" y="67" width="151" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{JobName}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+					<reportElement x="443" y="66" width="60" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{StartDate}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+					<reportElement x="443" y="81" width="60" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{CompleteDate}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="30" y="81" width="64" height="15"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{PME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="403" y="66" width="40" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[Start]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="403" y="81" width="40" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[Complete]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="94" y="81" width="40" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[OWNER]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="503" y="66" width="22" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[DATE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="94" y="66" width="40" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[JOB NAME]]></text>
+				</staticText>
+				<textField pattern="dd-MMM-yy">
+					<reportElement x="525" y="66" width="44" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="66" width="30" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[Job No.]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="@ #,##0.00">
+					<reportElement mode="Opaque" x="430" y="0" width="40" height="15" backcolor="#CCCCCC"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Contract_Amt_USD}==null || $V{Total_Contract_Amt_USD}==0?0:$V{Total_Contract_Amt_VND}/$V{Total_Contract_Amt_USD}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="@ #,##0.00">
+					<reportElement x="430" y="15" width="40" height="15"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_USD}==0 || $V{Total_Budget_Amt_USD}==null?0:$V{Total_Budget_Amt_VND}/$V{Total_Budget_Amt_USD}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="285" y="67" width="28" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<text><![CDATA[CLIENT:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="313" y="66" width="90" height="15"/>
+					<box>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Client}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="160" y="45" width="90" height="15" backcolor="#CCCCCC"/>
+					<box leftPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font size="6" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ACTUAL COST]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Parent Budget Category Group" pattern="VND #,##0">
+					<reportElement x="250" y="45" width="75" height="15"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Sum_POContract_BudgetParentCategory}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="Parent Budget Category Group" pattern="VND #,##0;(#,##0)">
+					<reportElement mode="Transparent" x="250" y="30" width="75" height="15" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="false" isItalic="false" isStrikeThrough="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_ParentCategory_Amount}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="@ #,##0.00">
+					<reportElement x="430" y="30" width="40" height="15"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_USD}==0 || $V{Total_Budget_Amt_USD}==null?0:$V{Total_Budget_Amt_VND}/$V{Total_Budget_Amt_USD}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Parent Budget Category Group" pattern="#,##0.00 %">
+					<reportElement x="325" y="30" width="35" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_VND}==0?0:($V{Total_Budget_ParentCategory_Amount}/$V{Total_Budget_Amt_VND})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="Parent Budget Category Group" pattern="USD #,##0.00;(-#,##0.00)">
+					<reportElement mode="Transparent" x="360" y="30" width="70" height="15" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="false" isItalic="false" isStrikeThrough="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_USD}*($V{Total_Budget_Amt_VND}==0?0:($V{Total_Budget_ParentCategory_Amount}/$V{Total_Budget_Amt_VND}))]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Parent Budget Category Group" pattern="#,##0.00 %">
+					<reportElement x="325" y="45" width="35" height="15"/>
+					<box rightPadding="0">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_VND}==0?0:($V{Sum_POContract_BudgetParentCategory}/$V{Total_Budget_Amt_VND})]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Job Group" pattern="@ #,##0.00">
+					<reportElement x="430" y="45" width="40" height="15"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_USD}==0 || $V{Total_Budget_Amt_USD}==null?0:$V{Total_Budget_Amt_VND}/$V{Total_Budget_Amt_USD}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="Parent Budget Category Group" pattern="USD #,##0.00;(-#,##0.00)">
+					<reportElement mode="Transparent" x="360" y="45" width="70" height="15" backcolor="#FFFFFF"/>
+					<box rightPadding="1">
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="6" isBold="false" isItalic="false" isStrikeThrough="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{Total_Budget_Amt_USD}*($V{Total_Budget_Amt_VND}==0?0:($V{Sum_POContract_BudgetParentCategory}/$V{Total_Budget_Amt_VND}))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="19">
+				<printWhenExpression><![CDATA[$V{Subtotal}!=$V{total_mat_subcon}]]></printWhenExpression>
+				<subreport>
+					<reportElement x="0" y="0" width="569" height="19"/>
+					<subreportParameter name="DATA_Source">
+						<subreportParameterExpression><![CDATA[$P{SR_DATA_SOURCE_SHORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REWIND">
+						<subreportParameterExpression><![CDATA[$P{REWIND}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ParentID">
+						<subreportParameterExpression><![CDATA[$F{ParentID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[$P{SR_DATA_SOURCE_SHORT}]]></dataSourceExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "SubShortBudgetSummaryDirectCode.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="20">
+				<printWhenExpression><![CDATA[$V{Subtotal}==$V{total_mat_subcon}]]></printWhenExpression>
+				<subreport>
+					<reportElement x="0" y="0" width="569" height="20"/>
+					<subreportParameter name="DATA_Source">
+						<subreportParameterExpression><![CDATA[$P{SR_DATA_SOURCE_LONG}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="REWIND">
+						<subreportParameterExpression><![CDATA[$P{REWIND}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ParentID">
+						<subreportParameterExpression><![CDATA[$F{ParentID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[$P{SR_DATA_SOURCE_LONG}]]></dataSourceExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "SubLongBudgetSummaryDirectCode.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Temp Group" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$V{VTemp}]]></groupExpression>
+	</group>
+	<group name="Parent Budget Category Group">
+		<groupExpression><![CDATA[$F{ParentBudgetCategory}]]></groupExpression>
+	</group>
+	<group name="Budget Category Group">
+		<groupExpression><![CDATA[$F{BudgetCategory}]]></groupExpression>
+	</group>
+	<group name="BudgetCode Group">
+		<groupExpression><![CDATA[$F{BudgetCode}]]></groupExpression>
+	</group>
+</jasperReport>

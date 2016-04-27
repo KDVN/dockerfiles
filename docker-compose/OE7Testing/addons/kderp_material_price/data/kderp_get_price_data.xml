@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record id="ir_cron_module_get_price_data" model="ir.cron">
+            <field name="name">Check and Get Price Data from Purchase</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">4</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall" />
+            <field eval="'kderp.update.price.data'" name="model" />
+            <field eval="'action_update_latest_price'" name="function"/>
+            <field eval="'()'" name="args" />
+            <field name="priority">1000</field>
+        </record>
+        
+	</data>
+</openerp>

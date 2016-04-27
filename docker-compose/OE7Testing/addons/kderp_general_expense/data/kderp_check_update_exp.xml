@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+ <data noupdate="0">
+     
+        <record id="ir_cron_module_check_and_update_other_expense" model="ir.cron">
+            <field name="name">Update Other Expense Done</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall" />
+            <field eval="'kderp.other.expense'" name="model" />
+            <field eval="'check_and_make_koe_done'" name="function"/>
+            <field eval="'(None,)'" name="args" />
+            <field name="priority">1000</field>
+        </record>
+        
+        <record id="ir_cron_module_check_and_update_monthly_expense" model="ir.cron">
+            <field name="name">Update Other Monthly Expense</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall" />
+            <field eval="'kderp.other.expense'" name="model" />
+            <field eval="'check_and_submit_monthly_expense'" name="function"/>
+            <field eval="'(None,)'" name="args" />
+            <field name="priority">1000</field>
+        </record>
+        
+        <record id="ir_cron_module_check_and_update_autopaid_oexpense" model="ir.cron">
+            <field name="name">Update Auto Paid Other Expense</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall" />
+            <field eval="'kderp.paid.supplier.other.expense'" name="model" />
+            <field eval="'update_paid_other_payment_supplier'" name="function" />
+            <field eval="'(None,)'" name="args" />
+            <field name="priority">1000</field>
+        </record>
+        
+  </data>
+</openerp>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+	
+		<record model="ir.module.category" id="module_category_kderp_gdt_companies">
+			<field name="name">KDERP Gdt Companies</field>
+			<field name="sequence">250</field>
+		</record>		
+		<record id="group_kderp_gdt_companies_read" model="res.groups">
+			<field name="name">KDERP Gdt Companies / Read </field>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="category_id" ref="module_category_kderp_gdt_companies"/>
+		</record>		
+		<record id="group_kderp_gdt_companies_full" model="res.groups">
+			<field name="name">KDERP Gdt Companies / Full </field>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="category_id" ref="module_category_kderp_gdt_companies"/>
+		</record>
+		<record id='group_kderp_gdt_companies_menu' model='res.groups'>
+        	<field name='name'>KDERP Gdt Companies / Menu</field>
+        	<field name="category_id" ref="module_category_kderp_gdt_companies"/>
+        	<field name="users" eval="[(4, ref('base.user_root'))]"/>
+    	</record>
+
+	</data>
+</openerp>

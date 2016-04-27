@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<delete id="account_budget.act_account_analytic_account_cb_lines" model="ir.actions.act_window"/> <!-- Xoa menu Budget Lines -->
+		
+		<menuitem id="menu_kderp_budget_job_budget" parent="kderp_base.menu_kderp_budget_control_root" name="Job &amp; Budget" sequence="15"/>
+		
+		<record id="view_account_analytic_kderp_job_tree" model="ir.ui.view">
+			<field name="name">view.account.analytic.kderp.job.tree</field>
+			<field name="model">account.analytic.account</field>
+			<field name="priority" eval="5"/>
+			<field name="arch" type="xml">
+				<tree string='Job'>
+					<field name="full_name"/>
+					<field name="partner_id" invisible="'partner_id' in context.get('group_by',[])"/>
+					<field name="job_type"/>
+					<field name="state" invisible="'state' in context.get('group_by',[])"/>
+					<field name="process_status"/>
+					<field name="job_currency" string="Cur."/>
+					<field name="job_amount" string="Amount"/>	        
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_account_analytic_kderp_job_form" model="ir.ui.view">
+			<field name="name">view.account.analytic.kderp.job.form</field>
+			<field name="model">account.analytic.account</field>
+			<field name="priority" eval="5"/>
+			<field name="arch" type="xml">
+				<form string="Analytic Account" version="7.0">
+				 	<header>
+						<field name="state_bar" widget="statusbar" statusbar_visible="doing,done,closed,cancel"/>
+	                </header>
+                    <sheet string="Job">
+	                	<h2><field name="full_name"/></h2>
+						<h3>
+	                		<field class="oe_edit_only" attrs="{'readonly':[('code','!=',False)]}" name="newcode_suggest" on_change="onchange_suggest_code(newcode_suggest)" nolabel="1" placeholder="New Code Suggestion"/>
+                			<field name="code" class="oe_inline oe_edit_only" placeholder="Job Number"/>
+               				<field name="name" class="oe_edit_only" placeholder="Name (Ex. New Factory for Canon Project)"/>
+						</h3>
+						<group colspan="4" col="4">
+		                    <group colspan="2" col="2">
+		                    	<field name='description' widget='char'/>
+		                    	<field name='job_type'/>
+		                    	<field name="process_status"/>
+		                    	<field name="state"/>
+		                    </group>
+		                    <group colspan="2" col="2">
+			                    <field name='owner_id' context="{'search_default_customer':1, 'show_address': 0,'default_customer':1,'hide_name':0}" options='{"always_reload": True}'/>
+			                    <field name='partner_id' context="{'search_default_customer':1, 'show_address': 0,'default_customer':1,'hide_name':0}" options='{"always_reload": True}'/>
+			                    <field name='address_id' domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" context="{'default_type':'default','show_address': 1,'hide_name': 1,'inline':1}" options='{"always_reload": True}'/>
+			                    <field name='invoice_address_id' domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" context="{'default_type':'invoice','show_address': 1,'hide_name': 1,'inline':1}" options='{"always_reload": True}'/>
+		                    </group>
+							<group colspan="2" col="2">
+								<field name="registration_date"/>
+								<field name="date"/>
+							</group>
+							<group colspan="2" col="2">
+								<field name="date_start"/>
+								<field name="completion_date"/>
+								<field name="actual_completion_date"/>
+							</group>
+							<group colspan="2" col="2">
+								<field name="general_project_manager_id"/>
+								<field name="user_id" string='P.M.'/>
+								<field name="manager_id" string='S.M.'/>
+							</group>
+							<group colspan="2" col="2">
+								<newline/>
+								<field name="project_manager_ref" string='P.M.Ref.'/>
+								<field name="area_site_manager_id" string='A.S.M.'/>
+							</group>							
+						</group>
+						<group colspan="4" col="4" string='Job Amount'>
+							<field name="job_currency_ids" colspan="2" nolabel='1'/>
+							<group colspan="2" col="2" class="kdvn_float_readonly">
+								<field name='job_currency'/>
+								<field name='job_amount'/>
+								<field name='job_tax'/>
+								<field style="border-top-sytle:solid;border-width:1px" name='job_total'/>
+							</group>
+						</group>
+						<notebook>
+							<page string='Job Financial Info.'>
+								<group colspan="4" col="4">
+									<field name="total_budget_amount"/>
+									<field name="total_budget_amount_usd"/>
+								</group>
+							</page>
+							<page string='Budget'>
+		            			<field name='kderp_budget_data_line' limit="15">
+		            				<tree editable='top' string="Budget Data" fonts="bold:over=='Yes'" colors="red:over=='Yes'">
+		           						<field name='budget_id'/>
+		           						<field name='planned_amount' sum='Sub-Total'/>
+		            				</tree>
+		            			</field>
+		            			<label string='Please double-check with the below sub-totals !'/>
+		            			<field name="budget_total_cat_ids" mode='tree' nolabel="1" view_mode="tree" limit="1">
+		            				<tree>
+										<field name="total" class='oe_title'/>
+										<field name="material"/>
+										<field name="sub_contractor"/>
+										<field name="site_expense"/>
+										<field name="kinden_salary_admin_cost"/>
+										<field name="bussiness_profit"/>
+									</tree>
+		            			</field>
+		            			<field colspan="4" name="budget_history_ids" nolabel="1" view_mode="tree" mode="tree" limit="5">
+		                			<tree string="Budget History" editable="top" createable='0'>
+										<field name="date"/>
+										<field name="amount"/>
+		                				<field name="material"/>
+										<field name="sub_contractor"/>
+								        <field name="site_expense"/>
+								        <field name="kinden_salary_admin_cost"/>
+	         							<field name="bussiness_profit"/>
+	         							<field name="status"/> 
+		                			</tree>
+	                			</field>
+		                		<button name="update_history" colspan="1" string="Update History" type="object" icon="gtk-execute"/>
+		            		</page>
+		            		<page string="Quotation &amp; Contract">
+								<separator colspan="4" string="Quotations"/>
+								<field colspan="4" mode="tree" name="quotation_lists" nolabel="1" readonly="0"/>			
+		                		<separator colspan="4" string="Contracts"/>
+								<field name="contract_ids" nolabel="1" mode='tree' readonly="1"/>
+	                		</page>
+	                		<page string='Viewer'>
+	                			<field name="user_related_ids" mode="tree">
+	                				<tree>
+	                					<field name="name"/>
+	                				</tree>
+	                			</field>
+	                		</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+        <record id="view_account_analytic_account_kderp_search" model="ir.ui.view">
+            <field name="name">account.analytic.account.kderp.search</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <search string="Job">
+                    <field name="name" filter_domain="['|','|', ('name','ilike',self), ('code','ilike',self), ('description','ilike',self)]" string="Job/Description"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="owner_id"/>
+                    <field name="manager_id" filter_domain="['|','|','|', ('manager_id','=',self), ('user_id','=',self), ('general_project_manager_id','=',self),('area_site_manager_id','=',self)]" string="GPM/PM/ASM/SM"/>
+<!--                     <field name="manager_id" string="Site Manager"/> -->
+<!--                     <field name="user_id" string="Project Manager"/> -->
+<!--                     <field name="general_project_manager_id"/> -->
+
+                    <filter string="On-Going" domain="[('state','=','doing')]"/>
+                    <filter string="Completed" domain="[('state','=','done')]"/>
+                    <filter string="Closed" domain="[('state','=','closed')]"/>
+                    <filter string="Cancelled" domain="[('state','=','cancel')]"/>
+                    <separator/>
+					<filter string="Electrical Jobs" domain="[('job_type','=','E')]"/>                    
+					<filter string="Mechanical Jobs" domain="[('job_type','=','M')]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" domain="[]" context="{'group_by':'state'}" groups="base.group_no_one"/>
+                        <filter string="Client" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Job Type" domain="[]" context="{'group_by':'job_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+		 
+		 <!-- Job On Going -->
+		<record id="action_account_analytic_account_kderp_job_not_cancel_close_form" model="ir.actions.act_window">
+            <field name="name">Job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="context">{'show_full_name':1}</field>
+            <field name="domain">[('state','not in',('closed','cancel'))]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kderp_project.view_account_analytic_kderp_job_tree"/>
+            <field name="search_view_id" ref="kderp_project.view_account_analytic_account_kderp_search"/>
+        </record>
+ 		<menuitem id="kderp_menu_job_not_closed_cancel" action="action_account_analytic_account_kderp_job_not_cancel_close_form" parent="menu_kderp_budget_job_budget" sequence="45"/>
+		 	
+		<!-- Job (Included Closed, Cancelled) -->
+		<record id="action_account_analytic_account_kderp_all_job_form" model="ir.actions.act_window">
+            <field name="name">All Job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="domain"></field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="kderp_project.view_account_analytic_account_kderp_search"/>
+        </record>
+ 		<menuitem id="kderp_menu_all_job" action="action_account_analytic_account_kderp_all_job_form" parent="menu_kderp_budget_job_budget" groups="group_kderp_project_em_view_all_job_menu" sequence="45"/>
+	
+	</data>
+</openerp>

@@ -1,0 +1,125 @@
+<openerp>
+    <data>		
+        
+        <act_window
+            domain="[('purchase_id', '=', active_id)]" 
+            id="act_purchase_order_kderp_stock_picking"
+            context="{'order_id':active_id}"
+            name="Packing" 
+            res_model="stock.picking" 
+            src_model="purchase.order"/>
+            
+            
+		<!-- Stock Location Area -->
+		
+		 <record id="view_kderp_stock_location_form" model="ir.ui.view">
+            <field name="name">kderp.stock.location.form</field>
+            <field name="model">stock.location</field>
+            <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+            	<form string="Warehouse(s)" version="7.0">
+            		<header>
+                        <button name="close_warehouse" states="open" string="Close Warehouse" help="Close a warehouse, don't show in move product" type="object" groups="kderp_stock.kderp_warehouse_manager"/>
+                        <button name="lock_warehouse" help="lock a warehouse prevent storekeeper(s) change infomation" states="open" string="Lock Warehouse" groups="kderp_stock.kderp_warehouse_manager" type="object"/>
+                        <button name="open_warehouse" states="closed,locked" icon='gtk-convert' string="Open Warehouse" groups="kderp_stock.kderp_warehouse_manager" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="open"/>
+            		</header>
+            		<sheet>
+            			<label for="code" class="oe_edit_only" string="Code"/>
+            			<h2><field name="code"/></h2>
+	            		<label for="name" class="oe_edit_only" string="Name"/>
+						<h2><field name="name"/></h2>
+	            		<label for="location_id" class="oe_edit_only" string="Belong to Warehouse"/>
+						<h2><field name="location_id" required="1"/></h2>
+						<label for="account_analytic_id" class="oe_edit_only" string="Job Related"/>
+						<h2><field name="account_analytic_id" on_change="onchange_getnewcode(account_analytic_id, usage)"/></h2>
+						<group string="Warehouse Info." col="4" colspan="4">
+							<field name='stock_manager_id'/>
+							<field name="usage" string="Warehouse type" on_change="onchange_getnewcode(account_analytic_id, usage)"/>
+	            			<field name="partner_id" string="Warehouse Address"/>
+	            			<field name="general_stock"/>   			
+	            		</group>
+	            		<notebook>
+	            			<page string='Storekeeper(s)'>
+	            				<field name="storekeeper_ids" colspan="4" nolabel="1"/>
+	            			</page>
+	            			<!--<page string='Job Related Info.'>-->
+	            				<!--<field name="job_related_ids" colspan="4" nolabel="1">-->
+	            					<!--<tree string='Job Info'>-->
+	            						<!--<field name='code'/>-->
+	            						<!--<field name='name'/>-->
+	            						<!--<field name='job_type'/>-->
+	            					<!--</tree>-->
+	            				<!--</field>-->
+	            			<!--</page>-->
+							<page string="Related Warehouse(s)">
+								<field name="child_ids" nolabel="1" readonly="1"/>
+							</page>
+	            		</notebook>
+                	</sheet>
+					<footer>
+						<button name="toggle_active" type="object" string="Show/Hide" groups="kderp_stock.group_menu_stock_configuration"/>
+					</footer>
+                </form>
+            </field>
+        </record>
+
+		<!-- Overwrite default stock tree view -->
+        <record id="stock.view_location_tree2" model="ir.ui.view">
+            <field name="name">kderp.stock.location.tree</field>
+            <field name="model">stock.location</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+            	<tree string="Warehouse(s)" colors="blue:usage=='view';darkred:usage=='internal'">
+					<field name="code"/>
+            		<field name="name" string="Name"/>
+					<field name="complete_name" string="FullName"/>
+            		<field name="usage" string="Warehouse type"/>
+            		<field name="stock_real" invisible="'product_id' not in context"/>
+                    <field name="stock_virtual" invisible="'product_id' not in context"/>
+                    <field name="state" invisible="1"/>
+            	</tree>
+            </field>
+        </record>
+       
+       	<record id="view_kderp_stock_location_search" model="ir.ui.view">
+            <field name="name">kderp.stock.location.search</field>
+            <field name="model">stock.location</field>
+           <field eval="5" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Warehouse(s)">
+                    <field name="name" string="Stock Locations" />
+                    <field name="location_id" string="Belong to Location"/>
+                    <field name="partner_id"/>
+            		
+            		<separator/>
+            		            		
+                    <filter icon="terp-personal" name="customer" string="Customer" domain="[('usage', '=', 'customer')]" help="Customer Locations"/>
+                    <filter icon="terp-personal" name="supplier" string="Supplier" domain="[('usage', '=', 'supplier')]" help="Supplier Locations"/>
+					<filter icon="terp-personal" name="showall" string="Show all"  context="{'show_all':1}"/>
+            		
+            		<group expand="0" string="Group by ...">
+            			<filter string="Location Type" name='group_usage' domain="[]" context="{'group_by':'usage'}"/> 
+            		</group>
+
+                </search>
+            </field>
+        </record>
+
+		<!-- All Stock  -->
+		<record id="act_kderp_stock_location" model="ir.actions.act_window">
+            <field name="name">Warehouse(s)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="filter" eval="True"/>
+        </record>
+             
+        <menuitem 
+        			action="act_kderp_stock_location" 
+        			id="kderp_stock_location_menu" 
+        			parent="menu_kderp_stock" sequence="1"
+        			groups="group_sub_menu_kderp_stock"/>
+
+    </data>
+</openerp>

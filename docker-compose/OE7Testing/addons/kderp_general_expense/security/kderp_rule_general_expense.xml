@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<!-- Rule General Expense -->
+	    <record model="ir.rule" id="kderp_rule_general_expense">
+	        <field name="name">KDERP General Expense - User see General Expense Create only</field>
+	       	<field name="model_id" ref="model_kderp_general_expense"/>
+	        <field name="global" eval="False"/>
+			<field name="domain_force">[('user_id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('group_kderp_general_expense_user_create')])]" name="groups"/>
+	    </record> 
+	    
+<!-- 	    Rule General Expense Line -->
+<!-- 	    <record model="ir.rule" id="kderp_rule_general_expense_line"> -->
+<!-- 	        <field name="name">KDERP General Expense - User see General Expense Line Create only</field> -->
+<!-- 	       	<field name="model_id" ref="model_kderp_general_expense_line"/> -->
+<!-- 	        <field name="global" eval="False"/>  -->
+<!-- 			<field name="domain_force">[('id','in',"(select general_expense_id from kderp_general_expense_line where general_expense_id  in (select id  from  kderp_general_expense where %s in (user_id)))")]</field> -->
+<!-- 	    	<field eval="[(6,0,[ref('group_kderp_general_expense_user_create')])]" name="groups"/> -->
+<!-- 	    </record> -->
+	    
+	     <record model="ir.rule" id="kderp_rule_general_expense_supplier_payment_create">
+	        <field name="name">KDERP General Expense - User see General Expense Supplier Payment Create only</field>
+	       	<field name="model_id" ref="model_kderp_general_expense_supplier_payment"/>
+	        <field name="global" eval="False"/>
+			<field name="domain_force">[('general_expense_id.user_id','=',user.id)]</field>
+	    	<field eval="[(6,0,[ref('group_kderp_general_expense_user_create')])]" name="groups"/>
+	    </record> 
+	    
+	    <!-- Rule GE ( Bo Phan chi Hang)-->
+	    <record model="ir.rule" id="kderp_rule_general_expense_international_section">
+	        <field name="name">KDERP General Expense -International Section</field>
+	       	<field name="model_id" ref="model_kderp_general_expense"/>
+	        <field name="global" eval="False"/>
+			<field name="domain_force">[('id','in',"(select kge.id from kderp_general_expense kge where user_id in (select rr.user_id from  resource_resource rr left join hr_employee he on he.resource_id =rr.id left join hr_department hd on hd.id = he.department_id where hd.code ='AD2')).sql.query")]</field>
+	    	<field eval="[(6,0,[ref('group_kderp_general_expense_international_section')])]" name="groups"/>
+	    </record> 
+<!-- 	    Rule GE Line ( Bo Phan chi Hang) -->
+<!-- 	    <record model="ir.rule" id="kderp_rule_general_expense_line_international_section"> -->
+<!-- 	        <field name="name">KDERP General Expense Line -International Section</field> -->
+<!-- 	       	<field name="model_id" ref="model_kderp_general_expense_line"/> -->
+<!-- 	        <field name="global" eval="False"/> -->
+<!-- 			<field name="domain_force">[('id','in',"(select kgel.id from kderp_general_expense_line kgel left join kderp_general_expense kge on kgel.general_expense_id =kge.id left join  resource_resource rr  on rr.user_id =kge.user_id left join hr_employee he on he.resource_id =rr.id left join hr_department hd on hd.id = he.department_id where hd.code ='AD2').sql.query")]</field> -->
+<!-- 	    	<field eval="[(6,0,[ref('group_kderp_general_expense_international_section')])]" name="groups"/> -->
+<!-- 	    </record> -->
+	    
+	    <record model="ir.rule" id="kderp_rule_general_expense_supplier_payment_internatiion_section">
+	        <field name="name">KDERP General Expense Supplier Payment -International Section</field>
+	       	<field name="model_id" ref="model_kderp_general_expense_supplier_payment"/>
+	        <field name="global" eval="False"/>
+			<field name="domain_force">[('id','in',"(select kgesp.id from  kderp_general_expense_supplier_payment kgesp left join kderp_general_expense kge on kgesp.general_expense_id =kge.id left join  resource_resource rr  on rr.user_id =kge.user_id left join hr_employee he on he.resource_id =rr.id left join hr_department hd on hd.id = he.department_id where hd.code ='AD2').sql.query")]</field>
+	    	<field eval="[(6,0,[ref('group_kderp_general_expense_international_section')])]" name="groups"/>
+	    </record>
+	    
+	 	  <!-- Rule GE ( Bo Phan chi Nam)-->
+	    <record model="ir.rule" id="kderp_rule_general_expense_pesonel_section">
+	        <field name="name">KDERP General Expense -Personel Section</field>
+	       	<field name="model_id" ref="model_kderp_general_expense"/>
+	        <field name="global" eval="False"/>
+			<field name="domain_force">[('id','in',"(select kge.id from kderp_general_expense kge left join  resource_resource rr  on rr.user_id =kge.user_id left join hr_employee he on he.resource_id =rr.id left join hr_department hd on hd.id = he.department_id where hd.code ='AD1').sql.query")]</field>
+	    	<field eval="[(6,0,[ref('group_kderp_general_expense_personel_section')])]" name="groups"/>
+	    </record> 
+	    
+<!-- 	    <record model="ir.rule" id="kderp_rule_general_expense_line_pesonel_section"> -->
+<!-- 	        <field name="name">KDERP General Expense Line -Personel Section</field> -->
+<!-- 	       	<field name="model_id" ref="model_kderp_general_expense_line"/> -->
+<!-- 	        <field name="global" eval="False"/> -->
+<!-- 			<field name="domain_force">[('id','in',"(select kgel.id from kderp_general_expense_line kgel left join kderp_general_expense kge on kgel.general_expense_id =kge.id  left join  resource_resource rr  on rr.user_id =kge.user_id left join hr_employee he on he.resource_id =rr.id left join hr_department hd on hd.id = he.department_id where hd.code ='AD1').sql.query")]</field> -->
+<!-- 	    	<field eval="[(6,0,[ref('group_kderp_general_expense_personel_section')])]" name="groups"/> -->
+<!-- 	    </record>  -->
+	    
+	 	<record model="ir.rule" id="kderp_rule_general_expense_supplier_payment_pesonel_section">
+	        <field name="name">KDERP General Expense Supplier Payment -Personel Section</field>
+	       	<field name="model_id" ref="model_kderp_general_expense_supplier_payment"/>
+	        <field name="global" eval="False"/>
+			<field name="domain_force">[('id','in',"(select kgesp.id from  kderp_general_expense_supplier_payment kgesp left join kderp_general_expense kge on kgesp.general_expense_id =kge.id left join  resource_resource rr  on rr.user_id =kge.user_id left join hr_employee he on he.resource_id =rr.id left join hr_department hd on hd.id = he.department_id where hd.code ='AD1').sql.query")]</field>
+	    	<field eval="[(6,0,[ref('group_kderp_general_expense_personel_section')])]" name="groups"/>
+	    </record> 
+	    	<!-- Rule for Separte General Expense for HANOI and Hai Phong-->
+	 	<record model="ir.rule" id="kderp_rule_general_expense_location">
+			<field name="name">KDERP Gemera Expense  Rule @ Location</field>
+			<field name="model_id" ref="model_kderp_general_expense"/>
+			<field name="global" eval="True"/>
+			<field name="domain_force">[('location','in',"(Select value from res_users ru left join (Select 'hanoi' as key,'hanoi' as value union Select 'haiphong' as key,'haiphong' as value union Select 'hcm' as key,'hcm' as value union Select 'all' as key,'hanoi' as value union Select 'all' as key,'haiphong' as value union Select 'all' as key,'hcm' as value) vwtemp on location_user=key where ru.id=%s)")]</field>
+	 	</record>
+	 	<record model="ir.rule" id="kderp_rule_general_expense_supplier_payment_location">
+			<field name="name">KDERP Gemera Expense Supplier Payment Rule @ Location</field>
+			<field name="model_id" ref="model_kderp_general_expense"/>
+			<field name="global" eval="True"/>
+			<field name="domain_force">[('location','in',"(Select value from res_users ru left join (Select 'hanoi' as key,'hanoi' as value union Select 'haiphong' as key,'haiphong' as value union Select 'hcm' as key,'hcm' as value union Select 'all' as key,'hanoi' as value union Select 'all' as key,'haiphong' as value union Select 'all' as key,'hcm' as value) vwtemp on location_user=key where ru.id=%s)")]</field>
+	 	</record>
+	</data>
+</openerp>

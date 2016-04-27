@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>		 
+
+ 		<record id="purchase_order_form_kderp_purchase_stock_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.kderp.purchase</field>
+            <field name="model">purchase.order</field>
+            <field name='inherit_id' ref='kderp_purchase.purchase_order_form_kderp_purchase'/>            
+            <field name="arch" type="xml">
+            	<field name='location_id' position='replace'>
+					<field name='location_id'/>
+            		<field name='source_location_id'/>
+            	</field>
+            	<page string="Packing" position="inside">
+            		<field name='picking_ids' context="{'picking_type':'in'}"/> <!--,'form_view_ref':'kderp_stock.kderp_view_picking_form'-->
+            	</page>
+            	<!-- FIXME Add received_qty to testing please remove after completed -->
+            	<field name="product_id" position="after">
+            		<field name="received_qty"/>
+            	</field>
+            </field>
+        </record>
+
+	</data>
+</openerp>

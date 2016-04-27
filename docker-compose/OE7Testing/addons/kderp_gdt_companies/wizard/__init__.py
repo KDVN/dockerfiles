@@ -1,0 +1,1 @@
+import kderp_gdt_update

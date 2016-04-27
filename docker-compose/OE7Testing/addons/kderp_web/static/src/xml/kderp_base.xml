@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve">
+
+<t t-name='Sidebar' t-extend="Sidebar">
+	<t t-jquery="a.oe_sidebar_delete_item" t-operation="replace">
+		<a t-if="section.name == 'files' and !item.callback and !widget.editmode_attachement" class="oe_sidebar_delete_item" t-att-data-id="item.id" title="Delete this attachment">x</a>
+	</t>
+    <t t-jquery="li.oe_sidebar_add_attachment" t-operation="replace">
+		<li t-if="section.name == 'files' and !widget.editmode_attachement and widget.dataset and widget.exept_model.indexOf(widget.dataset.model)&lt;0" class="oe_sidebar_add_attachment" >
+            <t t-call="HiddenInputFile">
+                <t t-set="fileupload_id" t-value="widget.fileupload_id"/>
+                <t t-set="fileupload_action" t-translation="off">/web/binary/upload_attachment</t>
+                <input type="hidden" name="model" t-att-value="widget.dataset and widget.dataset.model"/>
+                <input type="hidden" name="id" t-att-value="widget.model_id"/>
+                <input type="hidden" name="session_id" t-att-value="widget.session.session_id"/>
+                <span>Add...</span>
+            </t>
+        </li>
+    </t>
+</t>
+<t t-name='ViewManagerDebugViewLog' t-extend="ViewManagerDebugViewLog">oe_debug_view_log
+	<t t-jquery="div.oe_debug_view_log" t-operation="replace">
+	    <div class="oe_debug_view_log">
+	    	<table>
+		    	<tr>
+			    	<td>
+			    		Creation User:
+			    	</td>
+			    	<td>
+			    		 <b><t t-esc="format(perm.create_uid, { 'type' : 'many2one' }, '/')"/></b>
+			    	</td>
+		    	</tr>
+		    	<tr>
+			    	<td>
+			    		Creation Date:
+			    	</td>
+			    	<td>
+			    		 <b><t t-esc="format(perm.create_date, { 'type' : 'datetime' }, '/')"/></b>
+			    	</td>
+		    	</tr>
+		    	<tr>
+			    	<td>
+			    		Latest Modification by:
+			    	</td>
+			    	<td>
+			    		 <b><t t-esc="format(perm.write_uid, { 'type' : 'many2one' }, '/')"/></b>
+			    	</td>
+		    	</tr>
+		    	<tr>
+			    	<td>
+			    		Latest Modification Date:
+			    	</td>
+			    	<td>
+			    		 <b><t t-esc="format(perm.write_date, { 'type' : 'datetime' }, '/')"/></b>
+			    	</td>
+		    	</tr>		    	
+	    	</table>
+	    </div>
+	</t>
+</t>
+
+<div t-extend="SearchView.FacetView">
+	<t t-jquery="span[class=oe_facet_category] :last-child" t-operation="replace">
+		<span class="oe_facet_category" t-if="!widget.model.has('icon')">
+        	<t t-esc="widget.model.get('field').attrs.string" t-if="widget.model.get('field').attrs"/>
+        	<t t-esc="widget.model.get('category')" t-if="!widget.model.get('field').attrs"/>
+    	</span>
+    </t>
+</div>
+
+<!-- <t t-extend="FieldMany2One">
+	<t t-jquery="a:first" t-operation="before">
+		
+	</t>
+</t>
+ -->
+   
+<t t-name="FieldMany2OneImage">
+    <span class="oe_form_field oe_form_field_many2one oe_form_field_with_button" t-att-style="widget.node.attrs.style">
+    	<!-- <img t-att-src='_s + "/web/static/src/img/user_menu_avatar.png"' width="16" height="16" class="oe_topbar_avatar koe_many2one_image" /> -->
+        <t t-if="widget.get('effective_readonly')">
+            <a t-if="! widget.options.no_open" href="#" class="oe_form_uri"/>
+            <span t-if="widget.options.no_open" href="#" class="oe_form_uri"/>
+            <span class="oe_form_m2o_follow"/>
+        </t>
+        <t t-if="!widget.get('effective_readonly')">
+            <a t-if="! widget.options.no_open" href="#" tabindex="-1"
+                class="oe_m2o_cm_button oe_e" draggable="false">/</a>
+            <div>
+                <input type="text"
+                    t-att-id="widget.id_for_label"
+                    t-att-tabindex="widget.node.attrs.tabindex"
+                    t-att-autofocus="widget.node.attrs.autofocus"
+                    t-att-placeholder="widget.node.attrs.placeholder"
+                />
+                <span class="oe_m2o_drop_down_button">
+                    <img t-att-src='_s + "/web/static/src/img/down-arrow.png"' draggable="false"/>
+                </span>
+            </div>
+        </t>
+    </span>
+</t>
+
+<!-- Tao widget cho truong % ke thua progressbar -->
+<t t-name="FieldProgressBarFloat">
+        <t t-if="!widget.get('effective_readonly')">
+			<span t-att-class="'oe_form_field '+widget.widget_class" t-att-style="widget.node.attrs.style">
+	            <input t-att-type="widget.password ? 'password' : 'text'"
+	                t-att-id="widget.id_for_label"
+	                t-att-tabindex="widget.node.attrs.tabindex"
+	                t-att-autofocus="widget.node.attrs.autofocus"
+	                t-att-placeholder="widget.node.attrs.placeholder"
+	                t-att-maxlength="widget.field.size"
+	            /><img class="oe_field_translate oe_input_icon" t-if="widget.field.translate" t-att-src='_s + "/web/static/src/img/icons/terp-translate.png"' width="16" height="16" border="0"/>
+			</span>
+        </t>
+        <t t-if="widget.get('effective_readonly')">
+    		<span class="oe_form_field oe_form_field_progressbar" t-att-style="widget.node.attrs.style">
+    		<span></span>
+            </span>
+        </t>
+</t>
+
+<!-- Ke thua UserMenu -->
+<t t-extend="UserMenu">
+	<t t-jquery="img.oe_topbar_avatar" t-operation="before">
+		<div id='weather'></div>
+	</t>
+	<t t-jquery="ul.oe_dropdown_menu" t-operation="replace">		
+        <ul class="oe_dropdown_menu">        	
+            <li><a href="#" data-menu="settings">Preferences</a></li>
+            <li><a href="#" data-menu="password">Change Password</a></li>
+<!--             <li><a href="#" data-menu="account">My OpenERP.com account</a></li> -->
+            <li><a href="#" data-menu="about">Toggle Debug</a></li>
+            <li><a href="#" data-menu="help">Quick Guide</a></li>
+            <li><a href="#" data-menu="logout">Log out</a></li>
+        </ul>
+	</t>
+</t> 
+
+<!-- Ke thua ViewPager -->
+<t t-extend="ViewPager">
+	<t t-jquery="ul.oe_pager_group" t-operation="replace">
+	    <ul class="oe_pager_group">
+<!-- 	        <button class="oe_button oe_button_pager" type="button" data-pager-action="first">
+	            <img t-att-src='_s + "/web/static/src/img/pager_first.png"'/>
+	        </button> -->
+	        <li>
+	            <a class="oe_i" type="button" data-pager-action="first"><img t-att-src='_s + "/web/static/src/img/pager_first.png"'/></a>
+	        </li>
+
+	        <li>
+	            <a class="oe_i" type="button" data-pager-action="previous">(</a>
+	        </li>
+	        <li>
+	            <a class="oe_i" type="button" data-pager-action="next">)</a>
+	        </li>
+	        <li>
+	            <a class="oe_i" type="button" data-pager-action="last"><img t-att-src='_s + "/web/static/src/img/pager_last.png"'/></a>
+	        </li>
+<!-- 	        <button class="oe_button oe_button_pager" type="button" data-pager-action="last">
+	            <img t-att-src='_s + "/web/static/src/img/pager_last.png"'/>
+	        </button> -->
+
+        </ul>	
+	</t>
+</t>
+
+<!-- Them koe_leftbar de kiem soat tot hon leftbar khi dua phan header co dinh vao su dung TODO
+- Bo sung them phan Developed by...
+ -->
+<t t-extend="WebClient">
+	<t t-jquery="table.oe_webclient tr td.oe_leftbar" t-operation="replace">
+            <td class="oe_leftbar" valign="top">
+            	<div class="koe_leftbar">
+	                <t t-set="debug" t-value="__debug__ ? '&amp;debug' : ''"/>
+	                <a class="oe_logo" t-attf-href="/?ts=#{Date.now()}#{debug}">
+	                    <span class="oe_logo_edit">Edit Company data</span>
+	                    <img t-att-src='widget.session.url("/web/binary/company_logo")'/>
+	                </a>
+	                <div class="oe_secondary_menus_container"/>
+	                <div class="oe_footer">
+	                    Powered by <a href="http://www.openerp.com" target="_blank"><span>OpenERP</span></a>
+	                    <div>
+	                    Developed by <a href="http://www.kinden.co.jp" target="_blank"><span class="koe_footer">KDVN - IT</span></a>
+	                    </div>
+	                </div>
+                </div>
+            </td>
+	</t>	 
+</t>
+
+<!-- Extend ViewManagerAction de sua lai khoang cach cua oe_view_manager_header tranh bi tran xuong o man
+hinh nho. LUU Y: ViewManagerAction la extend cua ViewManager - co the trong code khong co doan goi truc tiep
+den ViewManager nen phai extend thong quan View Manager Action
+ -->
+<t t-extend="ViewManagerAction">
+	<t t-jquery=".oe_view_manager table.oe_view_manager_header:nth-child(1) col" t-operation="replace">
+            <col width="20%"/>
+            <col width="30%"/>
+            <col width="12%"/>
+            <col width="38%"/>
+	</t>
+</t>
+
+<!-- Extend Menu de sua lai chu More bi doi thanh Action do translate  -->
+<t t-extend="Menu">
+	<t t-jquery=".oe_menu .oe_menu_more_container>span" t-operation="replace">
+            <span class="oe_topbar_item oe_menu_more_link oe_dropdown_toggle oe_dropdown_arrow">More...
+                <ul class="oe_menu_more oe_dropdown_menu"/>
+            </span>
+	</t>
+</t>
+
+<!-- Thay the Search View sua truc tiep search value -->
+<span t-name="SearchView.FacetView.Value">
+		<span contenteditable="true" class="oe_facet_value">
+    		<t t-esc="widget.model.get('label')"/>
+		</span>		
+</span>
+
+<!-- Bo xung dropdown cho phan saved filters-->
+<t t-extend="SearchView.CustomFilters">
+	<t t-jquery=".oe_searchview_custom .oe_searchview_custom_list" t-operation="replace">
+		<div class="oe_searchview_custom_saved_list">
+			<h3>Saved Filters (click to hide/show)</h3>
+			<ul class="oe_searchview_custom_list"/>
+		</div>
+	</t>
+</t>
+
+</templates>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_kderp_contract_currency_tree" model="ir.ui.view">
+            <field name="name">kderp.contract.currency.tree</field>
+            <field name="model">kderp.contract.currency</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+				<tree editable="top" string="Currency System" colors="green:default_curr==True">
+                    <field name="name"/>
+                    <field name="rate" string="Rate to VND"/>
+                    <field name="rounding"/>
+                    <field name="default_curr"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_kderp_contract_currency_form" model="ir.ui.view">
+            <field name="name">kderp.contract.currency.form</field>
+            <field name="model">kderp.contract.currency</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string='Currency System'>
+                    <field name="name"/>
+                    <field name="rate"/>
+                    <field name="rounding"/>
+                    <field name="default_curr"/>
+                </form>
+            </field>
+        </record>
+        
+	</data>
+</openerp>
+

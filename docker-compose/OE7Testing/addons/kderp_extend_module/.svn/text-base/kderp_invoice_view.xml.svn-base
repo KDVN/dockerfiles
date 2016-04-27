@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>		
+
+		<!-- KDERP Invoice Area -->
+		<record model="ir.ui.view" id="view_red_invoice_extend_from">
+			<field name="name">kderp.invoice.form.inherit.extend</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="kderp_client_payment.view_client_payment_form"/>
+			<!--<field name="type">form</field>-->
+			<field name="arch" type="xml">
+				<field name="note" position='before'>
+					<field name="diff_exrate"/>
+	          	</field>	
+	        </field>
+       	</record>  
+    </data>
+</openerp>
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="action_ppo_allocate_to_job" model="ir.actions.act_window">
+            <field name="name">Allocate to Job</field>
+            <field name="res_model">kderp.order.allocate.to.job.select</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <record id="action_ppo_allocate_to_job_open" model="ir.actions.act_window">
+            <field name="name">Allocate to Job</field>
+            <field name="res_model">kderp.stock.order.allocate.to.job</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <record id="view_kderp_prepaid_to_job_form_select" model="ir.ui.view">
+            <field name="name">kderp.order.allocate.to.job.select.form</field>
+            <field name="model">kderp.order.allocate.to.job.select</field>
+            <field name="arch" type="xml">
+                <form string="Prepaid Order: Allocate to Job" version="7.0">
+                	<separator string='Select a prepaid order'/>
+                	<field name="prepaid_ref"/>
+                	<footer>
+                		<button name='open_stock_allocated' type='object' string='Open' context = "{'prepaid_ref':prepaid_ref}" class="oe_highlight"/>
+                	</footer>
+                </form>                
+             </field>
+         </record>
+                
+        <!-- this view of stock.partial.picking wizard is dedicated to internal picking. The fields_view_get is ovveridden in order to change the label of the process button and the separator. -->
+        <record id="view_kderp_prepaid_order_allocate_to_job_form" model="ir.ui.view">
+            <field name="name">kderp.prepaid.order.allocate.to.job.form</field>
+            <field name="model">kderp.stock.order.allocate.to.job</field>
+            <field name="arch" type="xml">
+                <form string="Prepaid Order: Allocate to Job" version="7.0">
+                	<separator string="PO Info." name="po_summary"/>
+                	<group colspan="4" col="4">
+	                	<field name="date"/>
+	                	<field name="stock_location_id"/>
+	                	<field name="location_dest_id" domain="[('id','!=',stock_location_id)]"/>
+	                	<field name="partner_id" context="{'search_default_supplier':1,'default_supplier':1,'default_customer':0}" domain="[('supplier','=',True)]"/>	                    
+	                	<field name="account_analytic_id"/>
+	                	<newline/>
+	                	<field name="description" widget='text' colspan='4'/>
+                	</group>                	
+                    <separator string="Allocate to Job Detail" name="detail_separator"/>
+                    <field name="product_details">
+                        <tree string="Prepaid PO Details" editable="bottom" create='false'>
+							<field name='product_id' on_change="onchange_product_id(product_id, name, product_qty, product_uom, price_unit, context)"/>	                                    
+							<field name='name'/>
+							<field name='product_uom'/>
+							<field name='price_unit'/>
+							<field name='available_qty'/>							
+							<field name='product_qty'/>
+							<field name='location_dest_id'/>
+							<field name='account_analytic_id'/>
+						</tree>
+                    </field>
+                    <footer>
+                        <button name="create_po" string="_Create" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

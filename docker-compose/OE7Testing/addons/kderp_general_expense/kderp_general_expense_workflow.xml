@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+<!-- Activity -->
+		<record id="wkf_kderp_general_expense" model="workflow">
+            <field name="name">General Expense Work-flow</field>
+            <field name="osv">kderp.general.expense</field>
+            <field name="on_create">True</field>
+        </record>
+        
+        <record id="act_kge_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_general_expense"/>
+            <field name="flow_start">True</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'draft'})</field>
+            <field name="name">ge_draft</field>
+        </record>
+        
+        <record id="act_kge_approved" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_general_expense"/>
+            <field name="name">ge_approved</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_action_draft_approved()</field>            
+        </record>
+        
+        <record id="act_kge_approved_done" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_general_expense"/>
+            <field name="name">ge_approved_done</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_action_done_wfr()</field>            
+        </record>
+		
+ 		<record id="act_kge_wfr" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_general_expense"/>
+            <field name="name">waiting_for_payment</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_action_approved_wfr()</field>    
+        </record>
+       
+        <record id="act_kge_done" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kderp_general_expense"/>
+            <field name="name">ge_done</field>
+            <field name="kind">function</field>
+            <field name="action">wkf_action_done_wfr()</field>
+            <field name="flow_stop">True</field>      
+        </record>
+        
+<!-- Transaction -->	
+	
+		<!-- Draft -> Waiting for Approved -->
+      	<record id="trans_processing_approved" model="workflow.transition">
+            <field name="act_from" ref="act_kge_draft"/>
+            <field name="act_to" ref="act_kge_approved"/>
+            <field name="group_id" ref="group_kderp_general_expense_submit"/>
+            <field name="signal">btn_processing_to_approved</field>
+        </record>
+        
+		<!-- Waiting for Approved -> Waiting for payment -->
+      	<record id="trans_approved_wfr" model="workflow.transition">
+            <field name="act_from" ref="act_kge_approved"/>
+            <field name="act_to" ref="act_kge_wfr"/>
+           	<field name="group_id" ref="group_kderp_general_expense_approved"/>
+            <field name="signal">btn_approved_payment</field>
+        </record>
+        <record id="trans_done_wfr" model="workflow.transition">
+            <field name="act_from" ref="act_kge_approved"/>
+            <field name="act_to" ref="act_kge_done"/>
+           	<field name="group_id" ref="group_kderp_general_expense_approved"/>
+            <field name="condition">type=='monthly-expense'</field>
+            <field name="signal">btn_approved_done</field>
+        </record>
+    
+        <!-- Approved -> Draft -->
+      	<record id="trans_approved_draft" model="workflow.transition">
+            <field name="act_from" ref="act_kge_approved"/>
+            <field name="act_to" ref="act_kge_draft"/>
+            <field name="group_id" ref="group_kderp_general_expense_back"/>
+            <field name="signal">btn_approved_to_draft</field>
+        </record>
+        
+         <!-- W.F. payment -> Approved -->
+      	<record id="trans_reimbursement_approved" model="workflow.transition">
+            <field name="act_from" ref="act_kge_wfr"/>
+            <field name="act_to" ref="act_kge_approved"/>
+            <field name="group_id" />
+            <field name="signal">btn_payment_to_approved</field>
+        </record>
+        
+    </data>
+</openerp>

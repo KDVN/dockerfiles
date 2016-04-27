@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2887/trunk/src/kderp_extend_module/wizard
+END
+update_contract_status_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2887/trunk/src/kderp_extend_module/wizard/update_contract_status_view.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/1641/trunk/src/kderp_extend_module/wizard/__init__.py
+END
+update_contract_status.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2887/trunk/src/kderp_extend_module/wizard/update_contract_status.py
+END

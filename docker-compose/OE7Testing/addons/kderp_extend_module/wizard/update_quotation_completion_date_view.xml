@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <record id="kderp_update_quotation_completion_date_form" model="ir.ui.view">
+            <field name="name">kderp.update.quotation.completion.date.form</field>
+            <field name="model">kderp.update.quotation.date</field>
+            <field name="arch" type="xml">
+                <form string="Update Quotation Date" version="7.0">
+                	<p>
+                		<b>Do you want to update Completion Date of Contract to Comp. Date ?</b>
+                	</p>
+                    <footer>
+                        <button string="Update" name="action_buttom_update_date" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_kderp_update_quotation_completion_date" model="ir.actions.act_window">
+            <field name="name">Update Quotation Date</field>
+            <field name="res_model">kderp.update.quotation.date</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kderp_update_quotation_completion_date_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_kderp_update_quotation_completion_date"
+            id="menu_action_kderp_update_quotation_completion_date"
+            parent="kderp_quotation.kderp_menu_quotation"
+            sequence="300"
+            groups="kderp_group_update_completion_date"
+            />
+    </data>
+</openerp>
