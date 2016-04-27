@@ -1,0 +1,6 @@
+Testing:
+  image: kdvn/pentaho  
+  container_name: Testing  
+  volumes:
+   - ./java_server:/opt/penatho_server
+   - ./home:/root/

@@ -1,5 +1,5 @@
 OE7Testing:
-  image: kdvn-oe7
+  image: kdvn/openerp7
   container_name: OE7Testing
   ports:
    - "8080:8069"
@@ -9,7 +9,7 @@ OE7Testing:
   links:
    - oe7_db:db
   environment:
-   - PGHOST=192.168.0.91
+   - PGHOST=oe7_db
    - PGUSER=openerp
    - PGPASSWORD=openerpdemo
 oe7_db:
@@ -17,11 +17,4 @@ oe7_db:
   container_name: oe7_db
   environment:
    - POSTGRES_USER=openerp
-   - POSTGRES_PASSWORD=openerp
-#jasperserver:
-#  image: kdvn-oe7-jasper
-#  container_name: jasperserver
-#  volumes:
-#   - ./addons:/mnt/extra-addons
-#   - ./tmp:/var/tmp
-#   - ./tmp:/tmp
+   - POSTGRES_PASSWORD=openerpdemo

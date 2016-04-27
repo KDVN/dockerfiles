@@ -1,4 +1,5 @@
 #!/bin/bash
+ant launch > /opt/pentaho_server/pentaho.log 2>&1 &
 set -e
 # set odoo database host, port, user and password
 : ${PGHOST:=$PGHOST}
