@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_kderp_location_read,kderp.location.read,model_kderp_location,,1,0,0,0
-access_kderp_location_full,kderp.location.full,model_kderp_location,kderp_base.group_kderp_budget_control_admin,1,1,1,1
-access_document_directory,document_directory,document.model_document_directory,kderp_base.group_kderp_global_view,1,1,1,1

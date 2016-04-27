@@ -1,2 +1,0 @@
-- Install kderp_report for add two extensions file docx, xlsx
-- Copy module Jasper_reports (only file Jasperserver.java), jasper_reports/java/compile.sh with openerp uesr (using su -c "command" openerp)

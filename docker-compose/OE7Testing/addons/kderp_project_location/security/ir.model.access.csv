@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_kderp_project_location,kderp_project_location,model_kderp_project_location,kderp_project_location_full,1,1,1,1
-access_kderp_project_location_read,kderp_project_location_read,model_kderp_project_location,,1,0,0,0

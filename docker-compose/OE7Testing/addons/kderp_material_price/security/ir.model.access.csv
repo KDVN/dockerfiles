@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-model_kderp_material_price_read,model_kderp_material_price_read,model_material_price,group_kderp_material_price_read,1,0,0,0

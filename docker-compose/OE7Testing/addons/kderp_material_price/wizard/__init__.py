@@ -1,2 +1,0 @@
-import kderp_update_price_wizard
-import kderp_update_latest_price_data
