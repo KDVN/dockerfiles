@@ -2,8 +2,8 @@ FROM kdvn/ubuntu
 
 RUN mkdir -p /mnt/extra-addons /mnt/oefilestore /opt/oe7 /opt/pentaho_server
 
-RUN wget -qO- http://10.10.0.1/openerp_7.0.latest.tar.gz | tar xz -C /opt/oe7/ --owner=openerp --strip 1
-#ERUN wget -qO- http://nightly.odoo.com/7.0/nightly/src/openerp_7.0.latest.tar.gz | tar xz -C /opt/oe7/ --strip 1
+#RUN wget -qO- http://10.10.0.1/openerp_7.0.latest.tar.gz | tar xz -C /opt/oe7/ --owner=openerp --strip 1
+RUN wget -qO- http://nightly.odoo.com/7.0/nightly/src/openerp_7.0.latest.tar.gz | tar xz -C /opt/oe7/ --strip 1
 
 RUN adduser -u 1000 --system --group --home /home/openerp --shell /bin/bash openerp
 
