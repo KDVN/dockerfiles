@@ -24,6 +24,26 @@ descriptionFunction(){
 	echo " 	-C= or --container= :Name of container. This parameter is required"
 	echo " 	-D= or --dbname=    :Name of Database. This parameter is required using with Create, Restore, Drop and Backup database"	
 }
+
+RestoreDB(){
+			if [ -f $FILE ]; then				
+				FULLPATH=$(cd $(dirname "$FILE") && pwd -P)/$(basename "$FILE")
+				docker cp $FULLPATH $CONTAINER:/tmp
+				FILENAME=$(basename $FULLPATH)
+				echo "Please wait a few minutes"
+				docker exec -it $CONTAINER su -c "pg_restore -F t -d $DBNAME /tmp/$FILENAME" postgres
+				docker exec -it $CONTAINER rm /tmp/$FILENAME
+			else
+				echo "File not found"
+			fi
+			}
+BackupDB(){				
+				echo "Please wait a few minutes"
+				docker exec -it $CONTAINER su -c "pg_dump -F t -f /tmp/$FILE $DBNAME" postgres				
+				docker cp $CONTAINER:/tmp/$FILE .
+				docker exec -it $CONTAINER rm /tmp/$FILE			
+			}
+
 LISTACTIONS=("list" "restore" "backup" "dbsize" "create" "drop")
 containsAction "$lastParamenter" "${LISTACTIONS[@]}"
 if [[ $EMPTY == 1 || "$?" == 0 ]]; then
@@ -89,14 +109,22 @@ else
 		#Kha la phuc tap Export DBNAME='$DBNAME' (truyen ten databse vao container environment)
 		docker exec -it $CONTAINER su -c 'export DBNAME='$DBNAME' && psql -c "ALTER DATABASE \"$DBNAME\" OWNER TO $POSTGRES_USER;"' postgres
 		if [[ $FILE ]]; then
-			if [ -f $FILE ]; then				
-				FULLPATH=$(cd $(dirname "$FILE") && pwd -P)/$(basename "$FILE")
-				docker cp $FULLPATH $CONTAINER:/tmp
-				docker exec -it $CONTAINER cat /tmp/$(basename $FULLPATH)
-			else
-				echo "File not found"
-			fi
+			RestoreDB
 		fi
+		exit 1
+	fi
+	
+	#Restore Action
+	if [[ "${lastParamenter,,}" == "restore" ]]; then		
+		if [[ $FILE ]]; then
+			RestoreDB
+		fi
+		exit 1
+	fi
+	
+	#Backup Action
+	if [[ "${lastParamenter,,}" == "backup" ]]; then		
+		BackupDB
 		exit 1
 	fi
 	
