@@ -1,4 +1,5 @@
 #!/bin/bash
+#Empty check not input parameter and actions
 EMPTY=0
 if [ $# -eq 0 ]; then
     EMPTY=1
@@ -106,7 +107,7 @@ else
 	
 	#Create Action
 	if [[ "${lastParamenter,,}" == "create" ]]; then
-		docker exec -it $CONTAINER su -c "psql -c 'CREATE DATABASE \"$DBNAME\" encoding='''utf8''';'" postgres
+		docker exec -it $CONTAINER su -c "psql -c 'CREATE DATABASE \"$DBNAME\" encoding='\'utf8\'';'" postgres
 		#Kha la phuc tap Export DBNAME='$DBNAME' (truyen ten databse vao container environment)
 		docker exec -it $CONTAINER su -c 'export DBNAME='$DBNAME' && psql -c "ALTER DATABASE \"$DBNAME\" OWNER TO $POSTGRES_USER;"' postgres
 		if [[ $FILE ]]; then
