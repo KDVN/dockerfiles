@@ -23,6 +23,7 @@ descriptionFunction(){
 	echo "* PARAMETERS:"
 	echo " 	-C= or --container= :Name of container. This parameter is required"
 	echo " 	-D= or --dbname=    :Name of Database. This parameter is required using with Create, Restore, Drop and Backup database"	
+	echo "  -F= or --file=      :Name of file using for Backup, Restore"
 }
 
 RestoreDB(){
