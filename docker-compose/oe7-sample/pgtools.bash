@@ -24,26 +24,28 @@ descriptionFunction(){
 	echo "* PARAMETERS:"
 	echo " 	-C= or --container= :Name of container. This parameter is required"
 	echo " 	-D= or --dbname=    :Name of Database. This parameter is required using with Create, Restore, Drop and Backup database"	
-	echo "  -F= or --file=      :Name of file using for Backup, Restore"
+	echo " 	-F= or --file=      :Name of file using for Backup, Restore"
 }
 
 RestoreDB(){
 			if [ -f $FILE ]; then				
 				FULLPATH=$(cd $(dirname "$FILE") && pwd -P)/$(basename "$FILE")
-				docker cp $FULLPATH $CONTAINER:/tmp
+				docker exec -it $CONTAINER mkdir oetemp
+				docker cp $FULLPATH $CONTAINER:/oetemp
 				FILENAME=$(basename $FULLPATH)
 				echo "Please wait a few minutes"
-				docker exec -it $CONTAINER su -c "pg_restore -F t -d $DBNAME /tmp/$FILENAME" postgres
-				docker exec -it $CONTAINER rm /tmp/$FILENAME
+				docker exec -it $CONTAINER su -c "pg_restore -F t -d $DBNAME /oetemp/$FILENAME" postgres
+				docker exec -it $CONTAINER rm /oetemp -rf
 			else
 				echo "File not found"
 			fi
 			}
 BackupDB(){				
 				echo "Please wait a few minutes"
-				docker exec -it $CONTAINER su -c "pg_dump -F t -f /tmp/$FILE $DBNAME" postgres				
-				docker cp $CONTAINER:/tmp/$FILE .
-				docker exec -it $CONTAINER rm /tmp/$FILE			
+				docker exec -it $CONTAINER mkdir oetemp
+				docker exec -it $CONTAINER su -c "pg_dump -F t -f /oetemp/$FILE $DBNAME" postgres				
+				docker cp $CONTAINER:/oetemp/$FILE .
+				docker exec -it $CONTAINER rm /oetemp -rf	
 			}
 
 LISTACTIONS=("list" "restore" "backup" "dbsize" "create" "drop")
