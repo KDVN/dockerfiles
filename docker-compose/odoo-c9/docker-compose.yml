@@ -1,0 +1,22 @@
+OdooTesting:
+  image: kdvn/odoo-c9
+  container_name: odoo-c9
+  ports:
+   - "8080:8069"
+   - "88:80"
+  volumes:
+   - ./addons:/mnt/extra-addons
+   - ./filestore:/mnt/oefilestore
+  links:
+   - odoo_db:db
+  environment:
+   - PGHOST=odoo_db
+   - PGUSER=openerp
+   - PGPASSWORD=openerp
+   - AUTH=admin:admin
+odoo_db:
+  image: postgres:latest
+  container_name: odoo_db
+  environment:
+   - POSTGRES_USER=openerp
+   - POSTGRES_PASSWORD=openerp

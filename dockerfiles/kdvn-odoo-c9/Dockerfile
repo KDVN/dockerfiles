@@ -10,13 +10,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
 COPY ./openerp-server.conf /etc/odoo/
-COPY ./odoo /usr/bin
 
 ENV OPENERP_SERVER /etc/odoo/openerp-server.conf
 
 VOLUME ["/mnt/oefilestore", "/mnt/extra-addons"] 
 
-RUN chmod a+x /usr/bin/odoo
 RUN chown -R odoo /mnt/extra-addons /mnt/oefilestore /opt/c9sdk
 RUN usermod --shell /bin/bash --home /opt/c9sdk odoo
 
