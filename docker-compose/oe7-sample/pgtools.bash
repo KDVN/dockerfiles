@@ -13,15 +13,15 @@ containsAction(){
 	return 0
 }
 descriptionFunction(){
-	echo "./pgtools paramneters Action"
-	echo "* ACTIONS:"
-	echo " 	list: List all database in Postgre Server"
-	echo " 	dbsize: Show size of Database"
-	echo " 	create: Create new database (required DBNAME (-d) in paramneters)"
-	echo " 	backup: Backup a database (required DBNAME (-d) in paramneters)"
-	echo " 	restore: Restore a database (required DBNAME (-d) in paramneters)"
-	echo " 	drop: Drop a database (required DBNAME (-d) in paramneters)"
-	echo "* PARAMETERS:"
+	echo -e "\t./pgtools paramneters Action"
+	echo -e "\t* ACTIONS:"
+	echo -e "\tlist: List all database in Postgre Server"
+	echo -e "\tdbsize: Show size of Database"
+	echo -e "\tcreate: Create new database (required DBNAME (-d) in paramneters)"
+	echo -e "\tbackup: Backup a database (required DBNAME (-d) in paramneters)"
+	echo -e "\trestore: Restore a database (required DBNAME (-d) in paramneters)"
+	echo -e "\tdrop: Drop a database (required DBNAME (-d) in paramneters)"
+	echo -e "\t* PARAMETERS:"
 	echo -e "\t-C= or --container= :Name of container. This parameter is required"
 	echo -e "\t-D= or --dbname=    :Name of Database. This parameter is required using with Create, Restore, Drop and Backup database"	
 	echo -e "\t-F= or --file=      :Name of file using for Backup, Restore"
@@ -30,11 +30,11 @@ descriptionFunction(){
 RestoreDB(){
 			if [ -f $FILE ]; then				
 				FULLPATH=$(cd $(dirname "$FILE") && pwd -P)/$(basename "$FILE")
-				docker exec -it $CONTAINER mkdir oetemp
+				docker exec -it $CONTAINER mkdir -p oetemp
 				docker cp $FULLPATH $CONTAINER:/oetemp
 				FILENAME=$(basename $FULLPATH)
 				echo "Please wait a few minutes"
-				docker exec -it $CONTAINER su -c "pg_restore -F t -d $DBNAME /oetemp/$FILENAME" postgres
+				docker exec -it $CONTAINER su -c "pg_restore -F t -d $DBNAME /oetemp/$FILENAME" postgres 
 				docker exec -it $CONTAINER rm /oetemp -rf
 			else
 				echo "File not found"
