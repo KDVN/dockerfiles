@@ -1,6 +1,6 @@
 OdooTesting:
-  image: kdvn/odoo-c9
-  container_name: odoo-c9
+  image: kdvn/openerp-c9
+  container_name: openerp-c9
   ports:
    - "8180:8069"
    - "88:3000"
@@ -8,16 +8,16 @@ OdooTesting:
    - ./addons:/mnt/extra-addons
    - ./filestore:/mnt/oefilestore
   links:
-   - odoo_db:db
+   - openerp_db:db
   environment:
-   - PGHOST=odoo_db
+   - PGHOST=openerp_db
    - PGUSER=openerp
    - PGPASSWORD=openerp
    - AUTH=admin:admin
    - USERPASS=testing
-odoo_db:
+openerp_db:
   image: postgres:latest
-  container_name: odoo_db
+  container_name: openerp_db
   environment:
    - POSTGRES_USER=openerp
    - POSTGRES_PASSWORD=openerp

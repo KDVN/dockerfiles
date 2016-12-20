@@ -1,0 +1,14 @@
+dashboard:
+  image: meteorhacks/meteord:base
+  ports:
+   - "808:80"
+  links:
+   - mongo
+  volumes:
+   - bundle:/bundle
+  environment:
+   - ROOT_URL=http://kdvn-dev-2nd
+   - MONGO_URL=mongodb://mongo/tesing
+
+mongo:
+  image: mongo:latest
