@@ -13,11 +13,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #NV OPENERP_SERVER /etc/odoo/openerp-server.conf
 
-VOLUME ["/mnt/oefilestore", "/mnt/extra-addons"] 
+VOLUME ["/mnt/oefilestore", "/mnt/extra-addons", "/opt/workspace"] 
 
 RUN chown -R openerp /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
 RUN usermod --shell /bin/bash --home /opt/c9sdk openerp
-RUN echo "openerp ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude" | tee -a /etc/sudoers
+RUN echo "openerp ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
 
 EXPOSE 8000
 EXPOSE 8069

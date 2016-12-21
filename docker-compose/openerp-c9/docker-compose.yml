@@ -7,6 +7,7 @@ OdooTesting:
   volumes:
    - ./addons:/mnt/extra-addons
    - ./filestore:/mnt/oefilestore
+   - ./workspace:/opt/workspace
   links:
    - openerp_db:db
   environment:
@@ -14,7 +15,7 @@ OdooTesting:
    - PGUSER=openerp
    - PGPASSWORD=openerp
    - AUTH=admin:admin
-   - USERPASS=testing
+   - LOCAL_USER_ID=Please input manually using (user - id -u $USER)
 openerp_db:
   image: postgres:latest
   container_name: openerp_db
