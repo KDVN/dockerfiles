@@ -2,8 +2,8 @@ Odoo10Testing:
   image: kdvn/odoo-c9
   container_name: odoo-c9
   ports:
-   - "8180:8069"
-   - "88:3000"
+   - "8980:8069"
+   - "89:3000"
   volumes:
    - ./addons:/mnt/extra-addons
    - ./filestore:/mnt/oefilestore
