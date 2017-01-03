@@ -15,9 +15,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME ["/mnt/oefilestore", "/mnt/extra-addons", "/opt/workspace"] 
 
-RUN chown -R openerp /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
-RUN usermod --shell /bin/bash --home /opt/c9sdk openerp
-RUN echo "openerp ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
+RUN chown -R odoo /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
+RUN usermod --shell /bin/bash --home /opt/c9sdk odoo
+RUN echo "odoo ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
 
 EXPOSE 8000
 EXPOSE 8069
