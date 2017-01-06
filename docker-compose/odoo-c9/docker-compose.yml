@@ -19,6 +19,8 @@ Odoo10Testing:
 odoo_db:
   image: postgres:latest
   container_name: odoo_db
+  volumes:
+    - ./db:/var/lib/postgresql/data
   environment:
    - POSTGRES_USER=openerp
    - POSTGRES_PASSWORD=openerp

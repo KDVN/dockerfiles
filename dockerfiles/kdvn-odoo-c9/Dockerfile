@@ -28,9 +28,7 @@ RUN git clone git://github.com/c9/core.git /opt/c9sdk && cd /opt/c9sdk && script
 WORKDIR /opt/c9sdk
 #RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' ~/configs/standalone.js 
 COPY ./entrypoint.sh /
-COPY ./openerp-server.conf /etc/odoo/
-ENV OPENERP_SERVER /etc/odoo/openerp-server.conf
-
-ENV PATH "$PATH:/opt/oe7"
+COPY ./odoo.conf /etc/odoo/
+ENV OPENERP_SERVER /etc/odoo/odoo.conf
 
 ENTRYPOINT ["/entrypoint.sh"]

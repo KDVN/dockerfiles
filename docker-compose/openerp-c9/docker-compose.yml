@@ -6,7 +6,7 @@ OdooTesting:
    - "88:3000"
   volumes:
    - ./addons:/mnt/extra-addons
-   - ./filestore:/mnt/oefilestore
+   - ./filestore:/mnt/oefilestorne
    - ./workspace:/opt/workspace
   links:
    - openerp_db:db
