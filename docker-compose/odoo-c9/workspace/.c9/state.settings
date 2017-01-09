@@ -20,9 +20,7 @@
                     "name": "tab1",
                     "path": "",
                     "className": [
-                        "tab1",
-                        "focus",
-                        "connecting"
+                        "tab1"
                     ],
                     "document": {
                         "changed": false,
@@ -30,8 +28,8 @@
                             "timestamp": 1483411904680
                         },
                         "filter": true,
-                        "title": "bash - \"f9e8a722104d\"",
-                        "tooltip": "bash - \"f9e8a722104d\"",
+                        "title": "bash - \"b112b2a2b6e3\"",
+                        "tooltip": "bash - \"b112b2a2b6e3\"",
                         "terminal": {
                             "id": "devel_582",
                             "cwd": "",
@@ -136,8 +134,8 @@
     },
     "panecycle": {
         "json()": [
-            "tab1",
-            "tab4"
+            "tab0",
+            "tab1"
         ]
     },
     "panels": {
@@ -180,12 +178,12 @@
     },
     "tabs": {
         "json()": {
-            "focus": "/odoo.conf",
+            "focus": "/test.py",
             "meta": {
                 "accessList": [
+                    "tab0",
                     "tab4",
-                    "tab3",
-                    "tab0"
+                    "tab3"
                 ]
             },
             "name": "pane0",
@@ -196,7 +194,8 @@
                     "path": "/test.py",
                     "className": [
                         "tab0",
-                        "changed"
+                        "changed",
+                        "focus"
                     ],
                     "document": {
                         "changed": true,
@@ -209,7 +208,7 @@
                         "ace": {}
                     },
                     "editorType": "ace",
-                    "active": false
+                    "active": true
                 },
                 {
                     "type": "tab",
@@ -236,13 +235,12 @@
                     "name": "tab4",
                     "path": "/odoo.conf",
                     "className": [
-                        "tab4",
-                        "focus"
+                        "tab4"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1483428654620
+                            "timestamp": 1483937316088
                         },
                         "filter": true,
                         "title": "odoo.conf",
@@ -250,7 +248,7 @@
                         "ace": {}
                     },
                     "editorType": "ace",
-                    "active": true
+                    "active": false
                 }
             ],
             "skin": "editor_tab",
