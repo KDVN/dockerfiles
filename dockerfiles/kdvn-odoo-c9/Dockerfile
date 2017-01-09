@@ -1,9 +1,9 @@
-FROM odoo
+FROM kdvn/odoo
 
 USER root
 
 RUN mkdir -p /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs tmux sudo nodejs -y
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs sudo nodejs -y
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -15,7 +15,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME ["/mnt/oefilestore", "/mnt/extra-addons", "/opt/workspace"] 
 
-RUN chown -R odoo /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
+RUN chown -R odoo /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/
 RUN usermod --shell /bin/bash --home /opt/c9sdk odoo
 RUN echo "odoo ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
 

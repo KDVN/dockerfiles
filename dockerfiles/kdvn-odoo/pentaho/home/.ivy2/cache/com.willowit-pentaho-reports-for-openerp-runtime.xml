@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="com.willowit"
+		module="pentaho-reports-for-openerp"
+		revision="working@oe-server-han"
+		conf="runtime"
+		confs="build, runtime"
+		date="20160409085043"/>
+	<dependencies>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-legacy-charts">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421020424" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="65">
+				<metadata-artifact status="no" details="" size="2911" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-legacy-charts/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-legacy-charts/3.9.0-GA/pentaho-reporting-engine-legacy-charts-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-legacy-charts" type="jar" ext="jar" status="no" details="" size="319045" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-legacy-charts/jars/pentaho-reporting-engine-legacy-charts-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-legacy-charts/3.9.0-GA/pentaho-reporting-engine-legacy-charts-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-wizard-core">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421020626" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="64">
+				<metadata-artifact status="no" details="" size="2675" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-wizard-core/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-wizard-core/3.9.0-GA/pentaho-reporting-engine-wizard-core-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-wizard-core" type="jar" ext="jar" status="no" details="" size="74389" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-wizard-core/jars/pentaho-reporting-engine-wizard-core-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-wizard-core/3.9.0-GA/pentaho-reporting-engine-wizard-core-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-drill-down">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421020524" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="63">
+				<metadata-artifact status="no" details="" size="2625" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-drill-down/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-drill-down/3.9.0-GA/pentaho-reporting-engine-classic-extensions-drill-down-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-extensions-drill-down" type="jar" ext="jar" status="no" details="" size="34280" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-drill-down/jars/pentaho-reporting-engine-classic-extensions-drill-down-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-drill-down/3.9.0-GA/pentaho-reporting-engine-classic-extensions-drill-down-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-scripting">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421020322" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="62">
+				<metadata-artifact status="no" details="" size="2723" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-scripting/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-scripting/3.9.0-GA/pentaho-reporting-engine-classic-extensions-scripting-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-extensions-scripting" type="jar" ext="jar" status="no" details="" size="21410" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-scripting/jars/pentaho-reporting-engine-classic-extensions-scripting-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-scripting/3.9.0-GA/pentaho-reporting-engine-classic-extensions-scripting-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-charting">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421020040" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="51">
+				<metadata-artifact status="no" details="" size="2777" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-charting/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-charting/3.9.0-GA/pentaho-reporting-engine-classic-extensions-charting-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-extensions-charting" type="jar" ext="jar" status="no" details="" size="5338" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-charting/jars/pentaho-reporting-engine-classic-extensions-charting-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-charting/3.9.0-GA/pentaho-reporting-engine-classic-extensions-charting-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho" name="pentaho-chartbeans">
+			<revision name="1.0.12" status="release" pubdate="20120221035923" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="52">
+				<metadata-artifact status="no" details="" size="3683" time="0" location="/home/openerp/.ivy2/cache/pentaho/pentaho-chartbeans/ivy-1.0.12.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho/pentaho-chartbeans/1.0.12/pentaho-chartbeans-1.0.12.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-charting" conf="default, compile, runtime, master" rev="1.0.12" rev-constraint-default="1.0.12" rev-constraint-dynamic="1.0.12" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="pentaho-chartbeans" type="jar" ext="jar" status="no" details="" size="308856" time="0" location="/home/openerp/.ivy2/cache/pentaho/pentaho-chartbeans/jars/pentaho-chartbeans-1.0.12.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho/pentaho-chartbeans/1.0.12/pentaho-chartbeans-1.0.12.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="ofc4j" name="pentaho-ofc4j">
+			<revision name="1.1.0" status="release" pubdate="20100921041314" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="60">
+				<metadata-artifact status="no" details="" size="2192" time="0" location="/home/openerp/.ivy2/cache/ofc4j/pentaho-ofc4j/ivy-1.1.0.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/ofc4j/pentaho-ofc4j/1.1.0/pentaho-ofc4j-1.1.0.pom"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="pentaho-ofc4j" type="jar" ext="jar" status="no" details="" size="90565" time="0" location="/home/openerp/.ivy2/cache/ofc4j/pentaho-ofc4j/jars/pentaho-ofc4j-1.1.0.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/ofc4j/pentaho-ofc4j/1.1.0/pentaho-ofc4j-1.1.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="commons-collections" name="commons-collections">
+			<revision name="3.1" status="release" pubdate="20051109053131" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="57">
+				<metadata-artifact status="no" details="" size="2706" time="0" location="/home/openerp/.ivy2/cache/commons-collections/commons-collections/ivy-3.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/commons-collections/commons-collections/3.1/commons-collections-3.1.pom"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="3.1" rev-constraint-default="3.1" rev-constraint-dynamic="3.1" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="commons-collections" type="jar" ext="jar" status="no" details="" size="559366" time="0" location="/home/openerp/.ivy2/cache/commons-collections/commons-collections/jars/commons-collections-3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/commons-collections/commons-collections/3.1/commons-collections-3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="jfree" name="jfreechart">
+			<revision name="1.0.13" status="release" pubdate="20090818020744" resolver="default" artresolver="default" homepage="http://www.jfree.org/jfreechart/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="55">
+				<license name="GNU Lesser General Public Licence" url="http://www.gnu.org/licenses/lgpl.txt"/>
+				<metadata-artifact status="no" details="" size="2690" time="0" location="/home/openerp/.ivy2/cache/jfree/jfreechart/ivy-1.0.13.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/jfree/jfreechart/1.0.13/jfreechart-1.0.13.pom"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.0.13" rev-constraint-default="1.0.13" rev-constraint-dynamic="1.0.13" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="jfreechart" type="jar" ext="jar" status="no" details="" size="1425742" time="0" location="/home/openerp/.ivy2/cache/jfree/jfreechart/jars/jfreechart-1.0.13.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/jfree/jfreechart/1.0.13/jfreechart-1.0.13.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="jfree" name="jcommon">
+			<revision name="1.0.16" status="release" pubdate="20110925062113" resolver="default" artresolver="default" homepage="http://www.jfree.org/jcommon/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="56">
+				<license name="GNU Lesser General Public Licence" url="http://www.gnu.org/licenses/lgpl.txt"/>
+				<metadata-artifact status="no" details="" size="3175" time="0" location="/home/openerp/.ivy2/cache/jfree/jcommon/ivy-1.0.16.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/jfree/jcommon/1.0.16/jcommon-1.0.16.pom"/>
+				<caller organisation="jfree" name="jfreechart" conf="compile, runtime" rev="1.0.16" rev-constraint-default="1.0.16" rev-constraint-dynamic="1.0.16" callerrev="1.0.13"/>
+				<artifacts>
+					<artifact name="jcommon" type="jar" ext="jar" status="no" details="" size="488686" time="0" location="/home/openerp/.ivy2/cache/jfree/jcommon/jars/jcommon-1.0.16.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/jfree/jcommon/1.0.16/jcommon-1.0.16.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libcss">
+			<revision name="1.2.3" status="release" pubdate="20120221024640" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="53">
+				<metadata-artifact status="no" details="" size="2956" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libcss/ivy-1.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libcss/1.2.3/libcss-1.2.3.pom"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="libcss" type="jar" ext="jar" status="no" details="" size="558137" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libcss/jars/libcss-1.2.3.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libcss/1.2.3/libcss-1.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="flute">
+			<revision name="1.2.0" status="release" pubdate="20110514013455" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="54">
+				<metadata-artifact status="no" details="" size="2414" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/flute/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/flute/1.2.0/flute-1.2.0.pom"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.3"/>
+				<artifacts>
+					<artifact name="flute" type="jar" ext="jar" status="no" details="" size="94259" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/flute/jars/flute-1.2.0.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/flute/1.2.0/flute-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-toc">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421020544" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="50">
+				<metadata-artifact status="no" details="" size="2604" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-toc/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-toc/3.9.0-GA/pentaho-reporting-engine-classic-extensions-toc-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-extensions-toc" type="jar" ext="jar" status="no" details="" size="54729" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-toc/jars/pentaho-reporting-engine-classic-extensions-toc-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-toc/3.9.0-GA/pentaho-reporting-engine-classic-extensions-toc-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions">
+			<revision name="3.9.0-GA" status="release" pubdate="20120421015922" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="49">
+				<metadata-artifact status="no" details="" size="3037" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions/3.9.0-GA/pentaho-reporting-engine-classic-extensions-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-extensions" type="jar" ext="jar" status="no" details="" size="121370" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions/jars/pentaho-reporting-engine-classic-extensions-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions/3.9.0-GA/pentaho-reporting-engine-classic-extensions-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="rhino" name="js">
+			<revision name="1.7R2" status="release" pubdate="20090821210542" resolver="default" artresolver="default" homepage="http://www.mozilla.org/rhino/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="48">
+				<license name="Mozilla Public License" url="http://www.mozilla.org/MPL/MPL-1.1.html"/>
+				<metadata-artifact status="no" details="" size="2641" time="0" location="/home/openerp/.ivy2/cache/rhino/js/ivy-1.7R2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/rhino/js/1.7R2/js-1.7R2.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="1.7R2" rev-constraint-default="1.7R2" rev-constraint-dynamic="1.7R2" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="js" type="jar" ext="jar" status="no" details="" size="871260" time="0" location="/home/openerp/.ivy2/cache/rhino/js/jars/js-1.7R2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/rhino/js/1.7R2/js-1.7R2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="log4j" name="log4j">
+			<revision name="1.2.14" status="release" pubdate="20061201132721" resolver="default" artresolver="default" homepage="http://logging.apache.org/log4j/docs/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, master" position="47">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2441" time="0" location="/home/openerp/.ivy2/cache/log4j/log4j/ivy-1.2.14.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="1.2.14" rev-constraint-default="1.2.14" rev-constraint-dynamic="1.2.14" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="log4j" type="jar" ext="jar" status="no" details="" size="367444" time="0" location="/home/openerp/.ivy2/cache/log4j/log4j/jars/log4j-1.2.14.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="postgresql" name="postgresql">
+			<revision name="8.3-604.jdbc3" status="release" pubdate="20081118035649" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="http://jdbc.postgresql.org/" downloaded="false" searched="false" default="false" conf="master(*), master" position="46">
+				<license name="BSD License" url="http://jdbc.postgresql.org/license.html"/>
+				<metadata-artifact status="no" details="" size="2568" time="0" location="/home/openerp/.ivy2/cache/postgresql/postgresql/ivy-8.3-604.jdbc3.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/postgresql/postgresql/8.3-604.jdbc3/postgresql-8.3-604.jdbc3.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="8.3-604.jdbc3" rev-constraint-default="8.3-604.jdbc3" rev-constraint-dynamic="8.3-604.jdbc3" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="postgresql" type="jar" ext="jar" status="no" details="" size="448141" time="0" location="/home/openerp/.ivy2/cache/postgresql/postgresql/jars/postgresql-8.3-604.jdbc3.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/postgresql/postgresql/8.3-604.jdbc3/postgresql-8.3-604.jdbc3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.debortoliwines.openerp" name="openerp-java-api">
+			<revision name="1.1.0" status="release" pubdate="20120810200942" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="master(*), master, compile(*)" position="43">
+				<metadata-artifact status="no" details="" size="2267" time="0" location="/home/openerp/.ivy2/cache/com.debortoliwines.openerp/openerp-java-api/ivy-1.1.0.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/com/debortoliwines/openerp/openerp-java-api/1.1.0/openerp-java-api-1.1.0.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="working@oe-server-han"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="openerp-java-api" type="jar" ext="jar" status="no" details="" size="40742" time="0" location="/home/openerp/.ivy2/cache/com.debortoliwines.openerp/openerp-java-api/jars/openerp-java-api-1.1.0.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/com/debortoliwines/openerp/openerp-java-api/1.1.0/openerp-java-api-1.1.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.0.0" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), compile(*), master" position="-1">
+				<evicted-by rev="1.1.0"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="1.1.0" rev-constraint-default="1.1.0" rev-constraint-dynamic="1.1.0" callerrev="working@oe-server-han"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp">
+			<revision name="3.8-SNAPSHOT" status="integration" pubdate="20120510102622" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="optional, master(*), master, optional(*)" position="39">
+				<metadata-artifact status="no" details="" size="3120" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-openerp/ivy-3.8-SNAPSHOT.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-openerp/3.8-SNAPSHOT/pentaho-reporting-engine-classic-extensions-openerp-3.8-SNAPSHOT.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.8-SNAPSHOT" rev-constraint-default="3.8-SNAPSHOT" rev-constraint-dynamic="3.8-SNAPSHOT" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-extensions-openerp" type="jar" ext="jar" status="no" details="" size="24820" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-openerp/jars/pentaho-reporting-engine-classic-extensions-openerp-3.8-SNAPSHOT.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-extensions-openerp/3.8-SNAPSHOT/pentaho-reporting-engine-classic-extensions-openerp-3.8-SNAPSHOT.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="openerp" name="openerp-java-report-helper">
+			<revision name="0.10.0" status="release" pubdate="20120306000150" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="44">
+				<metadata-artifact status="no" details="" size="2269" time="0" location="/home/openerp/.ivy2/cache/openerp/openerp-java-report-helper/ivy-0.10.0.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/openerp/openerp-java-report-helper/0.10.0/openerp-java-report-helper-0.10.0.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="0.10.0" rev-constraint-default="0.10.0" rev-constraint-dynamic="0.10.0" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="openerp-java-report-helper" type="jar" ext="jar" status="no" details="" size="52706" time="0" location="/home/openerp/.ivy2/cache/openerp/openerp-java-report-helper/jars/openerp-java-report-helper-0.10.0.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/openerp/openerp-java-report-helper/0.10.0/openerp-java-report-helper-0.10.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core">
+			<revision name="3.9.0-GA" status="release" pubdate="20120416222419" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, optional, master(*), runtime, compile(*), runtime(*), master, optional(*)" position="3">
+				<metadata-artifact status="no" details="" size="4940" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-core/ivy-3.9.0-GA.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-core/3.9.0-GA/pentaho-reporting-engine-classic-core-3.9.0-GA.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="working@oe-server-han"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-charting" conf="default, compile, runtime, master" rev="3.9.0-GA" rev-constraint-default="3.9.0-GA" rev-constraint-dynamic="3.9.0-GA" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="3.8-SNAPSHOT" rev-constraint-default="3.8-SNAPSHOT" rev-constraint-dynamic="3.8-SNAPSHOT" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="pentaho-reporting-engine-classic-core" type="jar" ext="jar" status="no" details="" size="3823196" time="0" location="/home/openerp/.ivy2/cache/pentaho-reporting-engine/pentaho-reporting-engine-classic-core/jars/pentaho-reporting-engine-classic-core-3.9.0-GA.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-reporting-engine/pentaho-reporting-engine-classic-core/3.9.0-GA/pentaho-reporting-engine-classic-core-3.9.0-GA.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="3.8-SNAPSHOT" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), compile(*), master" position="-1">
+				<evicted-by rev="3.9.0-GA"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="3.8-SNAPSHOT" rev-constraint-default="3.8-SNAPSHOT" rev-constraint-dynamic="3.8-SNAPSHOT" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="simple-jndi" name="simple-jndi">
+			<revision name="0.11.3" status="release" pubdate="20080410020534" resolver="default" artresolver="default" homepage="http://www.osjava.org/simple-jndi/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="37">
+				<metadata-artifact status="no" details="" size="3230" time="0" location="/home/openerp/.ivy2/cache/simple-jndi/simple-jndi/ivy-0.11.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/simple-jndi/simple-jndi/0.11.3/simple-jndi-0.11.3.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="0.11.3" rev-constraint-default="0.11.3" rev-constraint-dynamic="0.11.3" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="simple-jndi" type="jar" ext="jar" status="no" details="" size="42328" time="0" location="/home/openerp/.ivy2/cache/simple-jndi/simple-jndi/jars/simple-jndi-0.11.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/simple-jndi/simple-jndi/0.11.3/simple-jndi-0.11.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="slf4j-jcl">
+			<revision name="1.5.8" status="release" pubdate="20090611185817" resolver="default" artresolver="default" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="34">
+				<metadata-artifact status="no" details="" size="3837" time="0" location="/home/openerp/.ivy2/cache/org.slf4j/slf4j-jcl/ivy-1.5.8.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/slf4j/slf4j-jcl/1.5.8/slf4j-jcl-1.5.8.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.5.8" rev-constraint-default="1.5.8" rev-constraint-dynamic="1.5.8" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="slf4j-jcl" type="jar" ext="jar" status="no" details="" size="7139" time="0" location="/home/openerp/.ivy2/cache/org.slf4j/slf4j-jcl/jars/slf4j-jcl-1.5.8.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/slf4j/slf4j-jcl/1.5.8/slf4j-jcl-1.5.8.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="slf4j-api">
+			<revision name="1.5.8" status="release" pubdate="20090611185802" resolver="default" artresolver="default" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="35">
+				<metadata-artifact status="no" details="" size="3661" time="0" location="/home/openerp/.ivy2/cache/org.slf4j/slf4j-api/ivy-1.5.8.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.pom"/>
+				<caller organisation="org.slf4j" name="slf4j-jcl" conf="compile" rev="1.5.8" rev-constraint-default="1.5.8" rev-constraint-dynamic="1.5.8" callerrev="1.5.8"/>
+				<artifacts>
+					<artifact name="slf4j-api" type="jar" ext="jar" status="no" details="" size="23445" time="0" location="/home/openerp/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.5.8.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="hsqldb" name="hsqldb">
+			<revision name="1.8.0" status="release" pubdate="20080808005225" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="33">
+				<metadata-artifact status="no" details="" size="2215" time="0" location="/home/openerp/.ivy2/cache/hsqldb/hsqldb/ivy-1.8.0.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/hsqldb/hsqldb/1.8.0/hsqldb-1.8.0.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.8.0" rev-constraint-default="1.8.0" rev-constraint-dynamic="1.8.0" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="hsqldb" type="jar" ext="jar" status="no" details="" size="643806" time="0" location="/home/openerp/.ivy2/cache/hsqldb/hsqldb/jars/hsqldb-1.8.0.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/hsqldb/hsqldb/1.8.0/hsqldb-1.8.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.lowagie" name="itext-rtf">
+			<revision name="2.1.7" status="release" pubdate="20090709053920" resolver="default" artresolver="default" homepage="http://www.lowagie.com/iText/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="25">
+				<license name="Mozilla Public License" url="http://www.mozilla.org/MPL/MPL-1.1.html"/>
+				<metadata-artifact status="no" details="" size="2894" time="0" location="/home/openerp/.ivy2/cache/com.lowagie/itext-rtf/ivy-2.1.7.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/lowagie/itext-rtf/2.1.7/itext-rtf-2.1.7.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="2.1.7" rev-constraint-default="2.1.7" rev-constraint-dynamic="2.1.7" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="itext-rtf" type="jar" ext="jar" status="no" details="" size="157360" time="0" location="/home/openerp/.ivy2/cache/com.lowagie/itext-rtf/jars/itext-rtf-2.1.7.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/lowagie/itext-rtf/2.1.7/itext-rtf-2.1.7.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.groovy" name="groovy-all">
+			<revision name="1.8.0" status="release" pubdate="20110427204716" resolver="default" artresolver="default" homepage="http://groovy.codehaus.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="24">
+				<metadata-artifact status="no" details="" size="6268" time="0" location="/home/openerp/.ivy2/cache/org.codehaus.groovy/groovy-all/ivy-1.8.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/1.8.0/groovy-all-1.8.0.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.8.0" rev-constraint-default="1.8.0" rev-constraint-dynamic="1.8.0" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="groovy-all" type="jar" ext="jar" status="no" details="" size="5956300" time="0" location="/home/openerp/.ivy2/cache/org.codehaus.groovy/groovy-all/jars/groovy-all-1.8.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/1.8.0/groovy-all-1.8.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.thoughtworks.xstream" name="xstream">
+			<revision name="1.3.1" status="release" pubdate="20081206225023" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="58">
+				<metadata-artifact status="no" details="" size="9369" time="0" location="/home/openerp/.ivy2/cache/com.thoughtworks.xstream/xstream/ivy-1.3.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/thoughtworks/xstream/xstream/1.3.1/xstream-1.3.1.pom"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.3.1" rev-constraint-default="1.3.1" rev-constraint-dynamic="1.3.1" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="xstream" type="jar" ext="jar" status="no" details="" size="431406" time="0" location="/home/openerp/.ivy2/cache/com.thoughtworks.xstream/xstream/jars/xstream-1.3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/thoughtworks/xstream/xstream/1.3.1/xstream-1.3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jettison" name="jettison">
+			<revision name="1.0.1" status="release" pubdate="20080609203140" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="61">
+				<metadata-artifact status="no" details="" size="2760" time="0" location="/home/openerp/.ivy2/cache/org.codehaus.jettison/jettison/ivy-1.0.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jettison/jettison/1.0.1/jettison-1.0.1.pom"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="jettison" type="jar" ext="jar" status="no" details="" size="56702" time="0" location="/home/openerp/.ivy2/cache/org.codehaus.jettison/jettison/jars/jettison-1.0.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jettison/jettison/1.0.1/jettison-1.0.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="xpp3" name="xpp3_min">
+			<revision name="1.1.4c" status="release" pubdate="20071201160642" resolver="default" artresolver="default" homepage="http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="59">
+				<license name="Indiana University Extreme! Lab Software License, vesion 1.1.1" url="http://www.extreme.indiana.edu/viewcvs/~checkout~/XPP3/java/LICENSE.txt"/>
+				<license name="Public Domain" url="http://creativecommons.org/licenses/publicdomain"/>
+				<metadata-artifact status="no" details="" size="2894" time="0" location="/home/openerp/.ivy2/cache/xpp3/xpp3_min/ivy-1.1.4c.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.pom"/>
+				<caller organisation="com.thoughtworks.xstream" name="xstream" conf="compile, runtime" rev="1.1.4c" rev-constraint-default="1.1.4c" rev-constraint-dynamic="1.1.4c" callerrev="1.3.1"/>
+				<artifacts>
+					<artifact name="xpp3_min" type="jar" ext="jar" status="no" details="" size="24956" time="0" location="/home/openerp/.ivy2/cache/xpp3/xpp3_min/jars/xpp3_min-1.1.4c.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="xmlunit" name="xmlunit">
+			<revision name="1.3" status="release" pubdate="20090922022458" resolver="default" artresolver="default" homepage="http://xmlunit.sourceforge.net/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="38">
+				<license name="BSD License" url="http://xmlunit.svn.sourceforge.net/viewvc/*checkout*/xmlunit/trunk/xmlunit/LICENSE.txt"/>
+				<metadata-artifact status="no" details="" size="2653" time="0" location="/home/openerp/.ivy2/cache/xmlunit/xmlunit/ivy-1.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/xmlunit/xmlunit/1.3/xmlunit-1.3.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.3" rev-constraint-default="1.3" rev-constraint-dynamic="1.3" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="xmlunit" type="jar" ext="jar" status="no" details="" size="96751" time="0" location="/home/openerp/.ivy2/cache/xmlunit/xmlunit/jars/xmlunit-1.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/xmlunit/xmlunit/1.3/xmlunit-1.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="commons-logging" name="commons-logging">
+			<revision name="1.1.1" status="release" pubdate="20071127032410" resolver="default" artresolver="default" homepage="http://commons.apache.org/logging" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master, runtime(*)" position="36">
+				<metadata-artifact status="no" details="" size="4140" time="0" location="/home/openerp/.ivy2/cache/commons-logging/commons-logging/ivy-1.1.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.pom"/>
+				<caller organisation="bsf" name="bsf" conf="compile" rev="1.0.4" rev-constraint-default="1.0.4" rev-constraint-dynamic="1.0.4" callerrev="2.4.0"/>
+				<caller organisation="org.slf4j" name="slf4j-jcl" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.5.8"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.1" rev-constraint-default="1.1" rev-constraint-dynamic="1.1" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="commons-logging" type="jar" ext="jar" status="no" details="" size="60686" time="0" location="/home/openerp/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.0.4" status="release" pubdate="20051109051641" resolver="default" artresolver="default" evicted="latest-revision" evicted-reason="" homepage="http://jakarta.apache.org/commons/logging/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="-1">
+				<license name="The Apache Software License, Version 2.0" url="/LICENSE.txt"/>
+				<metadata-artifact status="no" details="" size="3190" time="0" location="/home/openerp/.ivy2/cache/commons-logging/commons-logging/ivy-1.0.4.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.pom"/>
+				<evicted-by rev="1.1.1"/>
+				<caller organisation="bsf" name="bsf" conf="compile" rev="1.0.4" rev-constraint-default="1.0.4" rev-constraint-dynamic="1.0.4" callerrev="2.4.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="1.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="1.1.1"/>
+				<caller organisation="bsf" name="bsf" conf="compile" rev="1.0.4" rev-constraint-default="1.0.4" rev-constraint-dynamic="1.0.4" callerrev="2.4.0"/>
+				<caller organisation="org.slf4j" name="slf4j-jcl" conf="compile" rev="1.1.1" rev-constraint-default="1.1.1" rev-constraint-dynamic="1.1.1" callerrev="1.5.8"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.1" rev-constraint-default="1.1" rev-constraint-dynamic="1.1" callerrev="1.0.12"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.beanshell" name="bsh">
+			<revision name="1.3.0" status="release" pubdate="20070503224623" resolver="default" artresolver="default" homepage="http://www.beanshell.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="23">
+				<license name="Gnu Lesser Public License" url="http://www.gnu.org/copyleft/lesser.html"/>
+				<metadata-artifact status="no" details="" size="2346" time="0" location="/home/openerp/.ivy2/cache/org.beanshell/bsh/ivy-1.3.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/beanshell/bsh/1.3.0/bsh-1.3.0.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.3.0" rev-constraint-default="1.3.0" rev-constraint-dynamic="1.3.0" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="bsh" type="jar" ext="jar" status="no" details="" size="242154" time="0" location="/home/openerp/.ivy2/cache/org.beanshell/bsh/jars/bsh-1.3.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/beanshell/bsh/1.3.0/bsh-1.3.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="bsf" name="bsf">
+			<revision name="2.4.0" status="release" pubdate="20061021023351" resolver="default" artresolver="default" homepage="http://jakarta.apache.org/bsf" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="22">
+				<metadata-artifact status="no" details="" size="2475" time="0" location="/home/openerp/.ivy2/cache/bsf/bsf/ivy-2.4.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/bsf/bsf/2.4.0/bsf-2.4.0.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="2.4.0" rev-constraint-default="2.4.0" rev-constraint-dynamic="2.4.0" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="bsf" type="jar" ext="jar" status="no" details="" size="113369" time="0" location="/home/openerp/.ivy2/cache/bsf/bsf/jars/bsf-2.4.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/bsf/bsf/2.4.0/bsf-2.4.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.poi" name="poi-ooxml">
+			<revision name="3.6" status="release" pubdate="20091215152023" resolver="default" artresolver="default" homepage="http://poi.apache.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="14">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2919" time="0" location="/home/openerp/.ivy2/cache/org.apache.poi/poi-ooxml/ivy-3.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/poi/poi-ooxml/3.6/poi-ooxml-3.6.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="3.6" rev-constraint-default="3.6" rev-constraint-dynamic="3.6" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="poi-ooxml" type="jar" ext="jar" status="no" details="" size="412783" time="0" location="/home/openerp/.ivy2/cache/org.apache.poi/poi-ooxml/jars/poi-ooxml-3.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/poi/poi-ooxml/3.6/poi-ooxml-3.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="dom4j" name="dom4j">
+			<revision name="1.6.1" status="release" pubdate="20060210193318" resolver="default" artresolver="default" homepage="http://dom4j.org" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="20">
+				<metadata-artifact status="no" details="" size="3742" time="0" location="/home/openerp/.ivy2/cache/dom4j/dom4j/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/dom4j/dom4j/1.6.1/dom4j-1.6.1.pom"/>
+				<caller organisation="org.apache.poi" name="poi-ooxml" conf="compile" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="3.6"/>
+				<artifacts>
+					<artifact name="dom4j" type="jar" ext="jar" status="no" details="" size="313898" time="0" location="/home/openerp/.ivy2/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.poi" name="poi-ooxml-schemas">
+			<revision name="3.6" status="release" pubdate="20091215152223" resolver="default" artresolver="default" homepage="http://poi.apache.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="16">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2751" time="0" location="/home/openerp/.ivy2/cache/org.apache.poi/poi-ooxml-schemas/ivy-3.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/poi/poi-ooxml-schemas/3.6/poi-ooxml-schemas-3.6.pom"/>
+				<caller organisation="org.apache.poi" name="poi-ooxml" conf="compile" rev="3.6" rev-constraint-default="3.6" rev-constraint-dynamic="3.6" callerrev="3.6"/>
+				<artifacts>
+					<artifact name="poi-ooxml-schemas" type="jar" ext="jar" status="no" details="" size="3774332" time="0" location="/home/openerp/.ivy2/cache/org.apache.poi/poi-ooxml-schemas/jars/poi-ooxml-schemas-3.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/poi/poi-ooxml-schemas/3.6/poi-ooxml-schemas-3.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.geronimo.specs" name="geronimo-stax-api_1.0_spec">
+			<revision name="1.0" status="release" pubdate="20070713211835" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="19">
+				<metadata-artifact status="no" details="" size="5478" time="0" location="/home/openerp/.ivy2/cache/org.apache.geronimo.specs/geronimo-stax-api_1.0_spec/ivy-1.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0/geronimo-stax-api_1.0_spec-1.0.pom"/>
+				<caller organisation="org.apache.poi" name="poi-ooxml-schemas" conf="compile" rev="1.0" rev-constraint-default="1.0" rev-constraint-dynamic="1.0" callerrev="3.6"/>
+				<artifacts>
+					<artifact name="geronimo-stax-api_1.0_spec" type="jar" ext="jar" status="no" details="" size="28592" time="0" location="/home/openerp/.ivy2/cache/org.apache.geronimo.specs/geronimo-stax-api_1.0_spec/jars/geronimo-stax-api_1.0_spec-1.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0/geronimo-stax-api_1.0_spec-1.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.xmlbeans" name="xmlbeans">
+			<revision name="2.3.0" status="release" pubdate="20070704091632" resolver="default" artresolver="default" homepage="http://xmlbeans.apache.org" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="17">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2530" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlbeans/xmlbeans/ivy-2.3.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.pom"/>
+				<caller organisation="org.apache.poi" name="poi-ooxml-schemas" conf="compile" rev="2.3.0" rev-constraint-default="2.3.0" rev-constraint-dynamic="2.3.0" callerrev="3.6"/>
+				<artifacts>
+					<artifact name="xmlbeans" type="jar" ext="jar" status="no" details="" size="2666695" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlbeans/xmlbeans/jars/xmlbeans-2.3.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="stax" name="stax-api">
+			<revision name="1.0.1" status="release" pubdate="20060901003914" resolver="default" artresolver="default" homepage="http://stax.codehaus.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="18">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2406" time="0" location="/home/openerp/.ivy2/cache/stax/stax-api/ivy-1.0.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/stax/stax-api/1.0.1/stax-api-1.0.1.pom"/>
+				<caller organisation="org.codehaus.jettison" name="jettison" conf="compile, runtime" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="1.0.1"/>
+				<caller organisation="org.apache.xmlbeans" name="xmlbeans" conf="compile" rev="1.0.1" rev-constraint-default="1.0.1" rev-constraint-dynamic="1.0.1" callerrev="2.3.0"/>
+				<artifacts>
+					<artifact name="stax-api" type="jar" ext="jar" status="no" details="" size="26514" time="0" location="/home/openerp/.ivy2/cache/stax/stax-api/jars/stax-api-1.0.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/stax/stax-api/1.0.1/stax-api-1.0.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.poi" name="poi">
+			<revision name="3.6" status="release" pubdate="20091215151645" resolver="default" artresolver="default" homepage="http://poi.apache.org/" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="15">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2755" time="0" location="/home/openerp/.ivy2/cache/org.apache.poi/poi/ivy-3.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/poi/poi/3.6/poi-3.6.pom"/>
+				<caller organisation="org.apache.poi" name="poi-ooxml" conf="compile" rev="3.6" rev-constraint-default="3.6" rev-constraint-dynamic="3.6" callerrev="3.6"/>
+				<artifacts>
+					<artifact name="poi" type="jar" ext="jar" status="no" details="" size="1539291" time="0" location="/home/openerp/.ivy2/cache/org.apache.poi/poi/jars/poi-3.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/poi/poi/3.6/poi-3.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libswing">
+			<revision name="1.2.6" status="release" pubdate="20120405201744" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="13">
+				<metadata-artifact status="no" details="" size="2537" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libswing/ivy-1.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libswing/1.2.6/libswing-1.2.6.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.6" rev-constraint-default="1.2.6" rev-constraint-dynamic="1.2.6" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libswing" type="jar" ext="jar" status="no" details="" size="148566" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libswing/jars/libswing-1.2.6.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libswing/1.2.6/libswing-1.2.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libserializer">
+			<revision name="1.2.4" status="release" pubdate="20120405201710" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="11">
+				<metadata-artifact status="no" details="" size="2448" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libserializer/ivy-1.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libserializer/1.2.4/libserializer-1.2.4.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libserializer" type="jar" ext="jar" status="no" details="" size="22218" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libserializer/jars/libserializer-1.2.4.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libserializer/1.2.4/libserializer-1.2.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libformula">
+			<revision name="1.2.5" status="release" pubdate="20120405201815" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="8">
+				<metadata-artifact status="no" details="" size="2543" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libformula/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libformula/1.2.5/libformula-1.2.5.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libformula" type="jar" ext="jar" status="no" details="" size="456720" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libformula/jars/libformula-1.2.5.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libformula/1.2.5/libformula-1.2.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libformat">
+			<revision name="1.2.6" status="release" pubdate="20120405201902" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="7">
+				<metadata-artifact status="no" details="" size="2540" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libformat/ivy-1.2.6.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libformat/1.2.6/libformat-1.2.6.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.6" rev-constraint-default="1.2.6" rev-constraint-dynamic="1.2.6" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libformat" type="jar" ext="jar" status="no" details="" size="69020" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libformat/jars/libformat-1.2.6.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libformat/1.2.6/libformat-1.2.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libfonts">
+			<revision name="1.2.5" status="release" pubdate="20120405202019" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master, runtime(*)" position="6">
+				<metadata-artifact status="no" details="" size="2649" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libfonts/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libfonts/1.2.5/libfonts-1.2.5.pom"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="1.2.3"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libfonts" type="jar" ext="jar" status="no" details="" size="247382" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libfonts/jars/libfonts-1.2.5.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libfonts/1.2.5/libfonts-1.2.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.2.4" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="1.2.5"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="1.2.3"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.lowagie" name="itext">
+			<revision name="2.1.7" status="release" pubdate="20090709053910" resolver="default" artresolver="default" homepage="http://www.lowagie.com/iText/" downloaded="false" searched="false" default="false" conf="master(*), master" position="45">
+				<license name="Mozilla Public License" url="http://www.mozilla.org/MPL/MPL-1.1.html"/>
+				<metadata-artifact status="no" details="" size="3051" time="0" location="/home/openerp/.ivy2/cache/com.lowagie/itext/ivy-2.1.7.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/lowagie/itext/2.1.7/itext-2.1.7.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="2.1.7" rev-constraint-default="2.1.7" rev-constraint-dynamic="2.1.7" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="itext" type="jar" ext="jar" status="no" details="" size="1130070" time="0" location="/home/openerp/.ivy2/cache/com.lowagie/itext/jars/itext-2.1.7.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/lowagie/itext/2.1.7/itext-2.1.7.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="bouncycastle" name="bctsp-jdk14">
+			<revision name="138" status="release" pubdate="20090903203229" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="28">
+				<metadata-artifact status="no" details="" size="2400" time="0" location="/home/openerp/.ivy2/cache/bouncycastle/bctsp-jdk14/ivy-138.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/bouncycastle/bctsp-jdk14/138/bctsp-jdk14-138.pom"/>
+				<caller organisation="com.lowagie" name="itext-rtf" conf="compile" rev="138" rev-constraint-default="138" rev-constraint-dynamic="138" callerrev="2.1.7"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.bouncycastle" name="bctsp-jdk14">
+			<revision name="1.38" status="release" pubdate="20090730084101" resolver="default" artresolver="default" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, master" position="29">
+				<license name="Bouncy Castle Licence" url="http://www.bouncycastle.org/licence.html"/>
+				<metadata-artifact status="no" details="" size="3087" time="0" location="/home/openerp/.ivy2/cache/org.bouncycastle/bctsp-jdk14/ivy-1.38.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/bouncycastle/bctsp-jdk14/1.38/bctsp-jdk14-1.38.pom"/>
+				<caller organisation="bouncycastle" name="bctsp-jdk14" conf="compile, master" rev="1.38" rev-constraint-default="1.38" rev-constraint-dynamic="1.38" callerrev="138"/>
+				<artifacts>
+					<artifact name="bctsp-jdk14" type="jar" ext="jar" status="no" details="" size="22994" time="0" location="/home/openerp/.ivy2/cache/org.bouncycastle/bctsp-jdk14/jars/bctsp-jdk14-1.38.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/bouncycastle/bctsp-jdk14/1.38/bctsp-jdk14-1.38.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.bouncycastle" name="bcmail-jdk14">
+			<revision name="1.38" status="release" pubdate="20090709111957" resolver="default" artresolver="default" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="31">
+				<license name="Bouncy Castle Licence" url="http://www.bouncycastle.org/licence.html"/>
+				<metadata-artifact status="no" details="" size="3073" time="0" location="/home/openerp/.ivy2/cache/org.bouncycastle/bcmail-jdk14/ivy-1.38.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/bouncycastle/bcmail-jdk14/1.38/bcmail-jdk14-1.38.pom"/>
+				<caller organisation="org.bouncycastle" name="bctsp-jdk14" conf="compile" rev="1.38" rev-constraint-default="1.38" rev-constraint-dynamic="1.38" callerrev="1.38"/>
+				<artifacts>
+					<artifact name="bcmail-jdk14" type="jar" ext="jar" status="no" details="" size="192035" time="0" location="/home/openerp/.ivy2/cache/org.bouncycastle/bcmail-jdk14/jars/bcmail-jdk14-1.38.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/bouncycastle/bcmail-jdk14/1.38/bcmail-jdk14-1.38.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.bouncycastle" name="bcprov-jdk14">
+			<revision name="1.38" status="release" pubdate="20090709111815" resolver="default" artresolver="default" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="30">
+				<license name="Bouncy Castle Licence" url="http://www.bouncycastle.org/licence.html"/>
+				<metadata-artifact status="no" details="" size="2728" time="0" location="/home/openerp/.ivy2/cache/org.bouncycastle/bcprov-jdk14/ivy-1.38.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk14/1.38/bcprov-jdk14-1.38.pom"/>
+				<caller organisation="org.bouncycastle" name="bctsp-jdk14" conf="compile" rev="1.38" rev-constraint-default="1.38" rev-constraint-dynamic="1.38" callerrev="1.38"/>
+				<caller organisation="org.bouncycastle" name="bcmail-jdk14" conf="compile" rev="1.38" rev-constraint-default="1.38" rev-constraint-dynamic="1.38" callerrev="1.38"/>
+				<artifacts>
+					<artifact name="bcprov-jdk14" type="jar" ext="jar" status="no" details="" size="1551468" time="0" location="/home/openerp/.ivy2/cache/org.bouncycastle/bcprov-jdk14/jars/bcprov-jdk14-1.38.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk14/1.38/bcprov-jdk14-1.38.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="bouncycastle" name="bcprov-jdk14">
+			<revision name="138" status="release" pubdate="20080405000549" resolver="default" artresolver="default" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="27">
+				<license name="Bouncy Castle License" url="http://www.bouncycastle.org/licence.html"/>
+				<metadata-artifact status="no" details="" size="2645" time="0" location="/home/openerp/.ivy2/cache/bouncycastle/bcprov-jdk14/ivy-138.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/bouncycastle/bcprov-jdk14/138/bcprov-jdk14-138.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="138" rev-constraint-default="138" rev-constraint-dynamic="138" callerrev="3.9.0-GA"/>
+				<caller organisation="com.lowagie" name="itext-rtf" conf="compile" rev="138" rev-constraint-default="138" rev-constraint-dynamic="138" callerrev="2.1.7"/>
+				<artifacts>
+					<artifact name="bcprov-jdk14" type="jar" ext="jar" status="no" details="" size="1551468" time="0" location="/home/openerp/.ivy2/cache/bouncycastle/bcprov-jdk14/jars/bcprov-jdk14-138.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/bouncycastle/bcprov-jdk14/138/bcprov-jdk14-138.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="bouncycastle" name="bcmail-jdk14">
+			<revision name="138" status="release" pubdate="20080404230727" resolver="default" artresolver="default" homepage="http://www.bouncycastle.org/java.html" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="26">
+				<license name="Bouncy Castle License" url="http://www.bouncycastle.org/licence.html"/>
+				<metadata-artifact status="no" details="" size="2645" time="0" location="/home/openerp/.ivy2/cache/bouncycastle/bcmail-jdk14/ivy-138.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="138" rev-constraint-default="138" rev-constraint-dynamic="138" callerrev="3.9.0-GA"/>
+				<caller organisation="com.lowagie" name="itext-rtf" conf="compile" rev="138" rev-constraint-default="138" rev-constraint-dynamic="138" callerrev="2.1.7"/>
+				<artifacts>
+					<artifact name="bcmail-jdk14" type="jar" ext="jar" status="no" details="" size="192035" time="0" location="/home/openerp/.ivy2/cache/bouncycastle/bcmail-jdk14/jars/bcmail-jdk14-138.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libdocbundle">
+			<revision name="1.2.5" status="release" pubdate="20120405202111" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="5">
+				<metadata-artifact status="no" details="" size="2904" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libdocbundle/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libdocbundle/1.2.5/libdocbundle-1.2.5.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libdocbundle" type="jar" ext="jar" status="no" details="" size="84300" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libdocbundle/jars/libdocbundle-1.2.5.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libdocbundle/1.2.5/libdocbundle-1.2.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libxml">
+			<revision name="1.2.4" status="release" pubdate="20120405202043" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master, runtime(*)" position="12">
+				<metadata-artifact status="no" details="" size="2649" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libxml/ivy-1.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libxml/1.2.4/libxml-1.2.4.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="libxml" type="jar" ext="jar" status="no" details="" size="78362" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libxml/jars/libxml-1.2.4.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libxml/1.2.4/libxml-1.2.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.2.3" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="1.2.4"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.0.12"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="librepository">
+			<revision name="1.2.5" status="release" pubdate="20120405201921" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="10">
+				<metadata-artifact status="no" details="" size="2556" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/librepository/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/librepository/1.2.5/librepository-1.2.5.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="librepository" type="jar" ext="jar" status="no" details="" size="64364" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/librepository/jars/librepository-1.2.5.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/librepository/1.2.5/librepository-1.2.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libloader">
+			<revision name="1.2.5" status="release" pubdate="20120405201948" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master, runtime(*)" position="9">
+				<metadata-artifact status="no" details="" size="4617" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libloader/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libloader/1.2.5/libloader-1.2.5.pom"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="1.2.3"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<artifacts>
+					<artifact name="libloader" type="jar" ext="jar" status="no" details="" size="129904" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libloader/jars/libloader-1.2.5.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libloader/1.2.5/libloader-1.2.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.2.4" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="1.2.5"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="1.2.3"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="pentaho-library" name="libbase">
+			<revision name="1.2.4" status="release" pubdate="20120405201537" resolver="pentaho-compat" artresolver="pentaho-compat" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master, runtime, runtime(*)" position="4">
+				<metadata-artifact status="no" details="" size="2546" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libbase/ivy-1.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libbase/1.2.4/libbase-1.2.4.pom"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.2.3"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.0.12"/>
+				<artifacts>
+					<artifact name="libbase" type="jar" ext="jar" status="no" details="" size="133755" time="0" location="/home/openerp/.ivy2/cache/pentaho-library/libbase/jars/libbase-1.2.4.jar">
+						<origin-location is-local="false" location="http://repository.pentaho.org/artifactory/repo/pentaho-library/libbase/1.2.4/libbase-1.2.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="1.2.3" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="1.2.4"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="3.9.0-GA"/>
+				<caller organisation="pentaho-library" name="libcss" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.2.3"/>
+				<caller organisation="pentaho" name="pentaho-chartbeans" conf="compile, runtime" rev="1.2.3" rev-constraint-default="1.2.3" rev-constraint-dynamic="1.2.3" callerrev="1.0.12"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.xmlrpc" name="xmlrpc-server">
+			<revision name="3.1.3" status="release" pubdate="20100206231430" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="master(*), master" position="2">
+				<metadata-artifact status="no" details="" size="6387" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlrpc/xmlrpc-server/ivy-3.1.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/xmlrpc/xmlrpc-server/3.1.3/xmlrpc-server-3.1.3.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.1.3" rev-constraint-default="3.1.3" rev-constraint-dynamic="3.1.3" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="xmlrpc-server" type="jar" ext="jar" status="no" details="" size="81555" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlrpc/xmlrpc-server/jars/xmlrpc-server-3.1.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/xmlrpc/xmlrpc-server/3.1.3/xmlrpc-server-3.1.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.xmlrpc" name="xmlrpc-client">
+			<revision name="3.1.3" status="release" pubdate="20100206231326" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="40">
+				<metadata-artifact status="no" details="" size="5739" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlrpc/xmlrpc-client/ivy-3.1.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/xmlrpc/xmlrpc-client/3.1.3/xmlrpc-client-3.1.3.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="3.1.3" rev-constraint-default="3.1.3" rev-constraint-dynamic="3.1.3" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="xmlrpc-client" type="jar" ext="jar" status="no" details="" size="58573" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlrpc/xmlrpc-client/jars/xmlrpc-client-3.1.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/xmlrpc/xmlrpc-client/3.1.3/xmlrpc-client-3.1.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.xmlrpc" name="xmlrpc-common">
+			<revision name="3.1.3" status="release" pubdate="20100206231227" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="41">
+				<metadata-artifact status="no" details="" size="5727" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlrpc/xmlrpc-common/ivy-3.1.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/xmlrpc/xmlrpc-common/3.1.3/xmlrpc-common-3.1.3.pom"/>
+				<caller organisation="org.apache.xmlrpc" name="xmlrpc-client" conf="compile" rev="3.1.3" rev-constraint-default="3.1.3" rev-constraint-dynamic="3.1.3" callerrev="3.1.3"/>
+				<artifacts>
+					<artifact name="xmlrpc-common" type="jar" ext="jar" status="no" details="" size="109131" time="0" location="/home/openerp/.ivy2/cache/org.apache.xmlrpc/xmlrpc-common/jars/xmlrpc-common-3.1.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/xmlrpc/xmlrpc-common/3.1.3/xmlrpc-common-3.1.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.ws.commons.util" name="ws-commons-util">
+			<revision name="1.0.2" status="release" pubdate="20070809055006" resolver="default" artresolver="default" homepage="http://ws.apache.org/commons/util" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="42">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3255" time="0" location="/home/openerp/.ivy2/cache/org.apache.ws.commons.util/ws-commons-util/ivy-1.0.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/ws/commons/util/ws-commons-util/1.0.2/ws-commons-util-1.0.2.pom"/>
+				<caller organisation="org.apache.xmlrpc" name="xmlrpc-common" conf="compile" rev="1.0.2" rev-constraint-default="1.0.2" rev-constraint-dynamic="1.0.2" callerrev="3.1.3"/>
+				<artifacts>
+					<artifact name="ws-commons-util" type="jar" ext="jar" status="no" details="" size="34407" time="0" location="/home/openerp/.ivy2/cache/org.apache.ws.commons.util/ws-commons-util/jars/ws-commons-util-1.0.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/ws/commons/util/ws-commons-util/1.0.2/ws-commons-util-1.0.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="xml-apis" name="xml-apis">
+			<revision name="1.0.b2" status="release" pubdate="20070209073046" resolver="default" artresolver="default" homepage="http://xml.apache.org/commons/#external" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="21">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3015" time="0" location="/home/openerp/.ivy2/cache/xml-apis/xml-apis/ivy-1.0.b2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.pom"/>
+				<caller organisation="dom4j" name="dom4j" conf="compile" rev="1.0.b2" rev-constraint-default="1.0.b2" rev-constraint-dynamic="1.0.b2" callerrev="1.6.1"/>
+				<caller organisation="org.apache.ws.commons.util" name="ws-commons-util" conf="compile" rev="1.0.b2" rev-constraint-default="1.0.b2" rev-constraint-dynamic="1.0.b2" callerrev="1.0.2"/>
+				<artifacts>
+					<artifact name="xml-apis" type="jar" ext="jar" status="no" details="" size="109318" time="0" location="/home/openerp/.ivy2/cache/xml-apis/xml-apis/jars/xml-apis-1.0.b2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="junit" name="junit">
+			<revision name="3.8.1" status="release" pubdate="20070515043418" resolver="default" artresolver="default" homepage="http://junit.org" downloaded="false" searched="false" default="false" conf="compile, master(*), compile(*), master" position="32">
+				<license name="Common Public License Version 1.0" url="http://www.opensource.org/licenses/cpl1.0.txt"/>
+				<metadata-artifact status="no" details="" size="2546" time="0" location="/home/openerp/.ivy2/cache/junit/junit/ivy-3.8.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.pom"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-core" conf="optional" rev="3.8.1" rev-constraint-default="3.8.1" rev-constraint-dynamic="3.8.1" callerrev="3.9.0-GA"/>
+				<caller organisation="org.apache.ws.commons.util" name="ws-commons-util" conf="compile" rev="3.8.1" rev-constraint-default="3.8.1" rev-constraint-dynamic="3.8.1" callerrev="1.0.2"/>
+				<caller organisation="pentaho-reporting-engine" name="pentaho-reporting-engine-classic-extensions-openerp" conf="optional" rev="3.8.1" rev-constraint-default="3.8.1" rev-constraint-dynamic="3.8.1" callerrev="3.8-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="junit" type="jar" ext="jar" status="no" details="" size="121070" time="0" location="/home/openerp/.ivy2/cache/junit/junit/jars/junit-3.8.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-lang3">
+			<revision name="3.1" status="release" pubdate="20111115142705" resolver="default" artresolver="default" homepage="http://commons.apache.org/lang/" downloaded="false" searched="false" default="false" conf="master(*), master" position="1">
+				<metadata-artifact status="no" details="" size="7969" time="0" location="/home/openerp/.ivy2/cache/org.apache.commons/commons-lang3/ivy-3.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="3.1" rev-constraint-default="3.1" rev-constraint-dynamic="3.1" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="commons-lang3" type="jar" ext="jar" status="no" details="" size="315805" time="0" location="/home/openerp/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="javax.servlet" name="servlet-api">
+			<revision name="2.5" status="release" pubdate="20060717180957" resolver="default" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, provided, runtime, javadoc, sources, master" position="0">
+				<metadata-artifact status="no" details="" size="2289" time="0" location="/home/openerp/.ivy2/cache/javax.servlet/servlet-api/ivy-2.5.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.pom"/>
+				<caller organisation="com.willowit" name="pentaho-reports-for-openerp" conf="runtime, build" rev="2.5" rev-constraint-default="2.5" rev-constraint-dynamic="2.5" callerrev="working@oe-server-han"/>
+				<artifacts>
+					<artifact name="servlet-api" type="source" ext="jar" extra-classifier="sources" status="no" details="" size="158114" time="0" location="/home/openerp/.ivy2/cache/javax.servlet/servlet-api/sources/servlet-api-2.5-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
+					</artifact>
+					<artifact name="servlet-api" type="jar" ext="jar" status="no" details="" size="105112" time="0" location="/home/openerp/.ivy2/cache/javax.servlet/servlet-api/jars/servlet-api-2.5.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
