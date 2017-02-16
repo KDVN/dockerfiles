@@ -25,7 +25,7 @@ EXPOSE 8000
 EXPOSE 8069
 
 USER openerp
-RUN git clone git://github.com/c9/core.git /opt/c9sdk && cd /opt/c9sdk && scripts/install-sdk.sh
+RUN git clone git://github.com/c9/core.git /opt/c9sdk && cd /opt/c9sdk && cd /opt/c9sdk && scripts/install-sdk.sh
 
 WORKDIR /opt/c9sdk
 #RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' ~/configs/standalone.js 

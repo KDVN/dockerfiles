@@ -1,0 +1,26 @@
+KDVNOdoo8.C9:
+  image: kdvn/odoo8-c9
+  container_name: odoo8-c9
+  ports:
+   - "8990:8069"
+   - "99:3000"
+  volumes:
+   - ./extra-addons:/mnt/extra-addons
+   - ./odoodata:/opt/odoodata
+   - ./workspace:/opt/workspace
+  links:
+   - odoo8c9_db:db
+  environment:
+   - PGHOST=odoo8c9_db
+   - PGUSER=odoo
+   - PGPASSWORD=odoo
+   - AUTH=admin:admin
+   - LOCAL_USER_ID=1000
+odoo8c9_db:
+  image: postgres:latest
+  container_name: odoo8c9_db
+  volumes:
+    - ./db:/var/lib/postgresql/data
+  environment:
+   - POSTGRES_USER=odoo
+   - POSTGRES_PASSWORD=odoo

@@ -1,0 +1,25 @@
+Odoo10Testing:
+  image: kdvn/odoo8
+  container_name: odoo8
+  ports:
+   - "1980:8069"
+  volumes:
+   - ./addons:/mnt/extra-addons
+   - ./odoodata:/opt/odoodata
+   - ./workspace:/opt/workspace
+  links:
+   - odoo_db8:db
+  environment:
+   - PGHOST=odoo_db8
+   - PGUSER=odoo
+   - PGPASSWORD=odoo
+   - AUTH=admin:admin
+   - LOCAL_USER_ID=1000
+odoo_db8:
+  image: postgres:latest
+  container_name: odoo_db8
+  volumes:
+    - ./db:/var/lib/postgresql/data
+  environment:
+   - POSTGRES_USER=odoo
+   - POSTGRES_PASSWORD=odoo

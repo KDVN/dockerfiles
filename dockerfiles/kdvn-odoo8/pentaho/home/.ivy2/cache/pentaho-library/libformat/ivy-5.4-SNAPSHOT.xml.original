@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="pentaho-library" module="libformat" revision="5.4-SNAPSHOT" status="integration" publication="20151223153200"/>
+
+	<configurations>
+		<conf name="default_internal"/>
+		<conf name="default_external"/>
+		<conf name="default" extends="default_internal, default_external"/>
+		
+		<conf name="source"/>
+	</configurations>
+
+	<publications>
+		<artifact name="libformat" type="jar" conf="default"/>
+		<artifact name="libformat" m:classifier="sources" type="source" ext="jar" conf="source"/>
+	</publications>
+
+	<dependencies defaultconf="default_internal->default">
+		<!--  internal dependencies -->
+		<dependency org="pentaho-library" name="libbase" rev="5.4-SNAPSHOT" transitive="true" changing="true"/>
+
+		<!-- Testing dependencies -->
+		
+	</dependencies>
+</ivy-module>
