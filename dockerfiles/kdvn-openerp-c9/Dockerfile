@@ -17,7 +17,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME ["/mnt/oefilestore", "/mnt/extra-addons", "/opt/workspace"] 
 
-RUN chown -R openerp /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
+RUN chown -R openerp /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace /opt/oe7
 RUN usermod --shell /bin/bash --home /opt/c9sdk openerp
 RUN echo "dntq ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
 

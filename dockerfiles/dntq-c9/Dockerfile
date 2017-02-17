@@ -3,10 +3,12 @@ FROM ubuntu
 USER root
 
 RUN mkdir -p /opt/c9sdk /opt/workspace
-RUN apt-get update && apt-get install apt-transport-https wget sudo -y
-RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list && wget -O- https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs tmux sudo nodejs zip heroku -y
+RUN apt-get update && apt-get install apt-transport-https wget -y
+RUN apt-get install git -y
 RUN apt-get install python -y
+#RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list && wget -O- https://cli-assets.heroku.com/apt/release.key | sudo apt-key add -
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs tmux sudo nodejs zip -y
+#RUN apt-get install python -y
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copy entrypoint script and Odoo configuration file
@@ -16,13 +18,13 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #NV OPENERP_SERVER /etc/odoo/openerp-server.conf
 
 VOLUME ["/opt/workspace"]
-RUN useradd -m -G sudo dntq
-RUN chown -R dntq /opt/c9sdk /opt/workspace
-RUN usermod --shell /bin/bash --home /opt/c9sdk dntq
+#RUN useradd -m -G sudo dntq
+#RUN chown -R dntq /opt/c9sdk /opt/workspace
+#RUN usermod --shell /bin/bash --home /opt/c9sdk dntq
 
 EXPOSE 8000
-RUN echo "dntq ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
-USER dntq
+#RUN echo "dntq ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
+#USER dntq
 RUN git clone git://github.com/c9/core.git /opt/c9sdk && cd /opt/c9sdk && scripts/install-sdk.sh
 
 WORKDIR /opt/c9sdk
