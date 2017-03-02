@@ -1,6 +1,6 @@
 FROM kdvn/ubuntu
 
-RUN mkdir -p /mnt/extra-addons /mnt/oefilestore /opt/oe7 /opt/pentaho_server
+RUN mkdir -p /mnt/extra-addons /mnt/oefilestore /opt/oe7 /opt/pentaho_server /opt/workspace
 
 #RUN wget -qO- http://10.10.0.1/openerp_7.0.latest.tar.gz | tar xz -C /opt/oe7/ --owner=openerp --strip 1
 RUN wget -qO- http://nightly.odoo.com/7.0/nightly/src/openerp_7.0.latest.tar.gz | tar xz -C /opt/oe7/ --strip 1
@@ -18,8 +18,10 @@ ENV OPENERP_SERVER /etc/openerp/openerp-server.conf
 
 VOLUME ["/mnt/oefilestore", "/mnt/extra-addons"] 
 
-RUN chown -R openerp /mnt/extra-addons /mnt/oefilestore /home/openerp /home/openerp /opt/pentaho_server
+RUN chown -R openerp /mnt/extra-addons /mnt/oefilestore /opt/workspace /opt/oe7
 EXPOSE 8069
+
+RUN chown -R openerp /opt/pentaho_server
 
 USER openerp
 WORKDIR /opt/pentaho_server/
