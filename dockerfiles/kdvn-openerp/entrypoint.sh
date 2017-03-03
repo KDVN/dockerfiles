@@ -1,5 +1,12 @@
 #!/bin/bash
+
+USER_ID=${LOCAL_USER_ID}
+
+echo "Starting with UID : $USER_ID:-9001"
+
+sudo usermod -u $USER_ID devuser
 ant launch > /opt/pentaho_server/pentaho.log 2>&1 &
+
 set -e
 # set odoo database host, port, user and password
 : ${PGHOST:=$PGHOST}

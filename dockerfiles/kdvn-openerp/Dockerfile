@@ -26,5 +26,5 @@ RUN chown -R openerp /opt/pentaho_server
 USER openerp
 WORKDIR /opt/pentaho_server/
 
+ENV PATH "$PATH:/opt/oe7"
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/opt/oe7/openerp-server"]
