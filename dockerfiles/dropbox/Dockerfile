@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get -o Dpkg::Options::="--force-confnew" --force-yes -fuy dist-upgrade
 RUN apt-get install -y wget python-software-properties
-
+RUN rm /root/.dropbox-dist/dropbox-lnx* -rf
 RUN cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - 
 RUN wget -O /usr/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
 RUN chmod +x /usr/bin/dropbox.py
