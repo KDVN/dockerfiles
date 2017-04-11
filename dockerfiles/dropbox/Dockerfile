@@ -1,6 +1,6 @@
 #COPY from https://hub.docker.com/r/mhimmer/dropbox/~/dockerfile/ 
 # THIS ONE JUST FOR UPDATE ONLY
-FROM ubuntu:latest
+FROM kdvn/dropbox
 MAINTAINER Marcos Himmer <m@himmer.cl>
 
 USER root
