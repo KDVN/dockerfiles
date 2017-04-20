@@ -1,22 +1,31 @@
+#Docker Compose Old Version
 openerp7:
   image: kdvn/openerp
   container_name: openerp7
   ports:
-   - "8180:8069"
+   - "8169:8069"
   volumes:
-   - ./workspace:/opt/workspace
+   - ./:/opt/workspace
+   - /tmp:/tmp
   links:
-   - openerp_db:db
+   - openerp7_db:db
+   - pentaho7:pentaho
+   - jasperserver7:jasperserver
   environment:
-   - PGHOST=openerp_db
+   - PGHOST=openerp7_db
    - PGUSER=openerp
    - PGPASSWORD=openerp
-   - AUTH=admin:admin
-openerp_db:
+   - LOCAL_USER_ID=1000
+   - OEHOST=openerp7
+   - OEPORT=8069
+   - PENTAHOHOST=pentaho7
+   - PENTAHOPORT=8080
+   - JASPERHOST=jasperserver7
+openerp7_db:
   image: postgres:latest
-  container_name: openerp_db
+  container_name: openerp7_db
   ports:                          
-   - "5432:5432"                  
+   - "5436:5432"                  
   volumes:                        
    - ./db:/var/lib/postgresql/data
   environment:
@@ -26,11 +35,20 @@ kdvn_c9:
   image: kdvn/c9
   container_name: kdvn_c9
   ports:
-   - "88:3000"
+   - "808:3000"
   volumes:
-   - ./workspace:/opt/workspace
-  links:
-   - openerp_db:db
+   - ./:/opt/workspace
   environment:
    - AUTH=admin:admin
-   - LOCAL_USER_ID=Please input manually using (user - id -u $USER)
+   - LOCAL_USER_ID=1000
+pentaho7:
+  image: kdvn/pentaho
+  container_name: pentaho7
+jasperserver7:
+  image: kdvn/jasper
+  container_name: jasperserver7
+  links:
+   - openerp7_db:db
+  volumes:
+    - /tmp:/tmp
+    - ./:/opt/workspace

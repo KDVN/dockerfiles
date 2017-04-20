@@ -2,5 +2,5 @@ if [ "$1" = "" ]
 then
 	echo "Error"
 else
-	rsync -ruav /opt/workspace/addons/$1 openerp@172.16.10.192:/usr/local/lib/python2.7/dist-packages/openerp-7.0_20131003_231232-py2.7.egg/openerp/addons/ --exclude=.svn --chmod=ug=rwx --chmod=o=rx -e ssh
+	rsync -ruav /opt/workspace/addons/$1 openerp@172.16.10.192:/usr/local/lib/python2.7/dist-packages/openerp-7.0_20131003_231232-py2.7.egg/openerp/addons/ --exclude=.svn --exclude="*.pyc" --chmod=ug=rwx --chmod=o=rx -e ssh
 fi

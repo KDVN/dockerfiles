@@ -19,7 +19,7 @@ VOLUME ["/opt/odoodata", "/opt/extra-addons", "/opt/workspace"]
 RUN chown -R odoo /opt/workspace /opt/odoodata /opt/extra-addons /opt/c9sdk
 RUN usermod --shell /bin/bash --home /opt/c9sdk odoo
 #RUN echo "odoo ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
-RUN echo "ALL=(ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
+RUN echo "odoo ALL=(ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
 RUN ln -s /opt/odoo/odoo.py /bin/odoo
 EXPOSE 8000
 EXPOSE 8069

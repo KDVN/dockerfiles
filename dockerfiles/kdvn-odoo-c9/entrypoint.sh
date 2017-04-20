@@ -12,6 +12,8 @@ USER_ID=${LOCAL_USER_ID}
 echo "Starting with UID : $USER_ID:-9001"
 sudo usermod -u $USER_ID odoo
 
+/bin/bash &
+
 exec nodejs server.js $AUTH --port 3000 -w /opt/workspace/
 
 exit 1
