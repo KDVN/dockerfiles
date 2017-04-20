@@ -1,6 +1,6 @@
 #COPY from https://hub.docker.com/r/mhimmer/dropbox/~/dockerfile/ 
 # THIS ONE JUST FOR UPDATE ONLY
-FROM kdvn/dropbox
+FROM ubuntu:latest
 MAINTAINER Marcos Himmer <m@himmer.cl>
 
 USER root
@@ -24,4 +24,4 @@ WORKDIR /root
 
 VOLUME ["/root/Dropbox", "/root/.dropbox"]
 
-CMD ["/root/.dropbox-dist/dropboxd"]
+ENTRYPOINT ["/bin/bash","-c","/root/.dropbox-dist/dropboxd;/bin/bash"]
