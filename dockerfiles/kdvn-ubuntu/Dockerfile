@@ -5,7 +5,9 @@ RUN apt-get update && apt-get install -y build-essential python-matplotlib poppl
                     python-reportlab-accel python-decorator python-pybabel python-werkzeug python-openssl ant-contrib libldap2-dev python-gevent \
                     python-vobject python-setuptools python-passlib python lptools python-simplejson python-feedparser python-webdav python-zsi \
                     python-docutils python-egenix-mxdatetime python-dateutil wget python-pyparsing python-pdftools python-gdata bzr ghostscript python-psutil mc python-pip python-pypdf python-pychart python-babel python-requests python-pydot \
-                    python-imaging python-mako antiword python-paramiko make python-reportlab sudo node-less && easy_install -U unittest2
+                    python-imaging python-mako antiword python-paramiko make python-reportlab sudo node-less curl && easy_install -U unittest2
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN apt-get install nodejs
 RUN apt-get dist-upgrade -y
 
 RUN apt-get -y remove && apt-get autoclean -y
