@@ -3,10 +3,10 @@ FROM kdvn/odoo8
 USER root
 
 RUN mkdir -p /opt/extra-addons /opt/odoodata /opt/c9sdk /opt/workspace
-RUN apt-get update && apt-get install apt-transport-https curl -y
+RUN apt-get update && apt-get install apt-transport-https sudo curl -y
 RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list && wget -O- https://cli-assets.heroku.com/apt/release.key | apt-key add -
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs tmux sudo nodejs zip heroku -y
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku -y
 RUN npm install -g grunt-cli
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
