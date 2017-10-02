@@ -1,0 +1,69 @@
+version: '2'
+
+networks:
+    reverse-proxy:
+        driver: bridge
+        ipam:
+            driver: default
+    netbackend:
+        driver: bridge
+        
+services:
+    pgdb:
+        restart: always
+        image: postgres:9.6
+        networks:
+            - netbackend
+        volumes:
+            - ./db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+
+    ariweb:    
+        image: kdvn/odoo10:pro
+        restart: always
+        volumes:
+            - ./extra-addons:/opt/extra-addons
+            - ./custom-addons:/opt/custom-addons
+            - ./odoodata:/opt/odoodata
+            - ./logs:/opt/logs
+        depends_on:
+            - pgdb
+        environment:
+            - PGHOST=pgdb
+            - PGUSER=odoo
+            - PGPASSWORD=odoo
+            - LETSENCRYPT_EMAIL=duongcdtin5@gmail.com
+            - LETSENCRYPT_HOST=ari.songtoan.com.vn
+            - VIRTUAL_HOST=ari.songtoan.com.vn
+            - VIRTUAL_PORT=8069
+        networks:
+            - netbackend
+            - reverse-proxy
+            
+    nginxproxy:
+        restart: always
+        image: jwilder/nginx-proxy
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./certs:/etc/nginx/certs:ro
+            - /etc/nginx/vhost.d
+            - /usr/share/nginx/html
+            - /var/run/docker.sock:/tmp/docker.sock:ro 
+        labels:
+            - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+        networks:
+            - reverse-proxy
+    letsencrypthelper:
+        restart: always
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        networks:
+            - reverse-proxy
+        volumes_from:
+            - nginxproxy
+        volumes:
+            - ./certs:/etc/nginx/certs:rw
+            - /var/run/docker.sock:/var/run/docker.sock:ro
