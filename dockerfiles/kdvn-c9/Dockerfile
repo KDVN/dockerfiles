@@ -1,33 +1,68 @@
-FROM kdvn/ubuntu
+#COpy From https://github.com/kdelfour/supervisor-docker/blob/master/Dockerfile
+# ------------------------------------------------------------------------------
+# Based on a work at https://github.com/docker/docker.
+# ------------------------------------------------------------------------------
+# Pull base image.
+FROM ubuntu
+MAINTAINER Kevin Delfour <kevin@delfour.eu>
 
-USER root
+# Install Supervisor.
+RUN \
+  apt-get update && \
+  apt-get install -y supervisor && \
+  rm -rf /var/lib/apt/lists/* && \
+  sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 
-RUN mkdir -p /opt/c9sdk /opt/workspace
-RUN apt-get update && apt-get install apt-transport-https -y
-RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list && wget -O- https://cli-assets.heroku.com/apt/release.key | apt-key add -
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs tmux sudo nodejs zip heroku -y
+# Define mountable directories.
+VOLUME ["/etc/supervisor/conf.d"]
 
+# ------------------------------------------------------------------------------
+# Security changes
+# - Determine runlevel and services at startup [BOOT-5180]
+RUN update-rc.d supervisor defaults
+
+# - Check the output of apt-cache policy manually to determine why output is empty [KRNL-5788]
+RUN apt-get update | apt-get upgrade -y
+
+# - Install a PAM module for password strength testing like pam_cracklib or pam_passwdqc [AUTH-9262]
+RUN apt-get install libpam-cracklib build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs -y
+RUN ln -s /lib/x86_64-linux-gnu/security/pam_cracklib.so /lib/security
+
+# Define working directory.
+#WORKDIR /etc/supervisor/conf.d
+# ------------------------------------------------------------------------------
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup | bash -
+RUN apt-get install -y nodejs
+
+# ------------------------------------------------------------------------------
+# Install Cloud9
+RUN git clone https://github.com/c9/core.git /cloud9
+WORKDIR /cloud9
+RUN scripts/install-sdk.sh
+
+# Tweak standlone.js conf
+RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' /cloud9/configs/standalone.js 
+
+# Add supervisord conf
+ADD conf/cloud9.conf /etc/supervisor/conf.d/
+
+# ------------------------------------------------------------------------------
+# Add volumes
+RUN mkdir /workspace
+VOLUME /workspace
+
+# Install NPM
+RUN apt-get install npm -y
+# ------------------------------------------------------------------------------
+# Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME ["/opt/workspace"] 
-
-RUN adduser -u 1000 --system --group --home /home/devuser --shell /bin/bash devuser
-RUN chown -R devuser /opt/c9sdk /opt/workspace
-RUN usermod --shell /bin/bash --home /opt/c9sdk devuser
-RUN echo "devuser ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/aptitude , /usr/sbin/usermod " | tee -a /etc/sudoers
-
+# ------------------------------------------------------------------------------
+# Expose ports.
+EXPOSE 80
 EXPOSE 3000
 
-USER devuser
-RUN git clone git://github.com/c9/core.git /opt/c9sdk && cd /opt/c9sdk && cd /opt/c9sdk && scripts/install-sdk.sh
-
-WORKDIR /opt/c9sdk
-#RUN sed -i -e 's_127.0.0.1_0.0.0.0_g' ~/configs/standalone.js 
-COPY ./entrypoint.sh /
-
-COPY ./han7cpoe /bin/
-COPY ./hcm7cpoe /bin/
-
-ENV PATH "$PATH:/opt/oe7"
-
-ENTRYPOINT ["/entrypoint.sh"]
+# ------------------------------------------------------------------------------
+# Start supervisor, define default command.
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]

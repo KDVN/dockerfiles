@@ -2,7 +2,7 @@ FROM kdvn/ubuntu
 
 RUN mkdir -p /opt/extra-addons /opt/odoo /opt/odoodata
 
-RUN wget -qO- https://nightly.odoo.com/10.0/nightly/src/odoo_10.0.latest.tar.gz | tar xz -C /opt/odoo/ --strip 1 | echo update
+RUN wget -qO- https://nightly.odoo.com/10.0/nightly/src/odoo_10.0.latest.tar.gz | tar xz -C /opt/odoo/ --strip 1 
 
 RUN adduser -u 1000 --system --group --home /home/odoo --shell /bin/bash odoo
 

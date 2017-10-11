@@ -1,16 +1,16 @@
 FROM kdvn/odoo10
 
 USER root
-
+RUN echo Testing
 RUN mkdir -p /opt/extra-addons /opt/odoodata /opt/c9sdk /opt/workspace
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" | tee -a /etc/apt/sources.list.d/pg.list
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 RUN apt-get update && sudo apt-get install apt-transport-https sudo curl postgresql-client -y
 RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list && wget -O- https://cli-assets.heroku.com/apt/release.key | apt-key add -
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku -y
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku python-watchdog phantomjs -y
 RUN npm install -g grunt-cli
-RUN sudo easy_install -U pysftp
+RUN sudo pip install pysftp
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copy entrypoint script and Odoo configuration file
