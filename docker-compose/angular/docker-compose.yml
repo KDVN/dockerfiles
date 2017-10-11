@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+ angularcloud9:
+  restart: always
+  image: kdvn/c9
+  ports:
+   - 8686:3000
+   - 68:80
+  volumes:
+   - ./workspace:/workspace

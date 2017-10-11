@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+ kdvnodoo11:
+  image: kdvn/odoo11
+  restart: always
+  ports:
+   - 1108:3000
+   - 1169:8069
+  volumes:
+   - ./:/opt/workspace
+  depends_on:
+   - odoo11db
+  networks:
+   - default
+  environment:
+   - PGHOST=odoo11db
+   - PGUSER=odoo
+   - PGPASSWORD=odoo
+   - AUTH=admin:admin
+   - LOCAL_USER_ID=1000
+   - GIT_EMAIL=duongcdtin5@gmail.com
+   - GIT_NAME="DNTQ Vu"
+ odoo11db:
+  image: postgres:9.6
+  restart: always
+  ports:
+   - 5439:5432
+  volumes:
+    - ./db:/var/lib/postgresql/data
+  environment:
+   - POSTGRES_USER=odoo
+   - POSTGRES_PASSWORD=odoo
