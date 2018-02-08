@@ -1,0 +1,20 @@
+services:
+ pdns1:
+  image: interlegis/powerdns:4.0.1-1
+  links:
+   - mysql
+  ports:
+   - "53:53"
+   - "53:53/udp"
+   - "8053:8081"
+  environment:
+   - PDNSCONF_API_KEY=STRONGAPIKeyDNTQ
+   - PDNSCONF_MASTER=yes
+   - PDNSCONF_DEFAULT_SOA_NAME=vina-kinden.com
+ mysql:
+  image: mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=mysqlrootpw
+   - MYSQL_DATABASE=pdns
+   - MYSQL_USER=pdns
+   - MYSQL_PASSWORD=pdnspw

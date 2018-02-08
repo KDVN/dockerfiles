@@ -5,16 +5,16 @@ RUN mkdir -p /opt/odoo /opt/c9sdk /opt/workspace
 
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" | tee -a /etc/apt/sources.list.d/pg.list
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-RUN apt-get update && sudo apt-get install apt-transport-https sudo curl postgresql-client -y
+RUN apt-get update && sudo apt-get install apt-transport-https sudo curl postgresql-client python3-suds -y
 RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list && wget -O- https://cli-assets.heroku.com/apt/release.key | apt-key add -
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku python-watchdog phantomjs -y
-RUN npm install -g grunt-cli
-RUN sudo pip3 install pysftp uritools
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku python-watchdog phantomjs ruby-full rubygems -y
+RUN sudo pip3 install pysftp uritools dropbox qrcode
 RUN sudo pip3 install --upgrade pyOpenSSL
+RUN sudo gem install compass bootstrap-sass:3.3.7
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN adduser -u 1000 --system --group --home /home/odoo --shell /bin/bash odoo
+RUN adduser -u 1000 --system --group --home /home/odoo --shell /bin/zsh odoo
 RUN chown odoo /opt/odoo -R
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
@@ -35,16 +35,17 @@ RUN ln -s /opt/odoo/odoo.py /bin/odoo
 
 EXPOSE 3000
 EXPOSE 8069
-RUN npm install -g grunt-cli
+
 
 USER odoo
 RUN git clone git://github.com/c9/core.git /opt/c9sdk && cd /opt/c9sdk && scripts/install-sdk.sh
 
 
 #ENV RLOdoo=https://nightly.odoo.com/11.0/nightly/src/odoo_11.0.latest.tar.gz
+RUN echo Update
 ENV URLOdoo http://10.10.0.1/odoo_11.0.latest.tar.gz
 #RUN wget -qO- https://nightly.odoo.com/11.0/nightly/src/odoo_11.0.latest.tar.gz | tar xz -C /opt/odoo/ --strip 1
-RUN echo "$URLOdoo"
+#RUN echo "$URLOdoo"
 RUN wget -qO- "$URLOdoo" | tar xz -C /opt/odoo/ --strip 1
 RUN cp /opt/odoo/setup/odoo /opt/odoo/odoo.py && chmod a+x /opt/odoo/odoo.py
 

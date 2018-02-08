@@ -6,7 +6,7 @@ RUN mkdir -p /mnt/extra-addons /mnt/oefilestore /opt/c9sdk /opt/workspace
 RUN apt-get update && apt-get install apt-transport-https wget -y
 RUN echo "deb https://cli-assets.heroku.com/branches/stable/apt ./" | tee -a /etc/apt/sources.list 
 RUN wget -O- https://cli-assets.heroku.com/apt/release.key | apt-key add -
-RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku -y
+RUN apt-get update -y && apt-get dist-upgrade -y && apt-get install git build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs tmux nodejs zip heroku python-xlrd -y
 RUN rm -rf /etc/sudoers && apt-get install sudo -f -y
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -5,7 +5,7 @@
 # Pull base image.
 FROM ubuntu
 MAINTAINER Kevin Delfour <kevin@delfour.eu>
-
+RUN sed -i 's/archive.ubuntu.com/mirrors.nhanhoa.com/g' /etc/apt/sources.list
 # Install Supervisor.
 RUN \
   apt-get update && \
@@ -32,9 +32,12 @@ RUN ln -s /lib/x86_64-linux-gnu/security/pam_cracklib.so /lib/security
 #WORKDIR /etc/supervisor/conf.d
 # ------------------------------------------------------------------------------
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup | bash -
-RUN apt-get install -y nodejs
+#RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
+#RUN curl -sL https://deb.nodesource.com/setup_6.x | bash 
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs wget sudo
 
+RUN wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 # ------------------------------------------------------------------------------
 # Install Cloud9
 RUN git clone https://github.com/c9/core.git /cloud9
@@ -53,7 +56,7 @@ RUN mkdir /workspace
 VOLUME /workspace
 
 # Install NPM
-RUN apt-get install npm -y
+#RUN apt-get install npm -y
 # ------------------------------------------------------------------------------
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

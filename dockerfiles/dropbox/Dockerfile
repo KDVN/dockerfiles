@@ -20,7 +20,7 @@ RUN apt-get -y autoremove; apt-get clean
 RUN rm -rf /tmp/* /var/tmp/* /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN mkdir -p /root/Dropbox
-
+RUN sysctl fs.inotify.max_user_watches=1048576
 WORKDIR /root
 COPY ./update.sh /
 
