@@ -1,32 +1,10 @@
-### ARY Logistics's Website ###
+### KDVN C9 IDE with Odoo11 ###
 
-# Website purpose
-* Customize Odoo 8 as Ary logistics requirement
+# C9 IDE
+* Customize C9 IDE suiteable with Odoo 11
 * version 1.0
-
-# Website description
-## Functions
-* Website
-* Expense management
-* Contact management
-* Online chat/support
-* Online products
-
-## Menu
-* About us
-    - Our vision
-    - Brand values
-    - Contact detail
-    - Staff and management
-* Our services
-    - Service 1
-    - Service 2
-    - ...
-* Our commitment
-* Login
-
-## Theme
-* Logo
-* Front color
-* Backgroun color
-
+# Mount volumes ./ folder to /opt/workspace
+* addons
+* extra-addons
+* odoodata
+* db
